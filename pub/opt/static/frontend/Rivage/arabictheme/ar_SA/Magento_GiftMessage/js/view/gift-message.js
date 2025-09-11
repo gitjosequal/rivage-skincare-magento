@@ -1,0 +1,1 @@
+/home/rivageae/public_html/vendor/magento/module-gift-message/view/frontend/web/js/view/gift-message.js

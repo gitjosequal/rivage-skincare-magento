@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Amasty/Rewards/view/frontend/web/js/amreward-points.js

@@ -1,0 +1,16 @@
+Order,طلب
+Customer Name,اسم العميل
+Shipping Info,عنوان الشحن
+Payment Info,معلومات الدفع
+Products,المنتجات
+Subtotal:,الاجمالي
+Grand Total Excl. Tax,المجموع الكلي غير شامل الضريبة
+Grand Total Incl. Tax,المجموع الكلي شامل الضريبة
+Subtotal (Excl. Tax),الإجمالي (غير شامل الضريبة)
+Subtotal (Incl. Tax),الإجمالي (شامل الضريبة)
+Grand Total (Base),المجموع الكلي (قاعدة)
+Grand Total (Purchased),المجموع الكلي (مدفوع)
+Grand Total:,المجموع الاجمالى:
+Order date & time,تاريخ الطلب
+Qty,الكمية
+Item ,الصنف

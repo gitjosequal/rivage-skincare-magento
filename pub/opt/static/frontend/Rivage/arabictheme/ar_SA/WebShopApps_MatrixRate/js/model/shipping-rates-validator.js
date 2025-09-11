@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/WebShopApps/MatrixRate/view/frontend/web/js/model/shipping-rates-validator.js

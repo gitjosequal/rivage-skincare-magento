@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mageworkshop_detailedreview">
+            <group id="mageworkshop_customerpermissions" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Permissions</label>
+                <!--<field id="license_key" translate="label" type="text" sortOrder="10" showInDefault="1">-->
+                    <!--<label>License Key</label>-->
+                <!--</field>-->
+                <field id="enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Customer Permissions' Restrictions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enabled_auto_approve" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Auto Approval</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="groups" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Auto Approval to the Following Customer Group(s)</label>
+                    <source_model>MageWorkshop\CustomerPermissions\Model\Config\Source\Groups</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                        <field id="enabled_auto_approve">1</field>
+                    </depends>
+                </field>
+                <field id="verified_buyers" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Let Only Verified Buyers Post Their Reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="verified_buyers_icon" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Let Verified Buyers Have a Verified Buyer Icon Next to the Review </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

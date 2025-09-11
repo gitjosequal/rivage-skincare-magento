@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Magento_Checkout/web/js/model/payment/method-list.js

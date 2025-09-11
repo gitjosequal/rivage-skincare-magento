@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="review_save_before">
+        <observer name="mageworkshop_customerpermissions_review_save_before"
+                  instance="MageWorkshop\CustomerPermissions\Observer\Review\SaveBefore"
+        />
+    </event>
+    <event name="review_save_after">
+        <observer name="mageworkshop_customerpermissions_review_save_after"
+                  instance="MageWorkshop\CustomerPermissions\Observer\Review\SaveAfter"
+        />
+    </event>
+    <event name="controller_action_postdispatch_review_product_post">
+        <observer name="mageworkshop_customerpermissions_review_predispatch"
+                  instance="MageWorkshop\CustomerPermissions\Observer\Review\PostDispatch"
+        />
+    </event>
+</config>

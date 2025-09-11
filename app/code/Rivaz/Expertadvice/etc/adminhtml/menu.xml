@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+	    <menu>
+			<add id="expertadvice::base" title="Rivage Expertadvice" module="Rivaz_Expertadvice" sortOrder="50" resource="Rivaz_Expertadvice::sample"/>
+			<add id="rivaz_expertadvice::expertadvice" title="Expertadvice" module="Rivaz_Expertadvice" sortOrder="12" parent="expertadvice::base" action="rivaz_expertadvice/items/" resource="Rivaz_Expertadvice::items"/>
+		</menu>
+</config>
+

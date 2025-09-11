@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:MageWorkshop_DetailedReview:etc/mageworkshop_eav_attributes.xsd"
+>
+    <entity type="default">
+        <attributes>
+            <attribute frontend-input="image">
+                <label>Image</label>
+                <position>700</position>
+                <input_type>image</input_type>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+        </attributes>
+    </entity>
+</config>

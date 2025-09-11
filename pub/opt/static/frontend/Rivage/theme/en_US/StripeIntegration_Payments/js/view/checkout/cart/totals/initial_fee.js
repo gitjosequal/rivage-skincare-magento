@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/StripeIntegration/Payments/view/frontend/web/js/view/checkout/cart/totals/initial_fee.js

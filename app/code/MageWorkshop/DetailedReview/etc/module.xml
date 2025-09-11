@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="MageWorkshop_DetailedReview" setup_version="1.2.1">
+        <sequence>
+            <module name="Magento_Review" />
+            <module name="Magento_Swatches" />
+            <module name="MageWorkshop_Core" />
+            <module name="Magento_Store" />
+            <module name="Magento_Eav" />
+        </sequence>
+    </module>
+</config>

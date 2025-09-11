@@ -1,0 +1,1 @@
+MageWorkshop Image Loader module implements image loader for reviews.

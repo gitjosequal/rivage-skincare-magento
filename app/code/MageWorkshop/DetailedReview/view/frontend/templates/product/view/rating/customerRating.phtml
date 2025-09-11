@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var \MageWorkshop\DetailedReview\Block\Review\Product\View\Rating\CustomerRating $block */
+?>
+<?php $customerRating = $block->getCustomerRating(); ?>
+<div class="review-customer-rating">
+    <div class="rating-block-content">
+        <?php foreach ($customerRating as $key => $value): ?>
+            <div class="review-customer-rating-result">
+                <div class="star"><?= $key; ?> <?= $block->escapeHtml(__('star')) ?></div>
+                <div class="scroll-box" >
+                    <div class="scroll-rating" style="width: <?= $block->escapeHtml(__($value['percent'])) ?>%"></div>
+                </div>
+                <div class="rating-count"><?= $block->escapeHtml(__($value['quantity'])) ?></div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

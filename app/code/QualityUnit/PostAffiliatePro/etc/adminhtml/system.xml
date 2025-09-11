@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="postaffiliatepro" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Post Affiliate Pro integration</label>
+            <tab>sales</tab>
+            <resource>QualityUnit_PostAffiliatePro::settings</resource>
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Connect to your merchant panel</label>
+                <field id="url" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Application URL</label>
+                    <comment>Enter the domain name and path where your Post Affiliate Pro or Post Affiliate Network is installed at</comment>
+                    <tooltip>E.g. if you access your merchant panel at "http://www.mysite.com/ partners/ merchants/" then the value needed for this field is "www.mysite.com/partners". In case of hosted accounts, you are supposed to use "youraccount.postaffiliatepro.com"</tooltip>
+                    
+                </field>
+                <field id="username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Username</label>
+                    <comment>Enter your merchant login username (the one you use to log into PAP/PAN as an admin)</comment>
+                </field>
+                <field id="password" translate="label" type="password" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <comment>Enter your merchant login password (the one you use to log into PAP/PAN as an admin)</comment>
+                </field>
+                <field id="accountid" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account ID</label>
+                    <comment>Enter your merchant account ID; applies to Post Affiliate Network</comment>
+                </field>
+            </group>
+            <group id="tracking" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Tracking</label>
+                <field id="trackingmethod" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tracking method</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\trackSales</source_model>
+                </field>
+                <field id="trackclicks" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track clicks</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Choose whether the click tracking code should be automatically added to your site or not.</comment>
+                </field>
+                <field id="trackforcampaign" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track into campaign</label>
+                    <comment>You can set if all sales will always be assigned to a specific campaign (identified by campaign ID).</comment>
+                </field>
+                <field id="perproduct" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Per Product Commissions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Per product tracking enabled with "Yes". When "No" is selected a commission will be created for whole order.</comment>
+                </field>
+                
+                <field id="productoptions" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Track Commissions per</label>
+                    <depends><field id="perproduct">1</field></depends>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\productOptions</source_model>
+                    <comment>Track per product ID or per product SKU. For Category its ID will be used. In case of customer group, the customer group ID will be used (e.g. "Wholesale" and "Retailer" cases)</comment>
+                </field>
+                
+                <field id="coupontrack" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Coupon tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enabled with "Yes", the system will set a coupon code to the sale tracker.</comment>
+                </field>
+                <field id="autostatuschange" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Change commission status automatically</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Order status is changed e.g. when paid or cancelled, or refunded. Do you want the commission to change status accordingly?</comment>
+                </field>
+                <field id="data1" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Data 1</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\customVariables</source_model>
+                    <comment>Optional extra data value, will be replaced with an appropriate value based on order details</comment>
+                </field>
+                <field id="data2" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Data 2</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\customVariables</source_model>
+                    <comment>Optional extra data value, will be replaced with an appropriate value based on order details</comment>
+                </field>
+                <field id="data3" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Data 3</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\customVariables</source_model>
+                    <comment>Optional extra data value, will be replaced with an appropriate value based on order details</comment>
+                </field>
+                <field id="data4" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Data 4</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\customVariables</source_model>
+                    <comment>Optional extra data value, will be replaced with an appropriate value based on order details</comment>
+                </field>
+                <field id="data5" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Data 5</label>
+                    <source_model>QualityUnit\PostAffiliatePro\Model\System\Config\Source\customVariables</source_model>
+                    <comment>Optional extra data value, will be replaced with an appropriate value based on order details</comment>
+                </field>
+                <field id="hash" type="hidden" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                </field>
+            </group>
+            <group id="affiliate" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Affiliate creation</label>
+                <field id="createaff" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Create affiliate</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="createaffproducts" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Create on specific product</label>
+                    <depends><field id="createaff">1</field></depends>
+                    <tooltip><![CDATA[An affiliate account will only be created if a customer ordered a specific product (defined by product ID). No product defined means affiliate will be created for any product. Use comma separator for more product IDs.]]></tooltip>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

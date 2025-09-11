@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <!-- Magento backend::admin -->
+            <resource id="Magento_Backend::admin">
+                <!-- XP Menu -->
+                <resource id="XP_Core::xp_menu" title="Extended Patterns" sortOrder="61" />
+
+                <!-- XP System configuration. -->
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="XP_Core::xp" title="Extended Patterns" translate="title" sortOrder="45" />
+                        </resource>
+                    </resource>
+                </resource>
+
+                <!-- System and API -->
+                <resource id="Magento_Backend::system">
+                    <resource id="XP_Core::xp_api" title="Extended Patterns API" sortOrder="65" translate="title" />
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

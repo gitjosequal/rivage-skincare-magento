@@ -1,0 +1,128 @@
+
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$enable = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('imageflipper/setting/enable');
+$storeManager  = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+
+
+?>
+
+<?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
+<?php
+    $type = 'widget-product-grid';
+
+    $mode = 'grid';
+
+    //$image = 'new_products_content_widget_grid';
+    $image = 'category_page_grid';
+    $items = $block->getProductCollection()->addAttributeToSelect("*")->getItems();
+     //echo count($items);
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    $description = false;
+?>
+    <div class="block widget block-products-list <?= /* @noEscape */ $mode ?>">
+        <?php if ($block->getTitle()): ?>
+        <div class="block-title">
+            <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+        </div>
+        <?php endif ?>
+        <div class="block-content">
+            <div class="products-<?= /* @noEscape */ $mode ?> <?= /* @noEscape */ $mode ?>">
+                <ol class="row product-items <?= /* @noEscape */ $type ?>">
+                    <?php foreach ($items as $_item): 
+                        $prod = $objectManager->get('Magento\Catalog\Model\Product')->load($_item->getId());
+                        ?>
+                        <li class="product-item col-lg-3 col-md-6 col-sm-12">
+                        <div class="product-item-info">
+                            <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product photo product-item-photo" tabindex="-1">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                       class="product-item-link">
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                    
+                                    <div class="skintype">
+                                    <?= $prod->getProductHint() ?>
+                                    </div>
+                                    <div class="shordesc">
+                                    <?= html_entity_decode($_item->getShortDescription()) ?>
+                                    </div>
+
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType,true) ?>
+                                <?php
+                                echo $block->getProductPriceHtml($_item, $type);
+                                ?><?php
+								if ($enable) {
+								$flipper_img_name=$_item->getData('flipper_img');
+								if ($flipper_img_name) {
+									$image_url=$storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'catalog/product'.$flipper_img_name;
+									?>
+									<span id="magebees_fliper_img" style="display:none;"><?php echo $image_url;?></span>
+									<?php 
+										}
+									} ?>
+								<?php if ($showCart) : ?>
+                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                <div class="actions-primary xxxx">
+                                                    <?php if ($_item->isSaleable()) : ?>
+                                                        <?php $postParams = $block->getAddToCartPostParams($_item); ?>
+                                                        <form id="product_addtocart_form" data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>" action="<?= $block->escapeUrl($postParams['action']) ?>" method="post">
+                                                            <input type="hidden" name="product" value="<?= $block->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                            <input type="hidden" name="uenc" value="<?= $block->escapeHtmlAttr($postParams['data']['uenc']) ?>">
+                                                            <?= $block->getBlockHtml('formkey') ?>
+                                                            <button type="submit"
+                                                                    title="<?= $block->escapeHtml(__('ADD TO BAG')) ?>"
+                                                                    class="action tocart primary">
+                                                                <span><?= $block->escapeHtml(__('ADD TO BAG')) ?></span>
+                                                            </button>
+                                                        </form>
+                                                    <?php else : ?>
+                                                        <div class="stock unavailable">
+                                                            <a href="<?php echo $_item->getProductUrl(); ?>"
+                                                                    alt="<?= $block->escapeHtml(__('Out of stock')) ?>"
+                                                                    class="action primary">
+                                                                <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                                                            </a>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </li>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif;?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": true
+            }
+        }
+    }
+</script>

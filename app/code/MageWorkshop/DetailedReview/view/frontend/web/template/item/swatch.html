@@ -1,0 +1,53 @@
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+
+<div data-bind="css: typeof(frontend_class) !== 'undefined' ? frontend_class : null,
+    attr: {
+        'class': typeof(last_field_in_line) !== 'undefined' ?
+            'field-block ' + $parent.setLastFieldInLine(last_field_in_line) : 'field-block'
+    },
+    style: {
+        'width': (typeof(attribute_visual_settings) !== 'undefined'
+         && typeof(width_field_for_desktop) !== 'undefined'
+         && typeof(width_field_for_table) !== 'undefined'
+         && typeof(width_field_for_mobile) !== 'undefined'
+        ) ? $parent.getAttributeWidth(width_field_for_desktop, width_field_for_table, width_field_for_mobile) : null
+    }"
+>
+    <label data-bind="text: typeof(store_label) !== 'undefined' ? store_label + ':' : null,
+        attr: {
+            'class': typeof(validation) !== 'undefined' ? 'dynamic-fields-required' : null
+        }"
+    ></label>
+    <div class="mageworkshop-options-block" data-bind="
+        foreach: {data: item.options, as: 'option'}
+     ">
+        <div class="mageworkshop-option-item" data-bind="attr:{'data-value': value}">
+            <img data-bind="
+                attr:{
+                    'src': typeof(option.src) !== 'undefined' ? option.src : null,
+                    'width': typeof($parent.image_width) !== 'undefined' ? $parent.image_width : null,
+                    'height': typeof($parent.image_height) !== 'undefined' ? $parent.image_height : null,
+                    'alt': typeof(option.label) !== 'undefined' ? option.label : null,
+                    'title': typeof(option.label) !== 'undefined' ? option.label : null
+                }"
+            />
+        </div>
+    </div>
+    <input data-bind="
+    attr:{
+        'name': attribute_code,
+        id: typeof(id) !== 'undefined' ? id : null,
+        'data-validate': typeof(validation) !== 'undefined' ? $parent.getValidRules(validation, frontend_input) : null
+    }" style="visibility: hidden; position:absolute; left:-1000px"/>
+    <span class="note" data-bind="text: note"></span>
+</div>
+<hr data-bind="
+    attr: {
+        'class': typeof(horizontal_line) !== 'undefined' ? $parent.getAttributeHorizontalLine(horizontal_line) : 'disableHorizontalLine'
+    }"
+>

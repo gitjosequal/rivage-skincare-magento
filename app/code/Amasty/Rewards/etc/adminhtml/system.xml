@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amrewards" translate="label" type="text" sortOrder="192013" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Amasty_Rewards::config</resource>
+            <class>separator-top</class>
+            <label>Amasty Rewards</label>
+            <tab>amasty</tab>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="adminaction" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Admin Action Text</label>
+                </field>
+                <field id="days" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Birthday Offset</label>
+                </field>
+            </group>
+            <group id="points" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Points</label>
+                <field id="rate" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Point Rate</label>
+                </field>
+                <field id="round_rule" translate="label comment options" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Points rounding rule</label>
+                    <comment>Rounding will apply when point value exceeds cart subtotal</comment>
+                    <options>
+                        <option label="Round down">down</option>
+                        <option label="Round up">up</option>
+                    </options>
+                </field>
+                <field id="disable_reward" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Reward Points for orders that were paid with Reward Points</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="minimum_reward" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Points Requirement</label>
+                    <comment>Set the points threshold that a customer must have to start spending Reward Points</comment>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

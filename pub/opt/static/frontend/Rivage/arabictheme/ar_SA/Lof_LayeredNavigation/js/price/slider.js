@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Lof_LayeredNavigation/web/js/price/slider.js

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <!--  <head>
+        <title>Beauty Profile</title>
+    </head> -->
+    <body>
+	<!--    <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">My Account</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">My Account</item>
+                    <item name="label" xsi:type="string">My Account</item>
+                </argument>
+            </action>
+        </referenceBlock>
+		<move element="breadcrumbs" destination="page.wrapper" before="main.content"/> -->
+        <referenceBlock name="customer_account_navigation">
+            <block after="customer-account-navigation-account-link" class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-amrewards-rewards-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">amrewards</argument>
+                    <argument name="label" xsi:type="string" translate="true">
+                        Rewards
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+		           <!-- for call service block-->
+		           <block class="Magento\Cms\Block\Block" name="service_block">
+    					<arguments>
+    					<argument name="block_id" xsi:type="string">service_block</argument>
+    					</arguments>
+    				</block>
+				<move element="service_block" destination="page.top" before="page.main.title"/>
+    </body>
+</page>

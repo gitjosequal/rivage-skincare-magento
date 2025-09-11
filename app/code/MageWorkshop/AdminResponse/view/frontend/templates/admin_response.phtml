@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+/** @var \MageWorkshop\AdminResponse\Block\AdminResponse $block */ ?>
+<?php if ($adminResponse = $block->getAdminResponse()) : ?>
+    <?php $adminResponseTooltipText = $block->getAdminResponseTooltipText() ?>
+    <article class="review-item-admin-response">
+        <p class="review-item-admin-response-title">
+            <strong<?php if ($adminResponseTooltipText): ?> class="tooltip-toggle"<?php endif ?>>
+                <?= $block->escapeHtml($block->getAdminResponseTitle()) ?>
+            </strong>
+            <?php if ($adminResponseTooltipText): ?>
+                <span class="tooltip-content"><?= $block->escapeHtml($adminResponseTooltipText) ?></span>
+            <?php endif ?>
+        </p>
+        <p><?= $block->escapeHtml($adminResponse) ?></p>
+    </article>
+<?php endif ?>

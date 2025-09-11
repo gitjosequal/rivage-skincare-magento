@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Rivage(info@rivage.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rivage::top_level" title="Rivage" module="Rivage_GtmExtension" sortOrder="9999"
+             resource="Rivage_GtmExtension::config_rivage_gtmextension"/>
+        <add id="Rivage_GtmExtension::rivage_gtmextension" title="GTM Extension"
+             module="Rivage_GtmExtension" sortOrder="9999" resource="Rivage_GtmExtension::configuration"
+             parent="Rivage::top_level" action="adminhtml/system_config/edit/section/rivage_gtmextension"/>
+    </menu>
+</config>

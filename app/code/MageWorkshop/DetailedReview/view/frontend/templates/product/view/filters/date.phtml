@@ -1,0 +1,13 @@
+<?php /** @var \MageWorkshop\DetailedReview\Block\Review\Product\View\Filters\Date $block */ ?>
+<label for="review-filter-by-date" class="filter-label-icon">
+    <?= $block->escapeHtml(__('Filter by:')) ?>
+</label>
+<select id="review-filter-by-date" class="review-filter-by-date" name="<?= $block->getFilterByDateParamName() ?>">
+    <?php foreach ($block->getDateFilterOptions() as $value => $label) : ?>
+        <option value="<?= $block->escapeHtml(__($value)) ?>"
+            <?php if ($block->isSelected($value)) : ?>selected="selected"<?php endif; ?>
+        >
+            <?= $block->escapeHtml(__($label)) ?>
+        </option>
+    <?php endforeach; ?>
+</select>

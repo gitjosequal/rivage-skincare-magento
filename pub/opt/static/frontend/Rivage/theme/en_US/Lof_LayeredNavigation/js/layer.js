@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Lof_LayeredNavigation/web/js/layer.js

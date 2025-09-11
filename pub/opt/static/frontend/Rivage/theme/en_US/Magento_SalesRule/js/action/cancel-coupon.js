@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Magento_SalesRule/web/js/action/cancel-coupon.js

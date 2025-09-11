@@ -1,0 +1,52 @@
+<?php /** * Copyright © Magento, Inc. All rights reserved. * See COPYING.txt for license details. */ ?> <div id="checkout" data-bind="scope:'checkout'" class="checkout-container"><div id="checkout-loader" data-role="checkout-loader" class="loading-mask" data-mage-init='{"checkoutLoader": {}}'><div class="loader"><img src="<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif') ?>" alt="<?= /* @escapeNotVerified */ __('Loading...') ?>" style="position: absolute;"></div></div><!-- ko template: getTemplate() --><!-- /ko --><script type="text/x-magento-init">
+        {
+            "#checkout": {
+                "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout() ?>
+            }
+        }</script><script>
+        window.checkoutConfig = <?= /* @escapeNotVerified */ $block->getSerializedCheckoutConfig() ?>;
+        
+        window.isCustomerLoggedIn = window.checkoutConfig.isCustomerLoggedIn;
+        window.customerData = window.checkoutConfig.customerData;</script><script>
+        require([
+            'mage/url',
+            'Magento_Ui/js/block-loader'
+        ], function(url, blockLoader) {
+            blockLoader("<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif') ?>");
+            return url.setBaseUrl('<?= /* @escapeNotVerified */ $block->getBaseUrl() ?>');
+        });
+
+        require(['jquery'], function($) {
+            $(document).on('click','.box-payment',function(){
+                let id = $(this).attr('data-id');
+                console.log(id,$('#' + id))
+                $('#' + id).trigger('click');
+                $('.box-payment').removeClass('_active');
+                $(this).addClass('_active');
+            });
+            
+            window.checkout.hasComplete = false;
+            $( window ).on( 'hashchange', function( e ) {
+                $('.back-mobile a').hide();
+                $('.second-step').removeClass('_complete _active');
+                $('.third-step').removeClass('_active _complete');
+
+                if(location.hash == '#payment'){
+                    $('.back-mobile a').show();
+                    $('.second-step').addClass('_complete');
+                    $('.third-step').addClass('_active');
+                    window.checkout.hasComplete = true;
+                }else{
+                    $('.back-mobile a').hide();
+                    $('.second-step').addClass('_active');
+                    window.checkout.hasComplete = false;
+                }
+            });
+
+            if(location.hash == '#payment'){
+                $('.back-mobile a').show();
+                window.checkout.hasComplete = true;
+                $('.second-step').addClass('_complete');
+                $('.third-step').addClass('_active');
+            }
+        });</script></div>

@@ -1,0 +1,58 @@
+/*
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+& when (@media-common = true) {
+
+    .review-vote-wrapper {
+        display: inline-block;
+
+        .voting-wrapper {
+            display: inline-block;
+
+            &:first-child {
+                margin-right: 15px;
+            }
+
+            a,
+            span {
+                display: inline-block;
+                vertical-align: top;
+                line-height: 33px;
+                color: initial;
+            }
+
+            a {
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+                &:before {
+                    display: inline-block;
+                    vertical-align: top;
+                    content: '';
+                    height: 30px;
+                    width: 30px;
+
+                }
+            }
+
+            .vote-helpful {
+                &:before {
+                    background-image: url(../MageWorkshop_Voting/images/helpful-rwd.png);
+                }
+            }
+
+            .vote-unhelpful {
+                &:before {
+                    background-image: url(../MageWorkshop_Voting//images/unhelpful-rwd.png);
+                }
+            }
+        }
+    }
+}

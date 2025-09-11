@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Model\Review">
+        <plugin name="MageWorkshop\DetailedReview\Plugin\Model\Review::afterValidate"
+            type="MageWorkshop\DetailedReview\Plugin\Review\Block\Frontend\Review\ReviewPlugin"
+            sortOrder="20"
+        />
+    </type>
+    <type name="Magento\Review\Controller\Product\Post">
+        <plugin name="MageWorkshop\DetailedReview\Plugin\Review\Block\Frontend\Review\ReviewPostPlugin::afterSave"
+                type="MageWorkshop\DetailedReview\Plugin\Review\Block\Frontend\Review\ReviewPostPlugin"
+                sortOrder="30"
+        />
+    </type>
+</config>

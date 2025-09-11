@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Rivage(info@rivage.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="rivage" translate="label" sortOrder="999">
+            <label>Rivage</label>
+        </tab>
+        <section id="rivage_gtmextension" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>GA4</label>
+            <tab>rivage</tab>
+            <resource>Rivage_GtmExtension::configuration</resource>
+            <group id="general" translate="label" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="10">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gtm_js_code" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>JavaScript Code for Google Tag Manager</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <validate>required</validate>
+                </field>
+                <field id="gtm_nonjs_code" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-JavaScript Code for Google Tag Manager</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="success_paths" translate="label comment" type="textarea" sortOrder="68" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Successful Page Completion Paths</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[In case you are utilizing a custom checkout process and the success page path differs from the default Magento path ('checkout/onepage/success'), you can specify it here to ensure the transmission of Transaction data to GTM.
+                        <br/> If you have multiple success pages, you can list them by separating with a comma (,). <br/> For example: checkout/onestepcheckout/success, checkout/mycustomcheckout/success
+                        <br/> You can also use '*' as a placeholder for a generic match. <br/> For example: checkout/customcheckout/*
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="jsonapi" translate="label" showInDefault="1" showInWebsite="0" showInStore="0" sortOrder="20">
+                <label>Container Settings</label>
+                <field id="account_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Account ID</label>
+                    <validate>required</validate>
+                    <comment><![CDATA[Please find 10 digits of Account ID in the browser URL of Google Tag Manager, which looks like : https://tagmanager.google.com/?authuser=1#/container/accounts/<strong><u>12XXXXXX2</u></strong>/containers/15XXXX7]]></comment>
+                </field>
+                <field id="container_id" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Container ID</label>
+                    <validate>required</validate>
+                    <comment><![CDATA[Please find 8 digits of Container ID in the browser URL of Google Tag Manager, which looks like https://tagmanager.google.com/?authuser=1#/container/accounts/12XXXXXX2/containers/<strong><u>15XXXX7</u></strong>]]></comment>
+                </field>
+                <field id="measurement_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GA4 Measurement ID</label>
+                    <validate>required</validate>
+                    <comment><![CDATA[Please find Measurement ID in the Google Analytics 4 Panel >> Admin Settings >> Data Stream >> Choose the required data stream >> <strong><u>Measurement ID</u></strong> >> Copy the value from this field.]]></comment>
+                </field>
+            </group>
+            <group id="promotion_tracking_config" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40" >
+                <label>Promotion Tracking Settings</label>
+                <field id="promotion_tracking" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Promotion Tracking</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[<b>Usage:</b> &#60;a href="enter your url" data-cz-promotion-event data-promotion-id="PROMOID" data-promotion-name="PROMONAME" data-promotion-creative-name="PROMOCREATIVE" data-promotion-creative-slot="PROMOSLOT" &#62;Content&#60;/a&#62;]]></comment>
+                </field>
+            </group>
+            <group id="download_json" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1"  sortOrder="50">
+                <label>Download File Settings</label>
+                <field id="public_id" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Public ID</label>
+                    <comment>Ex: GTM-00ABC00</comment>
+                </field>
+                <field id="download_file" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Download File</label>
+                    <frontend_model>Rivage\GtmExtension\Block\Json\Downloadfile</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

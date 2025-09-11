@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+     <head>
+	 <link rel="canonical" src="https://rivagecare.com" src_type="url"/>
+ <meta name="twitter:title" content="Rivage® I Best Natural Dead Sea Mineral Skin Care Products " /> 
+<meta name="twitter:description" content="Discover high performance natural Dead Sea mineral skin care Renew, exfoliate hydrate with Rivage’s unique blend of Dead Sea Minerals plant extracts for face, body hair Available to buy online, we deliver worldwide Enjoy special online offers A home spa treatment from the world’s largest natural spa" />
+ <meta name="twitter:image" content="https://rivagecare.com/pub/media/logo/stores/1/logo.png " />
+
+
+
+
+    </head>
+
+    <referenceContainer name="main.content" htmlTag="main" htmlClass="page-main-full-width" />
+
+
+    <body/>
+	
+</page>

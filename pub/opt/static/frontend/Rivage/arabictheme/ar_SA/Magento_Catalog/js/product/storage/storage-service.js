@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Magento_Catalog/web/js/product/storage/storage-service.js

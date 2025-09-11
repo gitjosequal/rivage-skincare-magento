@@ -1,0 +1,14 @@
+#block-reward {
+    float: left;
+    width: 53%;
+}
+#block-reward .content {
+    max-width: 90%;
+}
+#amreward_amount_minimum_point_note {
+    width: 130%;
+    color: red;
+    font-size: 13px;
+    margin-top: 3%;
+    display: none;
+}

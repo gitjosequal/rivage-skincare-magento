@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MasterCard Internet Gateway Service (MIGS) - Virtual Payment Client (VPC)
+ * @author      Trinh Doan
+ * @copyright   Copyright (c) 2017 Trinh Doan
+ * @package     TD_MasterCard
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="TD\MasterCard\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="mastercard_geteway" xsi:type="const">TD\MasterCard\Gateway\Config\Config::CODE</item>
+                <item name="mastercard_api" xsi:type="const">TD\MasterCard\Model\Method\Api::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="mastercard_gateway_config_provider" xsi:type="object">TD\MasterCard\Model\Ui\ConfigProvider</item>
+                <item name="mastercard_api_config_provider" xsi:type="object">TD\MasterCard\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="TD\MasterCard\Block\Info">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item xsi:type="string" name="is_secure_mode">1</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

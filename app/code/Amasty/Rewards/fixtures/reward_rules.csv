@@ -1,0 +1,6 @@
+name,action,amount,spent_amount,is_active,conditions_serialized
+Purchase is made,ordercompleted,10,0,0,a:6:{s:4:"type";s:46:"Magento\SalesRule\Model\Rule\Condition\Combine";s:9:"attribute";N;s:8:"operator";N;s:5:"value";s:1:"1";s:18:"is_value_processed";N;s:10:"aggregator";s:3:"all";}
+Newsletter subscription bonus,subscription,5,0,0,a:6:{s:4:"type";s:46:"Magento\SalesRule\Model\Rule\Condition\Combine";s:9:"attribute";N;s:8:"operator";N;s:5:"value";s:1:"1";s:18:"is_value_processed";N;s:10:"aggregator";s:3:"all";}
+Birthday bonus,birthday,30,0,0,a:6:{s:4:"type";s:46:"Magento\SalesRule\Model\Rule\Condition\Combine";s:9:"attribute";N;s:8:"operator";N;s:5:"value";s:1:"1";s:18:"is_value_processed";N;s:10:"aggregator";s:3:"all";}
+For every $X spent,moneyspent,15,100,0,a:6:{s:4:"type";s:46:"Magento\SalesRule\Model\Rule\Condition\Combine";s:9:"attribute";N;s:8:"operator";N;s:5:"value";s:1:"1";s:18:"is_value_processed";N;s:10:"aggregator";s:3:"all";}
+Registration bonus,registration,15,0,0,a:6:{s:4:"type";s:46:"Magento\SalesRule\Model\Rule\Condition\Combine";s:9:"attribute";N;s:8:"operator";N;s:5:"value";s:1:"1";s:18:"is_value_processed";N;s:10:"aggregator";s:3:"all";}

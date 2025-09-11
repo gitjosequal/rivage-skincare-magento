@@ -1,0 +1,99 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+/** @var \MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tab\Validation\OptionsValidationRules $block */
+?>
+<?php
+$values = [];
+foreach($block->getOptionValues() as $value) {
+    array_push($values, $value->getData());
+}
+?>
+<fieldset class="fieldset">
+    <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Field Validation Rules'); ?></span></legend>
+    <div id="validation-options-panel">
+        <table class="admin__control-table">
+            <thead>
+                <tr id="attribute-validation-options-table">
+                    <th class="col-draggable"></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Validation Rules'); ?></th>
+                    <th><?php /* @escapeNotVerified */ echo __('Rule Parameters'); ?></th>
+                    <?php
+                        // Colspan equals to the number of columns + drag-n-drop + Delete button
+                        $colSpan = $block->getCountColumns();
+                    ?>
+                    <th class="col-delete">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody id="validation-options-container"></tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="<?php /* @escapeNotVerified */ echo $colSpan; ?>" class="validation">
+                        <input type="hidden" class="required-dropdown-attribute-entry" name="dropdown_attribute_validation"/>
+                    </th>
+                </tr>
+                <tr>
+                    <th colspan="<?php /* @escapeNotVerified */ echo $colSpan; ?>" class="col-actions-add">
+                        <button id="add_new_validation_option_button" title="<?php /* @escapeNotVerified */ echo __('Add Option'); ?>"
+                                type="button" class="action- scalable add">
+                            <span><?php /* @escapeNotVerified */ echo __('Add Option'); ?></span>
+                        </button>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <input type="hidden" id="validation-option-count-check" value="" />
+    </div>
+    <p class="hidden">For this input type not available validation rules</p>
+    <script id="validation-row-template" type="text/x-magento-template">
+        <tr data-option-input-types="<%- data.optionInputTypes %>" >
+            <td class="col-draggable">
+                <div data-role="draggable-handle" class="draggable-handle" title="<?php /* @escapeNotVerified */ echo __('Sort Option'); ?>"></div>
+                <input data-role="order" type="hidden" name="option[order]"  value="<%- data.sort_order %>"/>
+            </td>
+            <td name="<?php /* @escapeNotVerified */ echo $block->getFieldName(); ?>">
+                <select
+                    class="select select-validation-rules-option-type required-option-select"
+                    name="<?php /* @escapeNotVerified */ echo $block->getFieldName(); ?>[<%- data.counter %>][type]"
+                >
+                    <option value="<%- data.type %>" label="<%- data.label %>"><%- data.label %></option>
+                </select>
+            </td>
+            <td>
+                <input
+                    name="<?php /* @escapeNotVerified */ echo $block->getFieldName(); ?>[<%- data.counter %>][value]"
+                    value="<%- data.value %>"
+                    class="input-text rule-parameters"
+                    type="text"
+                />
+            </td>
+            <td class="col-delete">
+                <input type="hidden" class="delete-flag"
+                       name="<?php /* @escapeNotVerified */ echo $block->getFieldName(); ?>[<%- data.counter %>][is_delete]"
+                       value=""
+                />
+                <button title="<?php /* @escapeNotVerified */ echo __('Delete'); ?>" type="button"
+                        class="action- scalable delete delete-option"
+                >
+                    <span><?php /* @escapeNotVerified */ echo __('Delete'); ?></span>
+                </button>
+            </td>
+        </tr>
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "#validation-options-container": {
+                "mageWorkshop_detailedReview_fieldValidationRules": {
+                    "attributesData": <?php /* @escapeNotVerified */ echo json_encode($values); ?>,
+                    "inputValidationRules": <?php /* @escapeNotVerified */ echo $block->getAllValidationOptions(); ?>,
+                    "template": "#validation-row-template"
+                }
+            }
+        }
+    </script>
+</fieldset>

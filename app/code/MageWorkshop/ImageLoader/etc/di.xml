@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Review\Model\Review"><!--::beforeSave()-->
+        <plugin name="mageworkshop_imageloader_save_review_images"
+                type="MageWorkshop\ImageLoader\Plugin\Review\Model\ReviewPlugin"
+                sortOrder="10"
+        />
+    </type>
+    <type name="MageWorkshop\DetailedReview\Setup\DetailsSetup"><!--::getEntityAttributes()-->
+        <plugin name="mageworkshop_imageloader_add_entity_attributes"
+                type="MageWorkshop\ImageLoader\Plugin\DetailedReview\Setup\DetailsSetupPlugin"
+                sortOrder="100"
+        />
+    </type>
+</config>

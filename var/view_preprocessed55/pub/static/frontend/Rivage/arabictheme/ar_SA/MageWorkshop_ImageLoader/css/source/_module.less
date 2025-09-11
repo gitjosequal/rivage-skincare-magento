@@ -1,0 +1,123 @@
+/*
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+& when (@media-common = true) {
+
+    .catalog-product-view .column.main {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    #reviews .block-content .review-form #mageworkshop {
+        label {
+            padding-right: 10px;
+        }
+
+        .media-image {
+            padding: 5px 15px 5px 0;
+            position: relative;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.9rem;
+            line-height: 1.6rem;
+            max-width: 80vw;
+
+            &:before {
+                content: attr(data-before);
+                .lib-button (
+                    @_button-background: @color-white,
+                    @_button-border: 1px solid @color-blue1,
+                    @_button-color: @color-blue1
+                );
+
+                display: inline-block;
+                border-radius: 3px;
+                padding: 5px 8px;
+                outline: none;
+                white-space: nowrap;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                cursor: pointer;
+                text-shadow: 1px 1px @color-white;
+                font-weight: 700;
+                font-size: 10pt;
+            }
+
+            &::-webkit-file-upload-button {
+                visibility: hidden;
+            }
+
+            &:hover {
+
+                &::before {
+                    border-color: black;
+                }
+            }
+        }
+    }
+
+    .review-items .review-content {
+
+        .review-image-attribute-label {
+            width: 100%;
+            float: left;
+            .lib-typography (
+                @_color: @color-blue1
+            );
+        }
+
+        .owl-carousel {
+            width: 100%;
+            display: inline-block;
+            margin-top: 15px;
+
+            img {
+                margin-right: 0;
+            }
+
+            .owl-item {
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+            }
+
+            .owl-nav {
+
+                .owl-next, .owl-prev {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+
+                .owl-prev {
+                    background: url("@{baseDir}MageWorkshop_ImageLoader/images/126492.svg") no-repeat;
+                    color: transparent;
+                    width: 30px;
+                    height: 30px;
+                    background-size: contain;
+                    -webkit-background-size: contain;
+                    -moz-background-size: contain;
+                    -o-background-size: contain;
+                    left: 0;
+                }
+
+                .owl-next {
+                    background: url("@{baseDir}MageWorkshop_ImageLoader/images/126490.svg") no-repeat;
+                    color: transparent;
+                    width: 30px;
+                    height: 30px;
+                    background-size: contain;
+                    -webkit-background-size: contain;
+                    -moz-background-size: contain;
+                    -o-background-size: contain;
+                    right: 0;
+                }
+            }
+        }
+    }
+}

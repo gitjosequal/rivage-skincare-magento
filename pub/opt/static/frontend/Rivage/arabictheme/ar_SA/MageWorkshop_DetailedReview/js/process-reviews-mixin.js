@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/MageWorkshop_DetailedReview/web/js/process-reviews-mixin.js

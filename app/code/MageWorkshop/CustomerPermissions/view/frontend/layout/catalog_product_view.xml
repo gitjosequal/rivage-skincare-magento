@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <referenceBlock name="reviews.tab">
+        <block class="MageWorkshop\CustomerPermissions\Block\Check\Rules"
+               ifconfig="mageworkshop_detailedreview/mageworkshop_customerpermissions/enabled"
+               name="permission.rules"
+               group="detailed_info"
+               template="MageWorkshop_CustomerPermissions::review/permissions.phtml"
+        />
+    </referenceBlock>
+</layout>

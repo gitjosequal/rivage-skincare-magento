@@ -1,0 +1,1 @@
+MageWorkshop_Seo module implements extended SEO features for Magento 2

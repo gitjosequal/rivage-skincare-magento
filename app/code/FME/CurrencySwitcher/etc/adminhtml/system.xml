@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * FME Extensions
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the fmeextensions.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.fmeextensions.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category  FME
+ * @package   FME_CurrencySwitcher
+ * @copyright Copyright (c) 2019 FME (http://fmeextensions.com/)
+ * @license   https://fmeextensions.com/LICENSE.txt
+ */ 
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+  <system>
+    <tab id="fmeextensions" translate="label" sortOrder="1000">
+      <label>FME Extention</label>
+    </tab>
+    <section id="genralsection" translate="label" type="text" sortOrder="98" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Currency Switcher Settings</label>
+      <tab>fmeextensions</tab>
+      <resource>FME_CurrencySwitcher::configuration</resource>
+	   <group id="globalsetting" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>General Configuration</label>
+        <!--fileds goes here-->
+        <field id="enable_currencyswitcher" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>Enable Currency Switcher</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                      
+        </field>
+        <field id="enable_roundprices" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>Enable Round Prices</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                      
+        </field>
+        <!--<field id="enable_baseroundprices" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>Enable Base Round Prices</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                      
+        </field>-->
+        <field id="roundpricesalgo" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>Round Algorithm</label>
+          <source_model>FME\CurrencySwitcher\Model\Config\Source\RoundAlgo</source_model>                      
+        </field>
+      </group>
+      <group id="currencyswitcher_country_specific" translate="label" showInDefault="1" showInWebsite="1" showInStore="0" sortOrder="100">
+          <label>Country Specific Settings</label>
+          <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+          <field id="country_currency" translate="label" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
+              <label>Currency Switcher For Specific Country</label>
+              <frontend_model>FME\CurrencySwitcher\Block\Adminhtml\Form\Field\CurrencySwitcher</frontend_model>
+              <backend_model>FME\CurrencySwitcher\Model\Adminhtml\System\Config\CurrencySwitcherConfig</backend_model>
+              <config_path>genralsection/currencyswitcher_country_specific/country_currency</config_path>
+          </field>
+      </group>
+      <group id="currencyswitcher_restriction" translate="label" showInDefault="1" showInWebsite="1" showInStore="0" sortOrder="110">
+        <label>Extension Restriction</label>
+        <!--fileds goes here-->
+        <field id="disable_bot" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>User Agent</label>
+          <comment>Comma "," seprated user-agent</comment>                    
+        </field>
+      </group>
+    </section>
+    <section id="geo" translate="label" type="text" sortOrder="108" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>GeoIp DataBase</label>
+      <tab>fmeextensions</tab>
+      <resource>FME_CurrencySwitcher::geoip</resource>
+     <group id="geoipdatabase" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Maxmind GeoIp DataBase</label>
+        <field id="text" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Note: </label>
+            <comment>This Modules uses MaxMind GeoLite2 Country IP Database For GeoIP Information. MaxMind is very relaible and updates its database every month. You can download the latest database from https://dev.maxmind.com/geoip/geoip2/geolite2/. Download the file GeoLite2-Country-CSV_xxxx.zip (file size: 1.08M approx and CSV Formate) and extract it. Copy 2 files name as 'GeoLite2-Country-Blocks-IPv4.csv' and 'GeoLite2-Country-Locations-en.csv' to the /pub/media/geoipcurrencyswitcher folder inside magento. Make sure that the files are named as GeoLite2-Country-Blocks-IPv4.csv , GeoLite2-Country-Locations-en.csv and 777 rights are given to the media folder.</comment>
+        </field>
+        <field id="button" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+            <button_label>Button</button_label>
+            <frontend_model>FME\CurrencySwitcher\Block\System\Config\Button</frontend_model>
+        </field>
+     </group>
+     <!--<group id="cloudflaredatabase" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>CloudFlare Ip Geolocation</label>
+        <field id="enable_cloudflareip" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+          <label>Enable CloudFlare Ip Location</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          <comment>Attention! This option will be ignored as you do not use Cloudflare for the website or IP Geolocation is disabled in your Cloudflare account. Note that without this option GeoLocation detection also works properly.</comment>                      
+        </field>
+     </group>-->
+    </section>
+  </system>
+</config>

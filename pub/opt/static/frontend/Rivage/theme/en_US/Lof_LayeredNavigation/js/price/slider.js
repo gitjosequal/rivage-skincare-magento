@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Lof/LayeredNavigation/view/frontend/web/js/price/slider.js

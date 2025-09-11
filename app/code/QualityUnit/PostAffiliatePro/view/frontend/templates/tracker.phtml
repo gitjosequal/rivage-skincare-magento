@@ -1,0 +1,17 @@
+<!-- Post Affiliate Pro integration snippet -->
+<?php
+// @codingStandardsIgnoreFile
+/** @var $block \Qualityunit\PostAffiliatePro\Block\Tracking */
+if ($this->helper('Magento\Cookie\Helper\Cookie')->isUserNotAllowSaveCookie()) {
+  echo '<!-- Post Affiliate Pro: Tracking code cannot be displayed because saving cookies is not enabled -->';
+}
+else {
+  if ($block->isCheckoutSuccess()) {
+    echo $block->getSaleTrackingCode();
+  }
+  else {
+    echo $block->getClickTrackingCode();
+  }
+}
+?>
+<!-- /Post Affiliate Pro integration snippet -->

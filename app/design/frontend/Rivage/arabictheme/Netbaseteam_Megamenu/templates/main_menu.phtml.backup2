@@ -1,0 +1,117 @@
+<div id="header-nav" class="navigation">
+<?php
+	$objectManagerr = \Magento\Framework\App\ObjectManager::getInstance();
+	$languages = $objectManagerr->get('\Magento\Store\Block\Switcher');
+	$customerSession = $objectManagerr->get('Magento\Customer\Model\Session');
+	$helper = $objectManagerr->get('\Netbaseteam\Megamenu\Helper\Data');
+	$detect = $objectManagerr->get('\Netbaseteam\Megamenu\Helper\Detect');
+	$mobilestatus = $helper->getMobileEnable();
+	$mobileposition = $helper->getMobilePosition();
+	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+	if(!$helper->getPosition()) {
+		$position = 1; /* top menu for default */
+	} else {
+		$position = $helper->getPosition();
+	}
+
+	$currentStoreId = $languages->getCurrentStoreId();
+	$stores = $languages->getStores();
+	
+if($helper->isEnable()){
+	
+?>
+	<div id = "nb_mn_computer">
+	<?php
+		echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setBlockId('top.links')->toHtml(); 
+	?>
+
+	<?php
+		if($position == \Netbaseteam\Megamenu\Model\Config\Source\Menutype::HORIZONTAL) {
+			echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+					->setTemplate('Netbaseteam_Megamenu::topmenu.phtml')->toHtml();
+		}
+	?>
+
+	<?php
+		if($position == \Netbaseteam\Megamenu\Model\Config\Source\Menutype::VERTICAL) {
+			echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+					->setTemplate('Netbaseteam_Megamenu::vertical.phtml')->toHtml();
+		}
+	?>
+	
+	<?php
+		if($position == \Netbaseteam\Megamenu\Model\Config\Source\Menutype::BOTH) {
+			echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+					->setTemplate('Netbaseteam_Megamenu::topmenu.phtml')->toHtml();
+					
+			echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+					->setTemplate('Netbaseteam_Megamenu::vertical.phtml')->toHtml(); 
+		}
+	?>
+	</div>
+	
+	<div id = "nb_mn_mobile">
+		<?php if ($mobilestatus == 1): ?>
+			<div class="navigation_mgmn">
+				<div class="mobile-menu-top">
+					<a href="#" class="mobile-menu-close">
+						<img src="/media/wysiwyg/icons/close.webp" />
+					</a>
+					<?php
+					// echo $this->getLayout()
+					// ->createBlock("Magento\Customer\Block\Account\AuthorizationLink")
+					// ->setTemplate("Magento_Customer::account/link/authorization.phtml")
+					// ->setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0', true)
+					// ->toHtml();
+					?>
+					<li class="link authorization-link" data-label="<?= $escaper->escapeHtml(__('or')) ?>">
+						<a href="<?= $block->escapeUrl($block->getUrl('customer/account')); ?>"><img src="/media/wysiwyg/icons/account.png" alt="">
+							<span class="d-none d-md-block"><?php echo ($customerSession->isLoggedIn()) ? 'حسابي' : 'تسجيل دخول' ; ?></span>
+						</a>
+					</li>
+				</div>
+				<?php if ($mobileposition == 1): ?>
+					<?php echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+						->setTemplate('Netbaseteam_Megamenu::topmenu.phtml')->toHtml();?>
+				<?php endif ?>
+				<?php if ($mobileposition == 2): ?>
+					<?php echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+						->setTemplate('Netbaseteam_Megamenu::vertical_mb.phtml')->toHtml();?>
+				<?php endif ?>
+				<?php if ($mobileposition == 3): ?>
+					<?php echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+						->setTemplate('Netbaseteam_Megamenu::topmenu.phtml')->toHtml();?>
+					<?php echo $this->getLayout()->createBlock('Netbaseteam\Megamenu\Block\Navigation')
+					->setTemplate('Netbaseteam_Megamenu::vertical_mb.phtml')->toHtml();?>
+				<?php endif ?>
+<?php
+$storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get('\Magento\Store\Model\StoreManagerInterface');
+$currentStore = $storeManager->getStore();
+$arabicStore = $storeManager->getStore('darabic'); // Using the correct store code
+
+if ($arabicStore && $arabicStore->getId() != $currentStore->getId()) {
+    $redirectUrl = $currentStore->getBaseUrl() . 'stores/store/redirect?___store=' . $arabicStore->getCode() . '&___from_store=' . $currentStore->getCode();
+    echo '<div class="m-language"><a class="switch-button" href="' . $redirectUrl . '">العربية</a></div>';
+}
+?>
+			</div>
+		<?php endif ?>	
+	</div>
+<?php
+	
+} else { /* when disable megamenu will show default menu */
+	echo $this->getLayout()->createBlock('Magento\Theme\Block\Html\Topmenu\Interceptor')
+			->setTemplate('Magento_Theme::html/topmenu.phtml')->toHtml(); 
+} 
+?>
+</div>
+<script type="text/javascript">
+	require([
+		'jquery'
+		], function($){
+		$(document).ready(function(){
+			var link = $('.header.links.col-3 .link').html();
+        	$('#nb_mn_mobile .link.authorization-link').html(link);
+		});
+	});
+</script>

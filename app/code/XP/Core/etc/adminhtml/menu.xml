@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="XP_Core::xp_menu" title="Extended Patterns" module="XP_Core" resource="XP_Core::xp_menu" sortOrder="30" />
+    </menu>
+</config>

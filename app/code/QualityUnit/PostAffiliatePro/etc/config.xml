@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <postaffiliatepro>
+            <api>
+                <url>www.mysite.com/partners</url>
+                <username>merchant@example.com</username>
+                <accountid>default1</accountid>
+            </api>
+            <tracking>
+              <trackingmethod>javascript</trackingmethod>
+              <trackclicks>1</trackclicks>
+              <trackforcampaign></trackforcampaign>
+              <perproduct>1</perproduct>
+              <productoptions>1</productoptions>
+              <coupontrack>0</coupontrack>
+              <autostatuschange>1</autostatuschange>
+              <data1>empty</data1>
+              <data2>empty</data2>
+              <data3>empty</data3>
+              <data4>empty</data4>
+              <data5>empty</data5>
+              <hash></hash>
+            </tracking>
+            <affiliate>
+            	<createaff>0</createaff>
+            	<createaffproducts>0</createaffproducts>
+            </affiliate>
+        </postaffiliatepro>
+    </default>
+</config>

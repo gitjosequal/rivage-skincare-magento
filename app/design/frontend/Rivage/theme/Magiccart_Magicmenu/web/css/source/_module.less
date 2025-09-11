@@ -1,0 +1,14 @@
+& when (@media-common = true) {
+    // Override Magiccart_Magicmenu _module.less
+    // Remove only the specific .nav-sections-item-content styling that affects menu width
+    
+    .nav-sections-item-content {
+        // Remove the box-sizing, margin, max-width, padding, and width properties
+        // Keep only the .magicmenu styling
+        .magicmenu {
+            position: relative;
+            display: block;
+            text-align: left;
+        }
+    }
+}

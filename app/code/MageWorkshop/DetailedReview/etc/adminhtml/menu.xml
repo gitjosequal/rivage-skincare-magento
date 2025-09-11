@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="MageWorkshop_DetailedReview::review_attribute"
+             title="Review Fields"
+             module="MageWorkshop_DetailedReview"
+             parent="Magento_Backend::marketing_user_content"
+             sortOrder="100"
+             action="mageworkshop_detailedreview/attribute"
+             resource="MageWorkshop_DetailedReview::review_attribute"
+        />
+        <add id="MageWorkshop_DetailedReview::review_form"
+             title="Review Forms"
+             module="MageWorkshop_DetailedReview"
+             parent="Magento_Backend::marketing_user_content"
+             sortOrder="200"
+             action="mageworkshop_detailedreview/form"
+             resource="MageWorkshop_DetailedReview::review_form"
+        />
+    </menu>
+</config>

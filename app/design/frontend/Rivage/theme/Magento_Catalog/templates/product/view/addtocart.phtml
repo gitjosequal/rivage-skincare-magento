@@ -1,0 +1,99 @@
+ <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); 
+$buttonTitle = __('ADD TO BAG'); 
+$qty = __('Qty');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+$total_stock = 0;
+if($_product->getTypeID() == 'configurable'){
+    $productTypeInstance = $_product->getTypeInstance();
+    $usedProducts = $productTypeInstance->getUsedProducts($_product);
+    foreach ($usedProducts as $simple) {
+        $total_stock += $StockState->getStockQty($simple->getId(), $simple->getStore()->getWebsiteId());
+    }
+}
+
+?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($_product->isSaleable()): ?>
+            <?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty:') ?></span></label>
+                        <select name="qty" id="qty" title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" 
+                        class="input-text qty" data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>">
+                        <?php $i = 1 ; ?>
+                            <?php 
+                            while( $i < 11) { ?>
+                                <option value="<?php echo $block->getProductDefaultQty() * $i; ?>"><?php echo $block->getProductDefaultQty() * $i; ?></option>
+                                <?php $i++; ?>
+                            <?php } ?>
+                    </select>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <?php if($_product->getTypeID() == 'configurable' && $total_stock > 0){ ?>
+                <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                </button>
+                
+                <?php }else if ($_product->getExtensionAttributes()->getStockItem()->getQty() > 0){ ?>
+                <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                </button>
+                <?php }else{ ?>
+                    <button type="submit" disabled
+                        title="<?=$block->escapeHtml(__('Out of stock'))?>"
+                        class="action tocart primary" id="product-addtocart-button">
+                        <span><?=$block->escapeHtml(__('Out of stock'))?></span>
+                    </button>
+                <?php } ?>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        <?php else: ?>
+            <div class="actions">
+                <button type="button"
+                        title="<?= $block->escapeHtml(__('Out of stock')) ?>"
+                        class="action primary" disabled>
+                    <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                </button>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>

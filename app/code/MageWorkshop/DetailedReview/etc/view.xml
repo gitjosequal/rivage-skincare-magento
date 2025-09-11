@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <media>
+        <!--Real module name can not be used because we cat an error while validating th DOM document:-->
+        <!--Element 'images': This element is not expected.-->
+        <images module="Magento_Catalog">
+            <image id="review_attribute_swatch_thumbnail" type="swatch_thumb">
+                <!--Max width and height-->
+                <width>150</width>
+                <height>150</height>
+            </image>
+        </images>
+    </media>
+</view>

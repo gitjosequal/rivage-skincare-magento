@@ -1,0 +1,241 @@
+.cart.table-wrapper thead .cart-step-title{
+    padding: 5px 10px;
+    background: #ba9765;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border-bottom: 0;
+}
+
+.cart.table-wrapper thead .cart-step-title span{
+    font-size: 17px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.opc-progress-bar-item.third-step:before{
+    display: none;
+}
+
+.opc-progress-bar-item > span:before{
+    height: 28px;
+    margin-left: -19px;
+    width: 28px;
+}
+
+.opc-progress-bar-item.first-step > span:before{
+    background: #ba9765;
+}
+
+.opc-progress-bar-item:before{
+    left: 50%;
+    height: 3px;
+    top: 13px;
+}
+
+[lang="ar"] .opc-progress-bar-item:before{
+    right: 50%;
+    left: auto;
+}
+
+.opc-progress-bar-item > span:after {
+    height: 20px;
+    margin-left: -15px;
+    top: 4px;
+    width: 20px;
+    font-size: 14px;
+}
+
+.opc-progress-bar-item.first-step:before {
+    background: #ba9765;
+}
+
+.opc-progress-bar-item.first-step > span {
+    color: #333333;
+}
+
+.steps{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.steps .opc-progress-bar{
+    margin: 0;
+}
+
+.opc-progress-bar-item > span{
+    padding-top: 35px;
+}
+
+.opc-progress-bar-item{
+    max-width: 150px;
+}
+
+#maincontent .page-title-wrapper{
+    display: none;
+}
+
+.price-including-tax{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#maincontent.page-main{
+    margin-top: 40px;
+}
+
+.customshipping .checkout-methods-items [data-role="proceed-to-checkout"],.action.primary[data-role="proceed-to-checkout"]{
+    font-weight: normal;
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.login-wrapper .socail_logincustomer{
+    margin-bottom: 0;
+}
+
+.login-wrapper .socail_customer{
+    margin-bottom: 0px !important;
+    padding-bottom: 0 !important;
+    display: none;
+}
+
+.login-wrapper .block-title.socail_customer strong{
+    font-size: 18px;
+}
+
+.login-wrapper .form-login .field.note{
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.login-wrapper .fieldset > .field{
+    margin-bottom: 5px;
+}
+
+.login-wrapper .label{
+    font-size: 14px;
+}
+
+.login-wrapper .secondary{
+    margin-bottom: 15px;
+}
+
+.login-wrapper .action.login.primary{
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+.header-toggle:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f078";
+    position: absolute;
+    right: 15px;
+    transition: all 0.2s ease;
+    color: #fff;
+    font-weight: 900;
+    top: 8px;
+    font-size: 14px;
+}
+
+[lang="ar"] .header-toggle:after {
+    right: auto;
+    left: 15px;
+}
+
+.header-toggle.active:after{
+    rotate: 180deg;
+}
+
+.header-toggle{
+    padding: 5px 10px;
+    background: #ba9765;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.content-toggle{
+    padding: 15px;
+}
+
+@media (min-width: 768px){
+    .login-wrapper {
+        width: 65%;
+    }
+}
+
+@media (max-width: 768px){
+    .cart-summary .checkout-methods-items{
+        display: none;
+    }
+
+    .cart-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-summary{
+        order: 2;
+    }
+
+    .block.crosssell{
+        margin-top: 15px;
+    }
+
+    
+
+    .customshipping .checkout-methods-items{
+        position: fixed;
+        bottom: 0;
+        z-index: 999999;
+        background: #fff;
+        width: 100%;
+        left: 0;
+        margin-bottom: 0;
+        box-shadow: 0px -3px 7px 0px #00000085;
+        padding: 10px 5px;
+        text-align: center;
+    }
+
+    .customshipping .checkout-methods-items [data-role="proceed-to-checkout"]{
+        display: block;
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: auto;
+        background: #000 !important;
+        color: #fff !important;
+    }
+
+    .cart.table-wrapper{
+        width: 112%;
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .opc-progress-bar-item > span{
+        font-size: 14px;
+    }
+
+    .opc-progress-bar-item{
+        max-width: 85px;
+    }
+
+    .cart.table-wrapper thead .cart-step-title{
+        border-radius: 0px;
+    }
+
+    .product-item-info{
+        width: auto;
+    }
+
+    .login-wrapper{
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .header-toggle{
+        border-radius: 0;
+    }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root">
+        <block name="additional.rules"
+               class="MageWorkshop\CustomerPermissions\Block\Check\Rules"
+               template="MageWorkshop_CustomerPermissions::review/permissions/rules.phtml"
+               cacheable="false"
+        >
+            <block name="verified.user"
+                   class="MageWorkshop\CustomerPermissions\Block\Check\Verified"
+                   template="MageWorkshop_CustomerPermissions::review/permissions/verified.phtml"
+            />
+            <block name="banned.user"
+                   class="MageWorkshop\CustomerPermissions\Block\Check\Banned"
+                   after="verified.user"
+                   template="MageWorkshop_CustomerPermissions::review/permissions/banned.phtml"
+            />
+        </block>
+    </container>
+</layout>

@@ -1,0 +1,166 @@
+.store-switcher {
+  float: none;
+}
+#edit_form table {
+  margin-bottom: 12px;
+}
+#edit_form table thead td {
+  font-weight: bold;
+}
+#edit_form table td {
+  padding: 7px 16px;
+  vertical-align: top;
+}
+#edit_form table td input {
+  box-sizing: border-box;
+  padding: 1px 4px;
+}
+#edit_form table tbody tr:nth-child(2n+1) td {
+  background-color: #f5f5f5;
+}
+#edit_form table tbody tr:nth-child(2n) td {
+  background-color: white;
+}
+#edit_form table tbody td {
+  border-right: 0.1rem dashed #d6d6d6;
+  border-left: 0.1rem dashed #d6d6d6;
+}
+#edit_form table tbody td:last-child {
+  border-right: none;
+}
+#edit_form table tbody td:first-child {
+  border-left: none;
+}
+#edit_form table tbody .placeholder td {
+  border: 1px dashed #ccc;
+  text-align: center;
+}
+#edit_form table tbody .placeholder {
+  display: none;
+}
+#edit_form table tbody .placeholder:only-child {
+  display: table-row;
+}
+#edit_form table td:first-child {
+  vertical-align: middle;
+}
+#edit_form table td.center {
+  text-align: center;
+}
+#edit_form table td.middle {
+  vertical-align: middle;
+}
+#edit_form table td.default-value,
+#edit_form table td.required {
+  width: 100px;
+}
+#edit_form table .draggable-handle {
+  margin: 0;
+  width: 8px;
+  height: 14px;
+  background: url(../../Magento_Backend/images/draggable-handle-vertical.png) no-repeat 0 0;
+  color: #b2b0ad;
+  vertical-align: top;
+  line-height: 14px;
+  cursor: ns-resize;
+}
+#edit_form .width-control input {
+  display: inline-block;
+  width: 40px;
+}
+#edit_form .width-control .ui-slider {
+  display: inline-block;
+  margin-right: 12px;
+  width: 50px;
+}
+#edit_form .width-control.-empty * {
+  display: none;
+}
+.fields-comment {
+  margin: 12px 0 7px;
+}
+.amcheckout-fields-wrapper {
+  display: none;
+}
+.amcheckout-custom-fields .modal-inner-wrap {
+  width: 400px;
+}
+.amcheckout-custom-fields .modal-inner-wrap .amcheckout-fields-wrapper {
+  display: block;
+}
+.amcheckout-custom-fields .modal-inner-wrap .amcheckout-note {
+  margin-top: 15px;
+}
+.amcheckout-custom-fields .modal-inner-wrap .amcheckout-button {
+  margin-top: 10px;
+}
+.amcheckout-field-wrapper {
+  padding: 10px;
+  cursor: pointer;
+}
+.amcheckout-field-wrapper .amcheckout-checkbox {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.amcheckout-module-link {
+  background: none !important;
+  vertical-align: middle !important;
+}
+.amcheckout-module-link .amcheckout-link {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  margin-left: 15px;
+  padding: 5px 40px 5px 5px;
+  background: #ea5300;
+  color: #fff;
+  white-space: nowrap;
+}
+.amcheckout-module-link .amcheckout-link:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  border: 10px solid #ea5300;
+  content: '';
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.amcheckout-module-link .amcheckout-link:after {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyODMuOTIyIDI4My45MjIiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cGF0aCBkPSJNMjY2LjQyMiAwaC05Ny42MjVjLTkuNjUgMC0xNy41IDcuODUxLTE3LjUgMTcuNSAwIDkuNjQ5IDcuODUgMTcuNSAxNy41IDE3LjVoNTUuMzc3bC05Mi4zNzUgOTIuMzc0YTE3LjM3OCAxNy4zNzggMCAwIDAtNS4xMjcgMTIuMzc1YzAgNC42NzYgMS44MTkgOS4wNjkgNS4xMjUgMTIuMzcxYTE3LjM3NCAxNy4zNzQgMCAwIDAgMTIuMzc1IDUuMTNjNC42NzQgMCA5LjA2OS0xLjgyIDEyLjM3Ni01LjEyN2w5Mi4zNzQtOTIuMzc1djU1LjM3N2MwIDkuNjQ5IDcuODUxIDE3LjUgMTcuNSAxNy41IDkuNjQ5IDAgMTcuNS03Ljg1MSAxNy41LTE3LjVWMTcuNWMwLTkuNjQ5LTcuODUxLTE3LjUtMTcuNS0xNy41eiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgY2xhc3M9ImFjdGl2ZS1wYXRoIiBkYXRhLW9sZF9jb2xvcj0iI2ZmZiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yMDEuMTM3IDI1My45MjJIMzBWODIuNzg1aDEyOC43MTFsMzAtMzBIMTVjLTguMjg0IDAtMTUgNi43MTYtMTUgMTV2MjAxLjEzN2MwIDguMjg0IDYuNzE2IDE1IDE1IDE1aDIwMS4xMzdjOC4yODQgMCAxNS02LjcxNiAxNS0xNVY5NS4yMTFsLTMwIDMwdjEyOC43MTF6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIGRhdGEtb2xkX2NvbG9yPSIjZmZmIiBmaWxsPSIjZmZmIi8+PC9zdmc+) no-repeat center;
+  background-size: contain;
+  content: '';
+  transform: translate(-50%, -50%);
+}
+.amcheckout-module-link .amcheckout-label {
+  z-index: 2;
+}
+.amasty-module-status td {
+  border: none !important;
+  background: none !important;
+}
+.amasty-module-status .name-wrapper {
+  text-align: right;
+}
+.amasty-module-status .module-name {
+  font-weight: 600;
+}
+.amasty-module-status .note {
+  font-size: 12px;
+}
+.unsortable .amcheckout-required-option,
+.unsortable .amcheckout-default-option {
+  pointer-events: none;
+}
+.unsortable .amcheckout-required-option .amcheckout-checkbox,
+.unsortable .amcheckout-default-option .amcheckout-default-checkbox {
+  display: none;
+}
+.unsortable .draggable-handle {
+  opacity: 0.2;
+}
+/*# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C%22sources%22%3A%5B%22%5C%2Fstatic%5C%2Fadminhtml%5C%2FMagento%5C%2Fbackend%5C%2Fen_US%5C%2FAmasty_Checkout%5C%2Fcss%5C%2Ffields.less%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22AAAA%3BEACI%2CWAAA%3B%3BAAGJ%2CUACI%3BEACI%2CmBAAA%3B%3BAAFR%2CUACI%2CMAGI%2CMAAM%3BEACF%2CiBAAA%3B%3BAALZ%2CUACI%2CMAOI%3BEACI%2CiBAAA%3BEACA%2CmBAAA%3B%3BAAVZ%2CUACI%2CMAOI%2CGAII%3BEACI%2CsBAAA%3BEACA%2CgBAAA%3B%3BAAdhB%2CUACI%2CMAiBI%2CMACI%2CGAAE%2CUAAU%2CMAAO%3BEACf%2CyBAAA%3B%3BAApBhB%2CUACI%2CMAiBI%2CMAKI%2CGAAE%2CUAAU%2CIAAK%3BEACb%2CuBAAA%3B%3BAAxBhB%2CUACI%2CMAiBI%2CMASI%3BEACI%2CmCAAA%3BEACA%2CkCAAA%3B%3BAAEA%2CUA9BZ%2CMAiBI%2CMASI%2CGAIK%3BEACG%2CkBAAA%3B%3BAAGJ%2CUAlCZ%2CMAiBI%2CMASI%2CGAQK%3BEACG%2CiBAAA%3B%3BAApCpB%2CUACI%2CMAiBI%2CMAsBI%2CaAAa%3BEACT%2CuBAAA%3BEACA%2CkBAAA%3B%3BAA1ChB%2CUACI%2CMAiBI%2CMA2BI%3BEACI%2CaAAA%3B%3BAA9ChB%2CUACI%2CMAiBI%2CMA%2BBI%2CaAAY%3BEACR%2CkBAAA%3B%3BAAlDhB%2CUACI%2CMAqDI%2CGAAE%3BEACE%2CsBAAA%3B%3BAAIA%2CUA1DR%2CMAyDI%2CGACK%3BEACG%2CkBAAA%3B%3BAAGJ%2CUA9DR%2CMAyDI%2CGAKK%3BEACG%2CsBAAA%3B%3BAAGJ%2CUAlER%2CMAyDI%2CGASK%3BAACD%2CUAnER%2CMAyDI%2CGAUK%3BEACG%2CYAAA%3B%3BAArEhB%2CUACI%2CMAwEI%3BEACI%2CSAAA%3BEACA%2CUAAA%3BEACA%2CYAAA%3BEACA%2CyFAAA%3BEACA%2CcAAA%3BEACA%2CmBAAA%3BEACA%2CiBAAA%3BEACA%2CiBAAA%3B%3BAAjFZ%2CUAqFI%2CeACI%3BEACI%2CqBAAA%3BEACA%2CWAAA%3B%3BAAxFZ%2CUAqFI%2CeAMI%3BEACI%2CqBAAA%3BEACA%2CkBAAA%3BEACA%2CWAAA%3B%3BAAGJ%2CUAZJ%2CeAYK%2COAAQ%3BEACL%2CaAAA%3B%3BAAKZ%3BEACI%2CkBAAA%3B%3BAAGJ%3BEACI%2CaAAA%3B%3BAAGJ%2CyBAA0B%3BEAElB%2CYAAA%3B%3BAAFR%2CyBAA0B%2CkBAKtB%3BEACI%2CcAAA%3B%3BAANR%2CyBAA0B%2CkBAStB%3BEACI%2CgBAAA%3B%3BAAVR%2CyBAA0B%2CkBAatB%3BEACI%2CgBAAA%3B%3BAAIR%3BEAEQ%2CaAAA%3BEACA%2CeAAA%3B%3BAAHR%2CyBAMI%3BEACI%2CiBAAA%3BEACA%2CsBAAA%3B%3BAAIR%3BEAEQ%2C2BAAA%3BEACA%2CiCAAA%3B%3BAAHR%2CuBAMI%3BEACI%2CkBAAA%3BEACA%2CUAAA%3BEACA%2CsBAAA%3BEACA%2CiBAAA%3BEACA%2CyBAAA%3BEACA%2CmBAAA%3BEACA%2CWAAA%3BEACA%2CmBAAA%3B%3BAAdR%2CuBAiBI%2CiBAAgB%3BEACZ%2CkBAAA%3BEACA%2CQAAA%3BEACA%2COAAA%3BEACA%2CWAAA%3BEACA%2C0BAAA%3BEACA%2CSAAS%2CEAAT%3BEACA%2CWAAW%2CsBAAsB%2CaAAjC%3B%3BAAxBR%2CuBA2BI%2CiBAAgB%3BEACZ%2CkBAAA%3BEACA%2CQAAA%3BEACA%2CUAAA%3BEACA%2CWAAA%3BEACA%2CYAAA%3BEACA%2CokCAAA%3BEACA%2CwBAAA%3BEACA%2CSAAS%2CEAAT%3BEACA%2CWAAW%2CqBAAX%3B%3BAApCR%2CuBAuCI%3BEACI%2CUAAA%3B%3BAAIR%2CqBACI%3BEACI%2CuBAAA%3BEACA%2C2BAAA%3B%3BAAHR%2CqBAMI%3BEACI%2CiBAAA%3B%3BAAPR%2CqBAUI%3BEACI%2CgBAAA%3B%3BAAXR%2CqBAcI%3BEACI%2CeAAA%3B%3BAAIR%2CWACI%3BAADJ%2CWAEI%3BEACI%2CoBAAA%3B%3BAAHR%2CWAMI%2C4BAA4B%3BAANhC%2CWAOI%2C2BAA2B%3BEACvB%2CaAAA%3B%3BAARR%2CWAWI%3BEACI%2CYAAA%22%7D */

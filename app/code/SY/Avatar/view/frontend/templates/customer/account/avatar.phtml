@@ -1,0 +1,38 @@
+<?php
+/**
+ * Profile Avatar
+ * 
+ * @author Slava Yurthev
+ */
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$customerSession->getCustomerGroupId();
+$cusname =$customerSession->getCustomer()->getFirstname();
+?>
+<div class="block block-dashboard-info avatar">
+	<div class="block-title"><strong><?php echo __('Welcome'). " " .ucfirst($cusname); ?></strong></div>
+	<div class="block-content">
+		<div class="box-content">
+			<img src="<?php echo $this->getAvatar(); ?>">
+		</div>
+		<div class="box upload-img">
+	    <label class="change-profile-img"><?php echo __('Upload photo'); ?>
+	        <form action="<?php echo $this->getUrl('sy_avatar/manager/upload'); ?>" enctype="multipart/form-data" method="POST" style="display: none">
+				<div><input type="file" name="avatar" id="avatar-btn" accept="image/*"></div>
+				<div class="avatar-box"><button type="submit" class="change-avatar-btn"><span><span><?php echo __('Save'); ?></span></span></button></div>
+			</form>
+	    </label>
+		</div>
+	</div>
+</div>
+<script>
+    require(['jquery'], function($, myscript) {
+           $('#avatar-btn').on('change',function(){
+               $('.change-avatar-btn').click();
+           });
+           
+          
+    });
+</script>

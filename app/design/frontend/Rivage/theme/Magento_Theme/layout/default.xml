@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks" />
+
+    <body>
+        <move element="top.links" destination="header.panel" after="logo" />
+        <move element="logo" destination="header.panel" before="top.links" />
+        <move element="minicart" destination="top.links" />
+        <move element="header.panel.wrapper" destination="header-wrapper" before="logo" />
+        <move element="navigation.sections" destination="header.container" after="header-wrapper" />
+        <move element="top.search" destination="header.container" after="-" />
+        <referenceContainer name="header.panel" htmlClass="panel header row" />
+        <referenceContainer name="top.links" htmlClass="header links col-3" />
+        <block class="Magento\Cms\Block\Block" name="top_bar" as="top_bar" before="-">
+            <arguments>
+                <argument name="block_id" xsi:type="string">top_bar</argument>
+            </arguments>
+        </block>
+        <move element="top_bar" destination="header.container" before="header-wrapper" />
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer content container">
+                <block class="Magento\Theme\Block\Html\Footer" name="footer-content"
+                    template="Magento_Theme::html/footer.phtml" />
+            </container>
+        </referenceContainer>
+        <referenceContainer name="header-wrapper">
+            <container name="search.custom" as="searchcustom" htmlTag="div" htmlClass="search-link">
+                <block class="Magento\Theme\Block\Html\Footer" name="search.link"
+                    template="Magento_Theme::html/search-custom.phtml" />
+            </container>
+        </referenceContainer>
+        <referenceBlock name="top.links">
+            <arguments>
+                <argument name="css_class" xsi:type="string">header links col-3</argument>
+            </arguments>
+            <referenceBlock name="register-link" remove="true" />
+            <!--for Create Account Link-->
+            <referenceBlock name="wish-list-link" remove="true" />
+            <!--for WishList Link-->
+            <referenceBlock name="my-account-link" remove="true" />
+            <!--for My Account Link-->
+
+        </referenceBlock>
+        <referenceBlock name="store.settings" remove="true" />
+        <referenceBlock name="catalog.compare.sidebar" remove="true" />
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="currency" remove="true" />
+        <referenceBlock name="store.settings.currency" remove="true" />
+        <referenceBlock name="notification.messages" remove="true" />
+    </body>
+</page>

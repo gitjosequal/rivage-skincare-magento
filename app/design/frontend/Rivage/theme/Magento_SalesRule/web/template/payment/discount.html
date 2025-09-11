@@ -1,0 +1,49 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-option-content" data-role="content">
+    <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="title" data-role="title"> 
+        <strong id="block-discount-heading" role="heading" aria-level="2">Promotion Code</strong> 
+    </div>
+    <label for="discount-code" class="label discount-code-label">
+        <span>Please enter promotion code if available</span>
+    </label> 
+    <form class="form form-discount" id="discount-form">
+        <div class="payment-option-inner">
+            <div class="field">
+                
+                <div class="control">
+                    <input class="input-text"
+                           type="text"
+                           id="discount-code"
+                           name="discount_code"
+                           data-validate="{'required-entry':true}"
+                           data-bind="value: couponCode, attr:{disabled:isApplied() , placeholder: $t('ENTER CODE')} " />
+                </div>
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <!-- ko ifnot: isApplied() -->
+                    <button class="action action-apply" type="submit" data-bind="'value': $t('APPLY'), click: apply">
+                        <span><!-- ko i18n: 'APPLY'--><!-- /ko --></span>
+                    </button>
+                <!-- /ko -->
+                <!-- ko if: isApplied() -->
+                    <button class="action action-cancel" type="submit" data-bind="'value': $t('Cancel'), click: cancel">
+                        <span><!-- ko i18n: 'Cancel coupon'--><!-- /ko --></span>
+                    </button>
+                <!-- /ko -->
+            </div>
+        </div>
+        <!-- ko foreach: getRegion('captcha') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </form>
+</div>

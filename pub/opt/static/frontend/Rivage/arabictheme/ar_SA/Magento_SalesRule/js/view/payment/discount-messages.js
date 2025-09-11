@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Magento_SalesRule/web/js/view/payment/discount-messages.js

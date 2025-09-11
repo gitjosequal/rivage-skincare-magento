@@ -1,0 +1,203 @@
+<?php $_product = $block->getProduct();
+$longdes = $block->escapeHtml($_product->getDescription());
+$how_to_use = $_product->getHowToUse();
+?>
+
+<div id="pro1" class="product_short_des">
+<span class="tabheading"><?= __('Product details') ?></span>
+<?php echo html_entity_decode($longdes); ?>
+</div> 
+
+<div id="how_to_use" class="product_short_des">
+<span class="tabheading"><?= __('How to Use') ?></span>
+<?php echo html_entity_decode($how_to_use); ?>
+</div> 
+ 
+ 
+<script type="text/javascript">
+	require([
+        "jquery"
+    ], function ($) {
+        $(document).ready(function () {
+				// Add smooth scrolling to all links
+			  $("a").on('click', function(event) {
+
+				// Make sure this.hash has a value before overriding default behavior
+				if (this.hash !== "") {
+				  // Prevent default anchor click behavior
+				  event.preventDefault();
+
+				  // Store hash
+				  var hash = this.hash;
+
+				  // Using jQuery's animate() method to add smooth page scroll
+				  // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+				  $('html, body').animate({
+					scrollTop: $(hash).offset().top
+				  }, 800, function(){
+			   
+					// Add hash (#) to URL when done scrolling (default click behavior)
+					window.location.hash = hash;
+				  });
+				} // End if
+			  });
+			
+		});
+    });
+</script>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$media_url = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$baseurl = $objectManager->get('\Magento\Store\Model\StoreManagerInterface')->getStore()->getBaseUrl();
+$ingredients =  $_product->getResource()->getAttribute('ingredients')->getFrontend()->getValue($_product);
+    if($ingredients){ ?>
+	    <div id="pro2" class="ingredientdetailpage">
+		    <strong><?= /* @escapeNotVerified */ __('Key Ingredients') ?></strong>
+			<div id="sync2"  class="ingredientspelist_content owl-carousel">
+			    <?php $ingredients_array = explode(", ",$ingredients);
+				foreach($ingredients_array as $ingredientname){
+				 	$ingredients_collection = $objectManager->get('Emizentech\ShopByBrand\Model\Items')->getCollection()->addFieldToFilter('name', $ingredientname);
+					foreach($ingredients_collection as $fillter_ingredients){ ?>
+				    	<?php if($fillter_ingredients->getLogo() != ''){ ?>
+					    	<div class="item ingredients_list">
+								<div class="ingredients_contents">
+									<span class="ingredientimage label">
+										<img src="<?php echo $media_url.$fillter_ingredients->getLogo() ?>"/></span><span class="ingredientname label">
+											<?php echo $ingredientname ?>
+									<span>
+								</div>
+							</div>
+						<?php }else{ ?>
+							<div class="item ingredients_list">
+								<div class="ingredients_contents">
+									<span class="ingredientimage label">
+										<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"/></span><span class="ingredientname label">
+											<?php echo $ingredientname ?>
+									<span>
+								</div>
+							</div>
+						<?php }
+					}
+				} ?>
+			</div>
+		</div>
+		
+		<div class="ingredientlider">
+			<div id="sync1" class="ingredientcontent owl-carouseingredient owl-carousel">
+			    <?php $ingredients_array = explode(", ",$ingredients);
+				foreach($ingredients_array as $ingredientname){
+				 	$ingredients_collection = $objectManager->get('Emizentech\ShopByBrand\Model\Items')->getCollection()->addFieldToFilter('name', $ingredientname);
+					#echo '<pre>'; print_r($ingredients_collection->getData());die("test");
+					foreach($ingredients_collection as $fillter_ingredients){ ?>
+				    	<div class="ingredients_list item">
+							<div class="ingredients_contents">
+							<?php if($fillter_ingredients->getMainimage()!=''){ ?>
+								<div class="ingredientmain_image">
+									<img src="<?php echo $media_url.$fillter_ingredients->getMainimage(); ?>"/>
+								</div>
+								<?php }else{ ?>
+									<span class="ingredientmain_image">
+										<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png"/>
+									</span>
+								<?php } ?>
+								<div class="ingredients_all_description">
+									<p class="label">
+										<?php echo $ingredientname; ?>
+									</p>
+									<p class="ingredients_description">
+										<?php echo $fillter_ingredients->getDescription(); ?>
+									</p>
+								</div>
+								
+							</div>
+						</div>
+					<?php }
+				} ?>
+			</div>
+		</div>
+		
+			
+<?php } ?>
+
+<script type="text/javascript">
+	require([
+        "jquery",
+        "owlcarouselslider",
+    ], function ($) {
+	var $= $.noConflict();
+	$(document).ready(function(){
+		var sync1 = $("#sync1");
+		var sync2 = $("#sync2");
+
+		sync1.owlCarousel({
+			singleItem : true,
+			slideSpeed : 1000,
+			navigation: true,
+			pagination:false,
+			afterAction : syncPosition,
+			responsiveRefreshRate : 200,
+		});
+
+		sync2.owlCarousel({
+			items : 15,
+			itemsDesktop  : [1199,10],
+			itemsDesktopSmall : [979,10],
+			itemsTablet       : [768,8],
+			itemsMobile       : [479,4],
+			pagination:false,
+			responsiveRefreshRate : 100,
+			afterInit : function(el){
+			  el.find(".owl-item").eq(0).addClass("synced");
+			}
+		});
+
+		function syncPosition(el){
+			var current = this.currentItem;
+			$("#sync2")
+			.find(".owl-item")
+			.removeClass("synced")
+			.eq(current)
+			.addClass("synced")
+			if($("#sync2").data("owlCarousel") !== undefined){
+				center(current)
+			}
+		}
+
+		$("#sync2").on("click", ".owl-item", function(e){
+			e.preventDefault();
+			var number = $(this).data("owlItem");
+			sync1.trigger("owl.goTo",number);
+		});
+
+		function center(number){
+			var sync2visible = sync2.data("owlCarousel").owl.visibleItems;
+			var num = number;
+			var found = false;
+			for(var i in sync2visible){
+				if(num === sync2visible[i]){
+					var found = true;
+				}
+			}
+
+			if(found===false){
+				if(num>sync2visible[sync2visible.length-1]){
+					sync2.trigger("owl.goTo", num - sync2visible.length+2)
+				}else{
+					if(num - 1 === -1){
+						num = 0;
+					}
+					sync2.trigger("owl.goTo", num);
+				}
+			}
+			else if(num === sync2visible[sync2visible.length-1]){
+				sync2.trigger("owl.goTo", sync2visible[1])
+			} else if(num === sync2visible[0]){
+				sync2.trigger("owl.goTo", num-1)
+			}
+		}
+	});
+}); 	
+</script>
+ 
+ 
+ 

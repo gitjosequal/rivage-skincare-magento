@@ -1,0 +1,128 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Review\Block\Form $block */
+/** @var \MageWorkshop\Core\Helper\Metadata $metadataHelper */
+$metadataHelper = $this->helper(\MageWorkshop\Core\Helper\Metadata::class);
+$captchaWidget = $metadataHelper->isMagentoVersionEqualOrGreater('2.2.7') ? 'captcha' : 'Magento_Captcha/captcha';
+$validationAvailable = $metadataHelper->isMagentoVersionEqualOrGreater('2.2.0');
+?>
+<?php $url = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>
+<div class="block review-add">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Write Your Own Review')) ?></strong></div>
+    <div class="block-content">
+        <?php if ($block->getAllowWriteReviewFlag()): ?>
+            <form action="<?= $block->escapeUrl($block->getAction()) ?>"
+                  class="review-form"
+                  method="post"
+                  id="review-form"
+                  data-role="product-review-form"
+                  data-bind="scope: 'review-form'"
+                  enctype="multipart/form-data"
+            >
+                <?= $block->getBlockHtml('formkey'); ?>
+                <?= $block->getChildHtml('form_fields_before')?>
+                <h2 class="tell-us"><?= $block->escapeHtml(__('Tell us what you think about this item:')) ?></h2>
+                <fieldset class="fieldset review-fieldset" data-hasrequired="<?php __('* Required Fields'); ?>">
+                    <legend class="legend review-legend"><span><?= $block->escapeHtml(__('You\'re reviewing:')) ?></span><strong><?= $block->escapeHtml($block->getProductInfo()->getName()) ?></strong></legend><br />
+                    <?php if ($block->getRatings() && $block->getRatings()->getSize()): ?>
+                        <span id="input-message-box"></span>
+                        <fieldset class="field required review-field-ratings">
+                            <legend class="label"><span><?= $block->escapeHtml(__('Overall Rating')) ?></span></legend><br/>
+                            <p><?= $block->escapeHtml(__('Select the number of stars that reflect your overall item rating')) ?></p>
+                            <div class="control">
+                                <div class="nested" id="product-review-table">
+                                    <?php foreach ($block->getRatings() as $_rating): ?>
+                                        <div class="field choice review-field-rating">
+                                            <label class="label" id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label"><span><?= $block->escapeHtml($_rating->getRatingCode()) ?></span></label>
+                                            <div class="control review-control-vote">
+                                                <?php $options = $_rating->getOptions();?>
+                                                <?php $iterator = 1; foreach ($options as $_option): ?>
+                                                    <input
+                                                            type="radio"
+                                                            name="ratings[<?= /* @escapeNotVerified */ $_rating->getId() ?>]"
+                                                            id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $block->escapeHtml($_option->getValue()) ?>"
+                                                            value="<?= $block->escapeHtml($_option->getId()) ?>"
+                                                            class="radio"
+                                                            data-validate="{required:true, messages:{required:'<?= $block->escapeHtml(__('Please select one of each of the ratings above.')) ?>'}}"
+                                                            aria-labelledby="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label <?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $block->escapeHtml($_option->getValue()) ?>_label" />
+                                                    <label
+                                                            class="rating-<?= $block->escapeHtml($iterator) ?>"
+                                                            for="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $block->escapeHtml($_option->getValue()) ?>"
+                                                            title="<?= $block->escapeHtml(__('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star')) ?>"
+                                                            id="<?= $block->escapeHtml($_rating->getRatingCode()) ?>_<?= $block->escapeHtml($_option->getValue()) ?>_label">
+                                                        <span><?= $block->escapeHtml(__('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star')) ?></span>
+                                                    </label>
+                                                    <?php $iterator++; ?>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <input type="hidden" name="validate_rating" class="validate-rating" value="" />
+                            </div>
+                        </fieldset>
+                    <?php endif ?>
+                    <p class="your-review"><?= $block->escapeHtml(__('Your Review')) ?></p>
+                    <p><?= $block->escapeHtml(__('Share your opinion with others by writing a detailed review')) ?></p>
+                    <?= $block->getChildHtml('review.form.fields.wrapper'); ?>
+                    <?= $block->getChildHtml('form_additional_info'); ?>
+                    <div class="actions-toolbar review-form-actions">
+                        <div class="primary actions-primary">
+                            <div class="review-form-action-item">
+                                <button type="submit" class="action submit primary"><span><?= $block->escapeHtml(__('Submit Review')) ?></span></button>
+                            </div>
+                            <div class="review-form-action-item">
+                                <button class="button-back"><span><?= $block->escapeHtml(__('Back')) ?></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+            <script type="text/x-magento-init">
+        {
+            "[data-role=product-review-form]": {
+                "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout();?>
+            },
+            "#review-form": {
+                "mageWorkshop_detailedReview_reviewCustomValidateLength": {},
+                "MageWorkshop_DetailedReview/js/error-placement": {},
+                <?php if ($validationAvailable): ?>
+                    "Magento_Review/js/validate-review": {},
+                <?php endif; ?>
+                "mageWorkshop_detailedReview_reviewForm": {
+                    "productUrl": <?= /* @escapeNotVerified */ json_encode($url); ?>
+                },
+                "<?= $captchaWidget ?>": {
+                    "url": "<?= /* @escapeNotVerified */ $block->getUrl('captcha/refresh/'); ?>"
+                }
+            }
+        }
+        </script>
+            <script>
+                // @TODO: Used for swatches. Need to move this to plugin
+                require(["jquery", "jquery/ui"], function ($) {
+                    $('body').on('click', '.mageworkshop-option-item', function () {
+                        var parent = $(this).parents('.field-block');
+                        parent.find('.mageworkshop-option-item').removeClass('selected');
+                        parent.find('input').val($(this).attr('data-value'));
+                        $(this).addClass('selected');
+                    });
+                });
+            </script>
+        <?php else: ?>
+            <div class="message info notlogged" id="review-form">
+                <div>
+                    العملاء المسجلين فقط يمكنهم عرض المراجعات, <a href="<?= $block->getLoginLink(); ?>">سجل الدخول</a> او <a href="<?= $block->getRegisterUrl(); ?>">انشئ حسابا</a>
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MasterCard Internet Gateway Service (MIGS) - Virtual Payment Client (VPC)
+ * @author      Trinh Doan
+ * @copyright   Copyright (c) 2017 Trinh Doan
+ * @package     TD_MasterCard
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="mastercard_gateway" translate="label" sortOrder="999" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>MasterCard Payment Merchant Hosted (3-Party Payments)</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="description" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                </field>
+                <field id="merchant_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>MerchantID</label>
+                </field>
+                <field id="access_code" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>AccessCode</label>
+                </field>
+                <field id="secure_secret" translate="label" type="obscure" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Secure Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="gateway_logo" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <frontend_model>TD\MasterCard\Block\System\Config\Form\Field\Image</frontend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">sales/store/logo</upload_dir>
+                    <base_url type="media" scope_info="1">sales/store/logo</base_url>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="mastercard_approved_order_status" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Status for MasterCard Approved Orders</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                    <tooltip>Select ‘MasterCard Processed’ if you want to easily locate all MasterCard transactions in the Orders page.</tooltip>
+                </field>
+                <field id="automatic_invoice" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Automatic Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_customer" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Email Customer</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+            </group>
+
+            <group id="mastercard_api" translate="label" type="text" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>MasterCard Payment Merchant Server (2-Party Payments)</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="payment_action" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Action</label>
+                    <source_model>TD\MasterCard\Model\Source\PaymentAction</source_model>
+                    <config_path>payment/mastercard_api/payment_action</config_path>
+                </field>
+                <field id="merchant_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>MerchantID</label>
+                </field>
+                <field id="access_code" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AccessCode</label>
+                </field>
+                <field id="refund" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Refund Online</label>
+                    <tooltip>If you set this to 'Yes', then can do refund payment online in magento backend.</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="operator_id" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Operator Id</label>
+                    <depends><field id="refund">1</field></depends>
+                </field>
+                <field id="operator_password" translate="label" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Operator Password</label>
+                    <depends><field id="refund">1</field></depends>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                <field id="cctypes" translate="label" type="multiselect" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Credit Card Types</label>
+                    <source_model>TD\MasterCard\Model\Source\Cctype</source_model>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

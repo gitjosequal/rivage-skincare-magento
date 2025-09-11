@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/MagicToolbox/MagicZoomPlus/view/frontend/web/js/thumb-switcher.js

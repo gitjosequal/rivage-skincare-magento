@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MageWorkshop\CustomerPermissions\Ui\Component\MassAction\Ban\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">mageworkshop_customerpermissions/set/banToCustomer</item>
+                <item name="paramName" xsi:type="string">ban_period</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string">Ban customer</item>
+                    <item name="message" xsi:type="string">Are you sure that you want to ban this customer(s)?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\CustomerPermissions\Plugin\Ui\Component\MassActionPlugin">
+        <arguments>
+            <argument name="additionalActionsArray" xsi:type="array">
+                <item name="ban_customer" xsi:type="array">
+                    <item name="component" xsi:type="string">uiComponent</item>
+                    <item name="type" xsi:type="string">ban_customer</item>
+                    <item name="label" xsi:type="string">Ban customer to post reviews</item>
+                    <item name="actions" xsi:type="object">MageWorkshop\CustomerPermissions\Ui\Component\MassAction\Ban\Options</item>
+                </item>
+                <item name="delete_from_ban" xsi:type="array">
+                    <item name="component" xsi:type="string">uiComponent</item>
+                    <item name="type" xsi:type="string">delete_from_ban</item>
+                    <item name="label" xsi:type="string">Delete from ban list</item>
+                    <item name="urlPath" xsi:type="string">mageworkshop_customerpermissions/remove/customerFromBan</item>
+                    <item name="confirm" xsi:type="array">
+                        <item name="title" xsi:type="string">Delete from ban list</item>
+                        <item name="message" xsi:type="string">Are you sure to delete selected customers from ban list?</item>
+                    </item>
+                </item>
+            </argument>
+            <argument name="namespace" xsi:type="string">customer_listing</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Ui\Component\MassAction">
+        <plugin name="customerPermissions_afterPrepare"
+                type="MageWorkshop\CustomerPermissions\Plugin\Ui\Component\MassActionPlugin"
+        />
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\Config\ManagerInterface">
+        <plugin name="uiManager_afterPrepareData"
+                type="MageWorkshop\CustomerPermissions\Plugin\Ui\Model\ManagerPlugin"
+        />
+    </type>
+    <type name="Magento\Customer\Ui\Component\Listing\AttributeRepository">
+        <plugin name="customerPermissions_afterGetList"
+                type="MageWorkshop\CustomerPermissions\Plugin\Ui\Component\Listing\AttributeRepositoryPlugin"
+        />
+    </type>
+    <type name="Magento\Customer\Model\Customer\DataProvider">
+        <plugin name="customerModel_dataProviderAfterGetFieldMetaInfo"
+                type="MageWorkshop\CustomerPermissions\Plugin\Customer\Model\DataProviderPlugin"
+        />
+    </type>
+    <preference for="Magento\Review\Block\Adminhtml\Grid"
+                type="MageWorkshop\CustomerPermissions\Block\Adminhtml\Review\Grid"
+    />
+</config>

@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ * @var $block \Magento\Checkout\Block\Cart\Totals
+ */
+?>
+<?php
+$clayout = $block->getJsLayout();
+$clayout = str_replace('Shipping',$block->escapeHtml(__('Shipping')),$clayout);
+?>
+<div id="cart-totals" class="cart-totals" data-bind="scope:'block-totals'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+            {
+                "#cart-totals": {
+                    "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */  $clayout; ?>
+                }
+            }
+    </script>
+</div>

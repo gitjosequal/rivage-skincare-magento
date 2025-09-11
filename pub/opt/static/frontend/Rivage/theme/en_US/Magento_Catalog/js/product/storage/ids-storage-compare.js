@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Magento_Catalog/web/js/product/storage/ids-storage-compare.js

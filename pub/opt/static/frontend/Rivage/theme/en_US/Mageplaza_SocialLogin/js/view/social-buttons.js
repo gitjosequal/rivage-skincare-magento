@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Mageplaza_SocialLogin/web/js/view/social-buttons.js

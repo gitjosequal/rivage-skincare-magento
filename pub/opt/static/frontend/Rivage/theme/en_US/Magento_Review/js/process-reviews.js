@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Magento_Review/web/js/process-reviews.js

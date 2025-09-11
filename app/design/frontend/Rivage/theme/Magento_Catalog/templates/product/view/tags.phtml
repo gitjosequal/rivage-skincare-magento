@@ -1,0 +1,15 @@
+<?php
+$_product = $block->getProduct();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+$imageUrl = $helperImport->init($_product, 'product_page_image_small')
+                ->setImageFile($_product->getSmallImage()) // image,small_image,thumbnail
+                ->resize(380)
+                ->getUrl();
+?>
+<meta itemprop="name" content="<?php   echo $block->escapeQuote($block->stripTags($_product->getName())); ?>" />
+<meta itemprop="image" content="<?php   echo $imageUrl; ?>" />
+<meta itemprop="description" content="<?php  echo $block->escapeQuote($block->stripTags($_product->getDescription())); ?>" />
+<meta itemprop="url" content="<?php  echo $block->stripTags($_product->getProductUrl()); ?>" />
+<meta itemprop="sku" content="<?php  echo $block->stripTags($_product->getSku()); ?>" />
+<meta itemprop="price" content="<?php echo $_product->getPriceInfo()->getPrice('final_price')->getAmount(); ?>" />

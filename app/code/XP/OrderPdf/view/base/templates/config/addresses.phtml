@@ -1,0 +1,20 @@
+<?php
+/**
+ * @var \XP\OrderPdf\Block\Config $block
+ */
+?>
+<?php
+$style = $this->getAddresses();
+/** @var \Magento\Sales\Model\Order $order */
+$order = $this->getOrder();
+?>
+<table style="<?= $style['tbl'] ?>">
+    <tr style="<?= $style['tr'] ?>">
+        <td style="<?= $style['td'] ?>"><h2><?=  __("Shipping Address") ?></h2></td>
+        <td style="<?= $style['td'] ?>"><h2><?=  __("Billing Address") ?></h2></td>
+    </tr>
+    <tr style="<?= $style['tr_content'] ?>">
+        <td style="<?= $style['td_content'] ?>"><?= $block->getFormattedAddressString($order->getShippingAddress(), 'pdf') ?></td>
+        <td style="<?= $style['td_content'] ?>"><?= $block->getFormattedAddressString($order->getBillingAddress(), 'pdf') ?></td>
+    </tr>
+</table>

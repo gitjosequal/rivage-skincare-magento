@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View*/
+?>
+<div class="product-addto-links" data-role="add-to-links">
+    <?= $block->getChildHtml() ?>
+</div>
+<div class="wdm-social-icons" data-role="wdm-social-icons">
+<?php
+$_product = $block->getProduct(); // GET THE PRODUCT
+?>
+<!-- FACEBOOK -->
+Share
+<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on FaceBook">
+</a>
+
+<!-- TWITTER -->
+
+</div>

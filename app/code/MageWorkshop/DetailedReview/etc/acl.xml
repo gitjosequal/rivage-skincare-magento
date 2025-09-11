@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::marketing">
+                    <resource id="Magento_Backend::marketing_user_content">
+                        <resource id="MageWorkshop_DetailedReview::review_attribute" title="Review Fields" sortOrder="100"/>
+                        <resource id="MageWorkshop_DetailedReview::review_form" title="Review Forms" sortOrder="200"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MageWorkshop_Core::section_access">
+                                <resource id="MageWorkshop_DetailedReview::config" title="Detailed Review" sortOrder="300" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

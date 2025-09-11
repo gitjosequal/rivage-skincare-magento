@@ -1,0 +1,113 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+?>
+<?php $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<div class="steps text-center">
+    <ul class="opc-progress-bar">
+        <li class="opc-progress-bar-item first-step">
+            <span data-bind="i18n: 'Bag'">Bag</span>
+        </li>
+
+        <li class="opc-progress-bar-item second-step" >
+            <span data-bind="i18n: 'Shipping'">Shipping</span>
+        </li>
+    
+        <li class="opc-progress-bar-item third-step">
+            <span data-bind="i18n: 'Payments'">Payments</span>
+        </li>
+    </ul>
+</div>
+
+
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+if(!$customerSession->isLoggedIn()) {
+?>
+
+<div class="accordion login-wrapper mb-4">
+    <div data-role="collapsible">
+        <div data-role="trigger" class="header-toggle">
+            <span>Sign In</span>
+        </div>
+    </div>
+    <div data-role="content" class="content-toggle" style="display: none;">
+        <?php
+            $loginBlock = $this->getLayout()->createBlock('Magento\Customer\Block\Form\Login');
+            $loginBlock->setTemplate('Magento_Customer::form/login.phtml');
+            echo $loginBlock->toHtml();
+        ?>
+    </div>
+</div>
+
+<?php } ?>
+<form action="<?= /* @escapeNotVerified */ $block->getUrl('checkout/cart/updatePost') ?>"
+          method="post"
+          id="form-validate"
+          data-mage-init='{"validation":{}}'
+          class="form form-cart">
+    <?= $block->getBlockHtml('formkey') ?>
+    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?></div>
+        <?php endif ?>
+        <table id="shopping-cart-table"
+               class="cart items data table"
+               data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
+               "updateCartActionContainer": "#update_cart_action_container"}}'>
+            <caption role="heading" aria-level="2" class="table-caption"><?= /* @escapeNotVerified */ __('Shopping Cart Items') ?></caption>
+            <thead>
+                <tr>
+                    <th class="col item cart-step-title" colspan="3"><span><?= /* @escapeNotVerified */ __('My Products') ?></span></th>
+                </tr>
+            </thead>
+            <?php foreach ($block->getItems() as $_item): ?>
+                <?= $block->getItemHtml($_item) ?>
+            <?php endforeach ?>
+        </table>
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar" data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?></div>
+        <?php endif ?>
+    </div>
+    <div class="cart main actions">
+        <?php if ($block->getContinueShoppingUrl()): ?>
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                <span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span>
+            </a>
+        <?php endif; ?>
+      
+        <button type="submit"
+                name="update_cart_action"
+                data-cart-item-update=""
+                value="update_qty"
+                title="<?= $block->escapeHtml(__('Update Shopping Cart')) ?>"
+                class="action update d-none">
+            <span><?= /* @escapeNotVerified */ __('Update Shopping Cart') ?></span>
+        </button>
+        <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+
+    </div>
+</form>
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+<script>
+    require(['jquery','accordion'], function ($) {
+        $(".accordion").on('click',function(){
+            $(this).find('[data-role="content"]').slideToggle();
+            $(this).find('.header-toggle').toggleClass('active');
+        });
+    });
+</script>
+

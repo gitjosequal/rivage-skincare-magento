@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+
+<div class="field-block" data-bind="css: typeof(frontend_class) !== 'undefined' ? frontend_class : null">
+    <label data-bind="text: store_label + ':',
+        attr: {
+            for: typeof(id) !== 'undefined' ? id : null,
+            'class': typeof(validation) !== 'undefined' ? 'dynamic-fields-required' : null
+        }"
+    ></label>
+    <input type="file"
+           data-bind="
+            attr: {
+                'name': attribute_code,
+                'id': typeof(id) !== 'undefined' ? id : null,
+                'data-validate': typeof(validation) !== 'undefined' ? $parent.getValidRules(validation, frontend_input) : null,
+                'accept': typeof(accept) !== 'undefined' ? accept : null
+            }"
+    />
+    <span class="note" data-bind="text: $t(note)"></span>
+</div>

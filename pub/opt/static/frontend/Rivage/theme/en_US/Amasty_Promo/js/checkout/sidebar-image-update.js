@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Amasty/Promo/view/frontend/web/js/checkout/sidebar-image-update.js

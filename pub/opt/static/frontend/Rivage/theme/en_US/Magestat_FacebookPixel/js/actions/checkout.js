@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Magestat/FacebookPixel/view/frontend/web/js/actions/checkout.js

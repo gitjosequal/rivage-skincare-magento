@@ -1,0 +1,50 @@
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+
+<div class="field-block" data-bind="css: typeof(frontend_class) !== 'undefined' ? frontend_class : null,
+    attr: {
+        'class': typeof(last_field_in_line) !== 'undefined' ? $parent.setLastFieldInLine(last_field_in_line) : null
+    },
+    style: {
+        'width': (typeof(attribute_visual_settings) !== 'undefined'
+         && typeof(width_field_for_desktop) !== 'undefined'
+         && typeof(width_field_for_table) !== 'undefined'
+         && typeof(width_field_for_mobile) !== 'undefined'
+        ) ? $parent.getAttributeWidth(width_field_for_desktop, width_field_for_table, width_field_for_mobile) : null
+    }"
+>
+    <label data-bind="text: store_label + ':',
+        attr: {
+            'class': typeof(validation) !== 'undefined' ? 'dynamic-fields-required' : null
+        }"
+    ></label>
+    <ul data-bind="
+        foreach: {data: item.options, as: 'option'},
+        attr: {
+            'id': typeof(id) !== 'undefined' ? id : null
+        }">
+        <li>
+            <input type="radio" class="radio product bundle option change-container-classname" data-bind="
+                    attr: {
+                        'value' : option.value,
+                        'name' : item.name,
+                        'data-validate': typeof($parent.validation) !== 'undefined' ? $parents[1].getValidRules($parent.validation) : null,
+                        'id': typeof($parent.id) !== 'undefined' ? $parent.id + '-' + option.value : null
+                    }"
+                   aria-required="true"
+            />
+            <label data-bind="text: option.label, attr: {'for': $parent.id + '-' + option.value}"></label>
+
+        </li>
+    </ul>
+    <span class="note" data-bind="text: note"></span>
+</div>
+<hr data-bind="
+    attr: {
+        'class': typeof(horizontal_line) !== 'undefined' ? $parent.getAttributeHorizontalLine(horizontal_line) : 'disableHorizontalLine'
+    }"
+>

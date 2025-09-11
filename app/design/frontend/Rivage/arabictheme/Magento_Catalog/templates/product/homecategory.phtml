@@ -1,0 +1,42 @@
+
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$catId = 2; // Parent Category ID
+$subcategory = $objectManager->create('Magento\Catalog\Model\Category')->load($catId);
+$subcats = $subcategory->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+
+<div class="cate-products">
+<?php
+foreach ($subcats as $subcat) {
+$_category = $objectManager->create('Magento\Catalog\Model\Category')->load($subcat->getId());
+$_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+$subcaturl = $subcat->getUrl();
+$_imgHtml = '';
+if ($_imgUrl = $_category->getImageUrl()) {
+$_imgHtml = '<img src="' . $_imgUrl . '" />';
+$_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
+/* @escapeNotVerified */
+
+}
+//echo $subcat->getUrlKey();
+ if ($subcat->getUrlKey() == 'best-seller') {
+            continue;
+        } 
+//echo "<pre>"; print_r($subcat->getData()); 
+ ?>
+<ul>
+<li><a href="<?php echo $subcaturl ?>"><?php echo $_imgHtml;?></a>
+<div class="cate-detail">
+<div class="cate-tittle">
+<a href="<?php echo $subcaturl ?>"><?php echo $subcat->getName(); ?></a></div>
+<div class="shop-now"><a href="<?php echo $subcaturl ?>">Shop now</a></div>
+</div>
+</li>
+</ul>
+<?php } ?>
+
+</div>
+
+

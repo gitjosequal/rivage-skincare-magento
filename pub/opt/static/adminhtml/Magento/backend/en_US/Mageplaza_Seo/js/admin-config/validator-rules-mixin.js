@@ -1,0 +1,1 @@
+/home/rivageae/public_html/vendor/mageplaza/magento-2-seo-extension/view/adminhtml/web/js/admin-config/validator-rules-mixin.js

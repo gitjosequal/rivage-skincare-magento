@@ -1,0 +1,69 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+?>
+<?php
+    $_rewards = $block->getRewards();
+    $statistic = $block->getStatistic();
+?>
+<?php echo $block->getChildHtml('info');?>
+<?php if ($_rewards && count($_rewards)) : ?>
+
+
+    <div class="fieldset-wrapper customer-information">
+        <table class="data table table-order-items history">
+            <tbody>
+            <tr>
+                <th><?php /* @escapeNotVerified */ echo __('Current Balance:') ?></th>
+                <td><?php /* @escapeNotVerified */ echo ($statistic['positiveTotal'] + $statistic['negativeTotal']) ?> </td>
+            </tr>
+
+            <tr>
+                <th><?php /* @escapeNotVerified */ echo __('Total Earned:') ?></th>
+                <td><?php /* @escapeNotVerified */ echo (int)$statistic['positiveTotal'] ?></td>
+            </tr>
+
+            <tr>
+                <th><?php /* @escapeNotVerified */ echo __('Total Spent:') ?></th>
+                <td><?php /* @escapeNotVerified */ echo abs($statistic['negativeTotal']) ?></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Rewards') ?></caption>
+            <thead>
+            <tr>
+                <th scope="col" class="col date"><?php /* @escapeNotVerified */ echo __('Date') ?></th>
+                <th scope="col" class="col total"><?php /* @escapeNotVerified */ echo __('Change') ?></th>
+                <th scope="col" class="col status"><?php /* @escapeNotVerified */ echo __('Comment') ?></th>
+                <th scope="col" class="col action"><?php /* @escapeNotVerified */ echo __('Action') ?></th>
+                <th scope="col" class="col left"><?php /* @escapeNotVerified */ echo __('Points Left') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($_rewards as $_reward) : ?>
+                <tr>
+                    <td data-th="<?php echo $block->escapeHtml(__('Date')) ?>" class="col date"><?php /* @escapeNotVerified */ echo $block->formatDate($_reward->getActionDate()) ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Amount')) ?>" class="col amount">
+                        <?php /* @escapeNotVerified */ echo $_reward->getAmount() > 0 ? '+'.$_reward->getAmount() : $_reward->getAmount() ?>
+                    </td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Comment')) ?>" class="col comment"><?php echo $_reward->getComment() ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('Action')) ?>" class="col status"><?php /* @escapeNotVerified */ echo $_reward->getAction() ?></td>
+                    <td data-th="<?php echo $block->escapeHtml(__('PointsLeft')) ?>" class="col status"><?php /* @escapeNotVerified */ echo $_reward->getPointsLeft() ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else : ?>
+    <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have no rewards.'); ?></span></div>
+<?php endif ?>

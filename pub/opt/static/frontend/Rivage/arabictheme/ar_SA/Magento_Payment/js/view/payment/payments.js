@@ -1,0 +1,1 @@
+/home/rivageae/public_html/vendor/magento/module-payment/view/frontend/web/js/view/payment/payments.js

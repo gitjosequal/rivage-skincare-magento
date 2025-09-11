@@ -1,0 +1,175 @@
+/*
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+& when (@media-common = true) {
+
+    #review-search-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-top: 15px;
+        overflow: hidden;
+        padding-right: 5px;
+        padding-left: 5px;
+        box-sizing: border-box;
+
+        & > div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5%;
+            width: 100%;
+        }
+
+        label {
+            .lib-typography (
+                @_font-weight: @font-weight__bold
+            );
+            margin-bottom: 5px;
+
+            &.error {
+                display: none !important;
+                .lib-typography (
+                    @_font-weight: @font-weight__regular,
+                    @_color: @form-validation-note__color-error
+                );
+            }
+        }
+
+        select {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #review-search {
+            position: relative;
+            order: 2;
+
+            span {
+                clip: rect(0, 0, 0, 0);
+                overflow: hidden;
+                position: absolute;
+            }
+
+            button {
+                .lib-button (
+                    @_button-background: url("@{baseDir}MageWorkshop_DetailedReview/images/search_icon.png") 50% 50% no-repeat @button-primary__background,
+                    @_button-border: 1px solid @color-gray80
+                );
+                height: 32px;
+                position: absolute;
+                right: 0;
+                width: auto;
+
+                &:hover {
+                    .lib-button (
+                        @_button-background-hover: url("@{baseDir}MageWorkshop_DetailedReview/images/search_icon.png") 50% 50% no-repeat @color-blue2
+                    );
+                }
+
+                &:active {
+                    .lib-button (
+                        @_button-background-active: url("@{baseDir}MageWorkshop_DetailedReview/images/search_icon.png") 50% 50% no-repeat @color-blue2
+                    );
+                }
+
+                &:focus {
+                    .lib-button (
+                        @_button-background-active: url("@{baseDir}MageWorkshop_DetailedReview/images/search_icon.png") 50% 50% no-repeat @color-blue2
+                    );
+                    &:hover {
+                        .lib-button (
+                            @_button-background-hover: url("@{baseDir}MageWorkshop_DetailedReview/images/search_icon.png") 50% 50% no-repeat @color-blue2
+                        );
+                    }
+                }
+            }
+        }
+    }
+
+    #review-filters {
+        order: 0;
+    }
+
+    #review-sorts {
+        order: 1;
+    }
+
+
+
+    .clear-review-filters {
+        order: 3;
+        width: 100%;
+        line-height: 30px;
+        justify-content: flex-end !important;
+        text-align: right;
+
+        a {
+            width: 100%;
+            .lib-typography (
+                @_color: @color-blue1
+            );
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    #review-search-form {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        overflow: hidden;
+
+        & > div {
+            margin-bottom: 1%;
+            width: 48%;
+        }
+    }
+
+    #review-sorts {
+        order: 2;
+    }
+
+    #review-search {
+        order: 1;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    #review-search-form {
+        margin-top: 30px;
+
+        & > div {
+            margin-bottom: 2%;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    #review-search-form {
+        position: relative;
+        padding-top: 40px;
+        border-top: 1px solid @color-gray80;
+
+        #review-filters {
+            width: 25%;
+        }
+
+        #review-sorts {
+            width: 25%;
+            order: 1;
+        }
+
+        #review-search {
+            width: 33%;
+            order: 2;
+        }
+
+        .clear-review-filters {
+            width: 11%;
+        }
+    }
+}

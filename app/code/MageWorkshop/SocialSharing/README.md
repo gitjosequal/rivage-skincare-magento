@@ -1,0 +1,1 @@
+MageWorkshop SocialSharing module implements social sharing for reviews.

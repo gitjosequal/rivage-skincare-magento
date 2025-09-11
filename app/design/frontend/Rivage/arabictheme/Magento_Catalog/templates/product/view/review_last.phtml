@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?php $_product = $block->getProduct() ?>
+<?= $block->getReviewsSummaryHtml($block->getProduct(), false, true);
+ $shortdes = $block->escapeHtml($_product->getShortDescription());
+	if($shortdes){ ?>
+        <div class="shortdes"> 
+         <?php echo html_entity_decode($shortdes);?>
+		</div>
+	<?php } 
+	$skintype = $block->escapeHtml($_product->getSkinType());
+	if($skintype){ ?>
+		<div class="skintype">
+			<span>Skin Type:</span>
+			<?php   echo $skintype; ?>
+		</div>
+	<?php } ?>
+	
+	<div class="product_tab">
+		<span id="product_detail" class="long_des"><?= __('Product details') ?></span>
+		<span id="tap-howtouse" class="long_des"><?= __('How to Use') ?></span>
+	</div>

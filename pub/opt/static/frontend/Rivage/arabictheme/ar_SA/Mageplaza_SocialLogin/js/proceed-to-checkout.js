@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Mageplaza_SocialLogin/web/js/proceed-to-checkout.js

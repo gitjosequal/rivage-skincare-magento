@@ -1,0 +1,43 @@
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+
+<div class="field-block" data-bind="css: typeof(frontend_class) !== 'undefined' ? frontend_class : null,
+    attr: {
+        'class': typeof(last_field_in_line) !== 'undefined' ? $parent.setLastFieldInLine(last_field_in_line) : null
+    },
+    style: {
+        'width': (typeof(attribute_visual_settings) !== 'undefined'
+         && typeof(width_field_for_desktop) !== 'undefined'
+         && typeof(width_field_for_table) !== 'undefined'
+         && typeof(width_field_for_mobile) !== 'undefined'
+        ) ? $parent.getAttributeWidth(width_field_for_desktop, width_field_for_table, width_field_for_mobile) : null
+    }"
+>
+    <label data-bind="text: store_label + ':',
+        attr: {
+            for: typeof(id) !== 'undefined' ? id : null,
+            'class': typeof(validation) !== 'undefined' ? 'dynamic-fields-required' : null
+        }
+    "></label>
+    <input type="text" data-bind="
+        attr: {
+            'name': attribute_code,
+            'placeholder': store_label,
+            'id': typeof(id) !== 'undefined' ? id : null,
+            'data-validate': typeof(validation) !== 'undefined' ? $parent.getValidRules(validation, frontend_input) : null,
+            'value': (attribute_code == 'nickname') ? $parent.getCustomerNickname() : null,
+            'accept': typeof(accept) !== 'undefined' ? accept : null,
+            'class': (typeof(validation_class) !== 'undefined' && typeof(validation) !== 'undefined') ? validation_class : null
+        }"
+    />
+    <span class="note" data-bind="text: note"></span>
+</div>
+<hr data-bind="
+    attr: {
+        'class': typeof(horizontal_line) !== 'undefined' ? $parent.getAttributeHorizontalLine(horizontal_line) : 'disableHorizontalLine'
+    }"
+>

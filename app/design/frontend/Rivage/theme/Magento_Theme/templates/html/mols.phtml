@@ -1,0 +1,33 @@
+<?php $mediaUrl = $block->getUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); 
+$mediaUrl = str_replace('jordan/','',$mediaUrl);
+?>
+<div class="mols-section section text-center pt-0 pb-5">
+  <div class="custom-container">
+    <div class="row">
+      <div
+        class="mols-box col-md-6 col-sm-12"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <img data-src="<?= /** @noEscape */ $mediaUrl . '/home/exfoliant.webp' ?>" class="lazyload" alt="" />
+        <h3><?php echo __('EXFOLIANT SOAP'); ?></h3>
+        <p>
+          <?php echo __('POLISH & CLEANSE YOUR SKIN WITH REVITALIZING DEAS SEA SALT & MICRO WALNUT SHELL') ?>
+        </p>
+        <a href="<?= /** @noEscape */ $block->getUrl('exfoliant-soap.html')?>"><?php echo __('SHOP NOW') ?></a>
+      </div>
+      <div
+        class="mols-box col-md-6 col-sm-12"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <img data-src="<?= /** @noEscape */ $mediaUrl . '/home/toner.webp' ?>" class="lazyload" alt="" />
+        <h3><?php echo __('MINERAL TONER'); ?></h3>
+        <p>
+          <?php echo __('REPLENISH, CALM & TONE YOUR SKIN WITH 21 MINERALS, FENNEL, CHAMOMILE, MISTLETOE, HOPS & YARROW'); ?>
+        </p>
+        <a href="<?= /** @noEscape */ $block->getUrl('mineral-toner.html')?>"><?php echo __('SHOP NOW') ?></a>
+      </div>
+    </div>
+  </div>
+</div>

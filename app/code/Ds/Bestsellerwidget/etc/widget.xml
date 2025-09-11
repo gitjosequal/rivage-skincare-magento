@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Magento/Widget/etc/widget.xsd">
+    <widget id="ds_bestsellerwidget" class="Ds\Bestsellerwidget\Block\Widget\Bestsellerdproduct">
+        <label translate="true">Ds Bestseller Product Widget</label>
+        <description>Ds Bestseller Product Widget</description>
+        <parameters>
+            <parameter name="productcount" xsi:type="text"  visible="true" sort_order="1" >
+                <label translate="true">Product Count</label>
+            </parameter>
+            <parameter name="imagewidth" xsi:type="text"  visible="true" sort_order="2" >
+                <label translate="true">Image Width</label>
+            </parameter>
+            <parameter name="imageheight" xsi:type="text"  visible="true" sort_order="3" >
+                <label translate="true">Image Height</label>
+            </parameter>
+            <parameter name="widgittype" xsi:type="text"  visible="true" sort_order="4" >
+                <label translate="true">Widget Type</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers" />
+
+    <body>
+
+        <!-- <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">My Bag</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">My Bag</item>
+                    <item name="label" xsi:type="string">My Bag</item>
+                </argument>
+            </action>
+        </referenceBlock>
+		<move element="breadcrumbs" destination="page.wrapper" before="main.content"/>
+	 
+	         <block class="Magento\Cms\Block\Block" name="cart_banner">
+					<arguments>
+					 <argument name="block_id" xsi:type="string">cart_banner</argument>
+					</arguments>
+				</block>
+				<move element="cart_banner" destination="page.top" before="page.main.title"/>-->
+        <move element="checkout.cart.coupon" destination="cart.summary" before="-" />
+        <referenceContainer name="cart.summary">
+            <container name="cart.discount" label="Cart Discount Container" htmlTag="div" htmlClass="cart-discount"
+                after="-" />
+            <block class="Magento\Framework\View\Element\Template" name="checkout.cart.summary.title" before="-"
+                template="Magento_Theme::text.phtml">
+                <arguments>
+                    <argument translate="true" name="text" xsi:type="string">Order Summary</argument>
+                    <argument name="tag" xsi:type="string">strong</argument>
+                    <argument name="css_class" xsi:type="string">summary title</argument>
+                </arguments>
+            </block>
+
+        </referenceContainer>
+
+
+        <referenceContainer name="checkout.cart.container">
+
+            <container name="checkout.cart.totals.container.1" htmlTag="div" htmlClass="customshipping" as="totals.1"
+                label="Shopping Cart Totals" after="checkout.cart.form">
+                <block class="Magento\Checkout\Block\Cart\Totals" name="checkout.cart.totals.1"
+                    template="Magento_Checkout::cart/totals.phtml">
+                    <arguments>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="block-totals" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/cart/totals</item>
+                                    <item name="displayArea" xsi:type="string">totals:</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magento_Checkout/cart/totals</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <!-- sort order for this totals is configured on admin panel-->
+                                        <!-- Stores->Configuration->SALES->Sales->General->Checkout Totals Sort Order -->
+                                        <item name="subtotal" xsi:type="array">
+                                            <item name="component" xsi:type="string">
+                                                Magento_Checkout/js/view/summary/subtotal</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Subtotal:</item>
+                                                <item name="template" xsi:type="string">
+                                                    Magento_Checkout/cart/totals/subtotal</item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping" xsi:type="array">
+                                            <item name="component" xsi:type="string">
+                                                Magento_Checkout/js/view/cart/totals/shipping</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Shipping:</item>
+                                                <item name="template" xsi:type="string">
+                                                    Magento_Checkout/cart/totals/shipping</item>
+                                            </item>
+                                        </item>
+                                        <item name="grand-total" xsi:type="array">
+                                            <item name="component" xsi:type="string">
+                                                Magento_Tax/js/view/checkout/cart/totals/grand-total</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Total:</item>
+                                                <item name="template" xsi:type="string">
+                                                    Magento_Checkout/cart/totals/grand-total</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Checkout\Block\Cart" name="checkout.cart.methods.bottom.1"
+                    template="Magento_Checkout::cart/methods.phtml" after="checkout.cart.totals.container.1">
+                    <container name="checkout.cart.methods1" as="methods" label="Payment Methods After Checkout Button">
+                        <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.bottom1"
+                            template="Magento_Checkout::onepage/link.phtml" />
+                        <block class="Magento\Checkout\Block\QuoteShortcutButtons"
+                            name="checkout.cart.shortcut.buttons1" />
+                    </container>
+
+                </block>
+            </container>
+
+        </referenceContainer>
+
+        <referenceBlock name="checkout.cart.shipping">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-summary" xsi:type="array">
+
+                            <!-- My custom part: -->
+                            <item name="config" xsi:type="array">
+                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                            </item>
+
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+    </body>
+</page>

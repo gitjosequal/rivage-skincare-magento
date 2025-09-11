@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="xppdfinvoices_order">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">xporderpdf_pdfinvoices_order</item>
+                        <item name="label" xsi:type="string" translate="true">Print OrderPDF Invoices</item>
+                        <item name="url" xsi:type="url" path="xporderpdf/invoice/pdfinvoices"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="xppdf_order">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">xporderpdf_pdf_order</item>
+                        <item name="label" xsi:type="string" translate="true">Print OrderPDF Order</item>
+                        <item name="url" xsi:type="url" path="xporderpdf/order/pdforders"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="xppdfcreditmemo_order">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">xporderpdf_pdfcreditmemo_order</item>
+                        <item name="label" xsi:type="string" translate="true">Print OrderPDF Credit Memos</item>
+                        <item name="url" xsi:type="url" path="xporderpdf/creditmemo/pdfcreditmemos"/>
+                    </item>
+                </argument>
+            </action>
+            <action name="xppdfshipment_order">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">xporderpdf_pdfshipment_order</item>
+                        <item name="label" xsi:type="string" translate="true">Print OrderPDF Packing Slips</item>
+                        <item name="url" xsi:type="url" path="xporderpdf/shipment/pdfshipments"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

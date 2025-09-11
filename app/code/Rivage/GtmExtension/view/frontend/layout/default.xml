@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © Rivage(info@rivage.com)
+* See COPYING.txt for license details.
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Non-Js Code -->
+        <referenceContainer name="after.body.start">
+            <block name="gtm.nonjs.code" class="Rivage\GtmExtension\Block\Datalayer" template="Rivage_GtmExtension::g4nonjscode.phtml" before="-" ifconfig="rivage_gtmextension/general/enable"
+                >
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Rivage\GtmExtension\ViewModel\GtmCodeSnippet</argument>
+                </arguments>
+            </block>
+        </referenceContainer> 
+        <referenceContainer name="after.body.start">
+            <block name="datalayer.main" class="Rivage\GtmExtension\Block\Datalayer" template="Rivage_GtmExtension::datalayer.phtml" before="-" ifconfig="rivage_gtmextension/general/enable"
+                />
+        </referenceContainer>
+
+        <!-- JS Code -->
+        <referenceBlock name="head.additional">
+            <block  class="Rivage\GtmExtension\Block\Datalayer" name="gtm_js_code" template="Rivage_GtmExtension::g4jscode.phtml"  before="-" ifconfig="rivage_gtmextension/general/enable">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Rivage\GtmExtension\ViewModel\GtmCodeSnippet</argument>
+                </arguments>
+            </block>
+            <!-- Datalayer File -->
+
+        </referenceBlock>
+
+        <!-- Insert GtmExtension data section block before the end of the body -->
+        <referenceContainer name="before.body.end">
+            <container name="cz4.gtmextension.data.section" as="cs_gtmextension_data_section" label="CZ GtmExtension Data Section" after="-">
+                <block class="Rivage\GtmExtension\Block\Datalayer" name="gtmSectionData" after="-" template="Rivage_GtmExtension::gtmSectionData.phtml" ifconfig="rivage_gtmextension/general/enable">
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

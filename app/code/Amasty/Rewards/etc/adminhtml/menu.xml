@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+-->
+<!--
+/**
+ * Copyright © 2015 Amasty. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_Rewards::rule" title="Amasty Rewards" module="Amasty_Rewards" sortOrder="110" parent="Magento_CatalogRule::promo" action="amasty_rewards/rule/" resource="Amasty_Rewards::rule"/>
+    </menu>
+</config>

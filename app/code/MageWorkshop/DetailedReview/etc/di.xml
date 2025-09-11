@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MageWorkshop\DetailedReview\Api\Data\EntityConfigInterface" type="MageWorkshop\DetailedReview\Model\EntityConfig" />
+    <preference for="MageWorkshop\DetailedReview\Setup\ColumnConfigInterface" type="MageWorkshop\DetailedReview\Setup\ColumnConfig" />
+    <preference for="MageWorkshop\DetailedReview\Setup\IndexConfigInterface" type="MageWorkshop\DetailedReview\Setup\IndexConfig" />
+    <preference for="MageWorkshop\DetailedReview\Setup\ForeignKeyConfigInterface" type="MageWorkshop\DetailedReview\Setup\ForeignKeyConfig" />
+    <!--<preference for="MageWorkshop\DetailedReview\Api\Data\Entity\AttributeConfigInterface" type="MageWorkshop\DetailedReview\Model\Config\Attribute" />-->
+    <!--<preference for="MageWorkshop\DetailedReview\Api\Data\Entity\AttributeConfigCollectionInterface" type="MageWorkshop\DetailedReview\Model\Config\AttributeCollection" />-->
+    <!--<preference for="MageWorkshop\DetailedReview\Api\Data\Entity\EntityTypeConfigInterface" type="MageWorkshop\DetailedReview\Model\Config\EntityType" />-->
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="mageworkshop_detailedreview_generate_detail_fixtures" xsi:type="object">MageWorkshop\DetailedReview\Console\GenerateDetailFixturesCommand</item>
+                <item name="mageworkshop_detailedreview_generate_review_fixtures" xsi:type="object">MageWorkshop\DetailedReview\Console\GenerateReviewFixturesCommand</item>
+                <item name="mageworkshop_detailedreview_create_test_customers" xsi:type="object">MageWorkshop\DetailedReview\Console\CreateTestCustomersCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Eav\Model\Entity\Setup\PropertyMapper\Composite">
+        <arguments>
+            <argument name="propertyMappers" xsi:type="array">
+                <item name="mageworkshop_detailedreview" xsi:type="string">MageWorkshop\DetailedReview\Model\ResourceModel\Setup\PropertyMapper</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Setup\DetailsSetup">
+        <arguments>
+            <argument name="visualSwatchInstaller" xsi:type="object">MageWorkshop\DetailedReview\Setup\VisualSwatchInstaller</argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Setup\VisualSwatchInstaller">
+        <arguments>
+            <argument name="moduleDetailsData" xsi:type="object">MageWorkshop\DetailedReview\Model\Module\DetailsData</argument>
+            <argument name="swatchHelper" xsi:type="object">MageWorkshop\DetailedReview\Helper\Media</argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\Attribute">
+        <plugin name="save_swatches_option_params" type="Magento\Swatches\Model\Plugin\EavAttribute"/>
+        <arguments>
+            <argument name="reservedAttributeList" xsi:type="object">MageWorkshop\DetailedReview\Model\Details\DetailsReservedAttributesList</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Review\Model\ResourceModel\Review\Collection">
+        <plugin name="mageworkshop_detailedReview"
+                type="MageWorkshop\DetailedReview\Plugin\Review\Model\ResourceModel\Review\CollectionPlugin"
+                sortOrder="10"
+        />
+    </type>
+    <type name="MageWorkshop\DetailedReview\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">mageworkshop_detailedreview</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="detailed" xsi:type="object">MageWorkshop\DetailedReview\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\Indexer\Eav">
+        <arguments>
+            <argument name="logger" xsi:type="object">MageWorkshop\DetailedReview\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\Indexer\Flat">
+        <arguments>
+            <argument name="logger" xsi:type="object">MageWorkshop\DetailedReview\Logger\Logger</argument>
+            <argument name="collectionFactory" xsi:type="object">MageWorkshop\DetailedReview\Model\ResourceModel\Details\CollectionFactory</argument>
+        </arguments>
+    </type>
+    <!--@TODO Fix for Magento 2.1.1 -->
+    <type name="Magento\Eav\Model\Entity\AttributeCache">
+        <arguments>
+            <argument name="unsupportedTypes" xsi:type="array">
+                <item name="mageworkshop_detailedreview_details_entity" xsi:type="string">mageworkshop_detailedreview_details_entity</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\EntityConfig">
+        <arguments>
+            <argument name="configData" xsi:type="object">MageWorkshop\DetailedReview\Config\Data\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\Config\AbstractAttribute">
+        <arguments>
+            <argument name="requiredConfigFields" xsi:type="array">
+                <item name="frontend_input" xsi:type="string">frontend_input</item>
+                <item name="label" xsi:type="string">label</item>
+                <item name="position" xsi:type="string">position</item>
+                <item name="required" xsi:type="string">required</item>
+                <item name="user_defined" xsi:type="string">user_defined</item>
+                <item name="visible_on_front" xsi:type="string">visible_on_front</item>
+                <item name="validate_rules" xsi:type="string">validate_rules</item>
+                <item name="attribute_placement" xsi:type="string">attribute_placement</item>
+                <item name="attribute_visual_settings" xsi:type="string">attribute_visual_settings</item>
+            </argument>
+            <argument name="optionalConfigFields" xsi:type="array">
+                <item name="input_type" xsi:type="string">input_type</item>
+                <item name="backend_model" xsi:type="string">backend_model</item>
+                <item name="source_model" xsi:type="string">source_model</item>
+                <item name="frontend_class" xsi:type="string">frontend_class</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Model\Config\EntityType">
+        <arguments>
+            <argument name="requiredConfigFields" xsi:type="array" />
+            <argument name="optionalConfigFields" xsi:type="array">
+                <item name="attribute_model" xsi:type="string">attribute_model</item>
+                <item name="entity_model" xsi:type="string">entity_model</item>
+                <item name="entity_attribute_collection" xsi:type="string">entity_attribute_collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageWorkshop\DetailedReview\Config\Reader">
+        <arguments>
+            <argument name="converter" xsi:type="object">MageWorkshop\DetailedReview\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">MageWorkshop\DetailedReview\Config\SchemaLocator</argument>
+            <argument name="fileName" xsi:type="string">mageworkshop_eav_attributes.xml</argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/entity" xsi:type="string">type</item>
+                <item name="/config/entity/attributes/attribute" xsi:type="string">frontend-input</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="MageWorkshop\DetailedReview\Model\Details\DetailsReservedAttributesList"
+                 type="Magento\Catalog\Model\Product\ReservedAttributeList">
+        <arguments>
+            <argument name="productModel" xsi:type="string">MageWorkshop\DetailedReview\Model\Details</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\ConfigurableSampleData\Model\Product">
+        <plugin name="mageWorkshop_detailedReview_disable_indexer_during_installation"
+                type="MageWorkshop\DetailedReview\Plugin\ConfigurableSampleData\Model\ProductPlugin"
+        />
+    </type>
+</config>

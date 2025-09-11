@@ -1,0 +1,1 @@
+/home/rivageae/public_html/vendor/mageplaza/module-instagram-feed/view/frontend/web/js/instagram.js

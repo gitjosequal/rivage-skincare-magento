@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+*  Module: XP_OrderPdf
+*  Author: Extended Patterns
+*  url: https://extendedpatterns.com/
+*  Description: Prints Invoices and Order as per define configuration.
+**/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="XP_OrderPdf" setup_version="1.0.0">
+        <sequence>
+            <module name="XP_Core" />
+            <module name="Magento_Sales" />
+        </sequence>
+    </module>
+</config>

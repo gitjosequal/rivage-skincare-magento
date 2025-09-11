@@ -1,0 +1,21 @@
+{
+  "name": "wisern_notify/wisernotify",
+  "description": "",
+  "type": "magento2-module",
+  "version": "1.0.6",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "email": "support@wisernotify.com",
+      "name": "Team wisern_notify"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "wisern_notify\\Wisernotify\\": ""
+    }
+  }
+}

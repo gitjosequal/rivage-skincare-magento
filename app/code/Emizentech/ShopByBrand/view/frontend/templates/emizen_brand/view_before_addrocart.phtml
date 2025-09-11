@@ -1,0 +1,401 @@
+<?php 
+$brand = $this->getBrand();
+$productCollection = $this->getCollection();
+$cat_ids = $this->getCat_ids();
+$imagewidth = '250';
+$imageheight = '300';
+$mode = 'grid';
+$image = 'brand_products_content_widget_grid';
+$type = 'widget-new-grid';
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance 
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$storeID = $storeManager->getStore()->getStoreId(); 
+
+/* foreach($productCollection as $_product){
+	$proCats = $_product->getCategoryIds();
+	//echo "<pre>"; print_r($proCats);
+	$cate_ids_li_arr = [];
+	$i=0;
+	foreach($proCats as $key=>$value){
+		$category = $this->getParentCategory($value);
+		if($category->getId() != 2){
+			if($category->getIncludeInMenu() == 1){
+				$cate_ids_li_arr[$i] = $category->getId();
+			}
+		}else{
+			$root_category = $this->getrootParentCategory($value);
+			if($root_category->getIncludeInMenu() == 1){
+				$cate_ids_li_arr[$i] = $root_category->getId();
+			}
+		}
+		$i++;
+	}
+	echo '<br>=====================</br>';
+	echo "<pre>"; print_r($cate_ids_li_arr);
+	$finalCat_ids = array_unique($cate_ids_li_arr);
+	echo '<pre>'; print_r($finalCat_ids);
+	echo '<br>=====================</br>';
+	
+} 
+die("testt"); */
+							
+							
+?>
+<div class="main_ingredients_ingredients_content">
+     <div class="name_image">
+	<?php if($storeID == 2){ ?>
+	<div class="main_ingredients_content_1">
+		<h1><?php echo $brand->getAname();?></h1>
+		<div class="ingredients_descrition">
+			<?php echo $brand->getAdescription();?>
+		</div>
+	</div>
+	<?php }else{?>
+	<div class="main_ingredients_content_1">
+		<h1><?php echo $brand->getName();?></h1>
+		<div class="ingredients_descrition">
+			<?php echo $brand->getDescription();?>
+		</div>
+	</div>
+	<?php } ?>
+	
+	<div class="main_ingredients_content_2">
+		<img src="<?php echo $mediaUrl.$brand->getMainimage();?>" />
+	</div>
+	</div>
+	<div class="main_ingredients_content_3">
+		<div class="block widget block-brand-products <?php echo $mode; ?>">
+			<div class="block-content">
+				<div class="slider_ingredients">
+					<h3 class="slider_heading">
+					<?php if($storeID == 2){ ?>
+						<?php echo __('Product that contain ').$brand->getAname(); ?>
+						<?php } else { ?>
+						<?php echo __('Product that contain ').$brand->getName(); ?>
+						<?php } ?>
+					</h3>
+					<select id="estado_list" class="cat_filter_ingredients">
+						<option value="0"><?php echo __('ALL') ?></option>
+						<?php foreach($cat_ids as $key=>$value){
+							echo '<option value="'.$key.'">'.$value.'</option>';
+						}?>
+					</select>
+				</div>
+				<div class="products-grid intent">
+					<ol class="owl-carousel owl-carousel3 product-items ">
+						<?php $iterator = 1;
+							$count=0;
+							$pcount = count($productCollection);
+							#echo "<pre>"; print_r($productCollection->getData());exit();
+						foreach($productCollection as $_product):
+							$proCats = $_product->getCategoryIds();
+							//echo "<pre>"; print_r($proCats);
+							$cate_ids_li_arr = [];
+							$i=0;
+							foreach($proCats as $key=>$value){
+								$category = $this->getParentCategory($value);
+								if($category->getId() != 2){
+									if($category->getIncludeInMenu() == 1){
+										$cate_ids_li_arr[$i] = $category->getId();
+									}
+								}else{
+									$root_category = $this->getrootParentCategory($value);
+									if($root_category->getIncludeInMenu() == 1){
+										$cate_ids_li_arr[$i] = $root_category->getId();
+									}
+								}
+								$i++;
+							}
+							#echo "<pre>"; print_r($cate_ids_li_arr);
+							$finalCat_ids = array_unique($cate_ids_li_arr);
+							#echo "<pre>"; print_r($finalCat_ids);
+							#die("testt");
+							$cate_ids_li = $finalCat_ids[0];
+							echo ($iterator++ == 1) ? '<li data-id="'.$cate_ids_li.'"   class="product-item">' : '</li><li data-id="'.$cate_ids_li.'"  class="product-item">';
+								$count++;
+							?>
+							<div class="product-item-info">
+								<?php $image_url = $block->imageHelperObj()->init($_product, 'product_page_image_small')->setImageFile($_product->getFile())->resize($imagewidth, $imageheight)->getUrl(); ?>
+								<a href="<?php echo $_product->getProductUrl() ?>" class="product-item-photo">
+								<img src="<?php echo $image_url; ?>" alt="<?php	echo $this->escapeHtml($_product->getName()) ?>" />
+								</a>
+								<div class="product-item-details">
+									<strong class="product-item-name">
+										<a title="<?php	echo $block->escapeHtml($_product->getName()) ?>"
+										href="<?php 	echo $_product->getProductUrl() ?>" class="product-item-link">
+											 <?php $pname = $block->escapeHtml($_product->getName());
+                                              if (strlen($pname) < 20) echo($pname);
+								           else { echo mb_substr($pname, 0, 18,'UTF-8').'..';}
+
+										?>
+										</a>
+									</strong>
+									<?php  $producthint = $block->escapeHtml($_product->getProductHint());
+											if($producthint){ ?>
+											<div class="skintype">
+											<?php
+											echo $producthint;
+											?>
+											</div>
+											<?php } ?>
+											<?php $shortdes = $block->escapeHtml($_product->getShortDescription());
+											if($shortdes){ ?>
+											<div class="shortdes">
+											<?php                               
+											echo $shortdefianl =  html_entity_decode($shortdes);
+											 ?>
+											</div>
+									<?php } ?>
+								
+									<?php echo $this->getProductPricetoHtml($_product, $type); ?>
+									<div class="product-item-actions">
+											<div class="actions-primary">
+											<?php   if ($_product->isSaleable()):
+														if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+															<button class="action tocart primary"
+																	data-mage-init='{"redirectUrl":{"url":"<?php 
+																echo $block->getAddToCartUrl($_product) ?>"}}' type="button" title="<?php echo __('Add to Bag') ?>">
+																<span><?php echo __('Add to Bag') ?></span>
+														</button>
+														<?php else: 
+															$postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+															$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product) , ['product' => $_product->getId() ]); ?>
+															<button class="action tocart primary"
+																	data-post='<?php echo $postData; ?>'
+																	type="button" title="<?php echo __('Add to Bag') ?>">
+																<span><?php echo __('Add to Bag') ?></span>
+															</button>
+													<?php endif; 
+													endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php echo ($iterator == count($productCollection) + 1) ? '</li>' : '';
+						endforeach; ?>
+						</ol>
+						<?php if($pcount <1){?>
+						<div class="nomtach"><?php echo __('There are not any products available for the matching the selections.'); ?></div>
+						<?php } ?>
+				</div>
+				
+				<div class="customclone" style="display:none;">
+					<ol>
+						<?php $iterator = 1;
+							$count=0;
+							
+							#echo "<pre>"; print_r($productCollection->getData());exit();
+						foreach($productCollection as $_product):
+							$proCats = $_product->getCategoryIds();
+							//echo "<pre>"; print_r($proCats);
+							$cate_ids_li_arr = [];
+							$i=0;
+							foreach($proCats as $key=>$value){
+								$category = $this->getParentCategory($value);
+								if($category->getId() != 2){
+									if($category->getIncludeInMenu() == 1){
+										$cate_ids_li_arr[$i] = $category->getId();
+									}
+								}else{
+									$root_category = $this->getrootParentCategory($value);
+									if($root_category->getIncludeInMenu() == 1){
+										$cate_ids_li_arr[$i] = $root_category->getId();
+									}
+								}
+								$i++;
+							}
+							#echo "<pre>"; print_r($cate_ids_li_arr);
+							$finalCat_ids = array_unique($cate_ids_li_arr);
+							#echo "<pre>"; print_r($finalCat_ids);
+							#die("testt");
+							$cate_ids_li = $finalCat_ids[0];
+							echo ($iterator++ == 1) ? '<li data-id="'.$cate_ids_li.'"   class="product-item">' : '</li><li data-id="'.$cate_ids_li.'"  class="product-item">';
+								$count++;
+							?>
+							<div class="product-item-info">
+								<?php $image_url = $block->imageHelperObj()->init($_product, 'product_page_image_small')->setImageFile($_product->getFile())->resize($imagewidth, $imageheight)->getUrl(); ?>
+								<a href="<?php echo $_product->getProductUrl() ?>" class="product-item-photo">
+								<img src="<?php echo $image_url; ?>" alt="<?php	echo $this->escapeHtml($_product->getName()) ?>" />
+								</a>
+								<div class="product-item-details">
+									<strong class="product-item-name">
+										<a title="<?php	echo $block->escapeHtml($_product->getName()) ?>"
+										href="<?php 	echo $_product->getProductUrl() ?>" class="product-item-link">
+											 <?php $pname = $block->escapeHtml($_product->getName());
+                                              if (strlen($pname) < 20) echo($pname);
+								           else { echo mb_substr($pname, 0, 18,'UTF-8').'..';}
+
+										?>
+										</a>
+									</strong>
+									<?php  $producthint = $block->escapeHtml($_product->getProductHint());
+											if($producthint){ ?>
+											<div class="skintype">
+											<?php
+											echo $producthint;
+											?>
+											</div>
+											<?php } ?>
+											<?php $shortdes = $block->escapeHtml($_product->getShortDescription());
+											if($shortdes){ ?>
+											<div class="shortdes">
+											<?php                               
+											echo $shortdefianl =  html_entity_decode($shortdes);
+											 ?>
+											</div>
+									<?php } ?>
+								
+									<?php echo $this->getProductPricetoHtml($_product, $type); ?>
+									<div class="product-item-actions">
+											<div class="actions-primary">
+											<?php   if ($_product->isSaleable()):
+														if ($_product->getTypeInstance()->hasRequiredOptions($_product)): ?>
+															<button class="action tocart primary"
+																	data-mage-init='{"redirectUrl":{"url":"<?php 
+																echo $block->getAddToCartUrl($_product) ?>"}}' type="button" title="<?php echo __('Add to Bag') ?>">
+																<span><?php echo __('Add to Bag') ?></span>
+														</button>
+														<?php else: 
+															$postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+															$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_product) , ['product' => $_product->getId() ]); ?>
+															<button class="action tocart primary"
+																	data-post='<?php echo $postData; ?>'
+																	type="button" title="<?php echo __('Add to Bag') ?>">
+																<span><?php echo __('Add to Bag') ?></span>
+															</button>
+													<?php endif; 
+													endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+							<?php echo ($iterator == count($productCollection) + 1) ? '</li>' : '';
+						endforeach; ?>
+						</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	require([
+        "jquery",
+        "owlcarouselslider",
+    ], function ($) {
+	var $= $.noConflict();
+	$(document).ready(function(){
+	
+		$(".owl-carousel3").owlCarousel({
+			loop:true,
+			margin:15,
+			autoplay: false,
+			responsiveClass:true,
+			responsive:{
+				0:{
+					items:1,
+					nav:true
+				},
+				480:{
+					items:1,
+					nav:true
+					
+				},
+				767:{
+					items:1,
+					nav:true
+					
+				},
+				799:{
+					items:1,
+					nav:true
+					
+				},
+				1000:{
+					items:5,
+					nav:true,
+					loop:false
+				}
+			}
+		});
+		
+		
+		
+		
+		// new code
+		
+$(document).on('change','#estado_list',function(){
+ var curr_val = $(this).val();
+ 
+
+
+ var main_ref = $(this).parents('.block-content').find('.customclone');
+
+ var prep_html = '<ol class="owl-carousel owl-carousel3 product-items">';
+
+  if(curr_val==0){
+	main_ref.find('ol li').each(function(){
+		var data_id= $(this).data('id');
+		prep_html += '<li  data-id="'+data_id+'" class="product-item">'+$(this).html()+'</li>';
+	 });
+ }
+ else{
+	main_ref.find('ol li[data-id="'+curr_val+'"]').each(function(){
+	  prep_html += '<li  data-id="'+curr_val+'" class="product-item">'+$(this).html()+'</li>';
+	 });
+ }
+ 
+
+ prep_html += '</ol>';
+
+$('.products-grid.intent').html(prep_html);
+
+//apply owl carousel again to grid
+
+$(".owl-carousel3").owlCarousel({
+			loop:true,
+			margin:15,
+			autoplay: false,
+			responsiveClass:true,
+			responsive:{
+				0:{
+					items:1,
+					nav:true
+				},
+				480:{
+					items:1,
+					nav:true
+					
+				},
+				767:{
+					items:1,
+					nav:true
+					
+				},
+				799:{
+					items:1,
+					nav:true
+					
+				},
+				1000:{
+					items:5,
+					nav:true,
+					loop:false
+				}
+			}
+		});
+
+// end owl
+ 
+});
+		
+		
+		
+		
+		
+	});
+}); 	
+</script>

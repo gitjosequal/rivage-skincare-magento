@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+/** @var MageWorkshop\CustomerPermissions\Block\Check\Verified $block */
+if (!$block->getCustomerId()): ?>
+    <form method="post" id="verify-buyer-form" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>"
+          data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <p><?= $block->escapeHtml(__('Only verified buyers can post reviews. Please, log in or enter your email so we can verify you.')) ?></p>
+            <input id="verify-email" title="<?= $block->escapeHtml(__('Your email')) ?>" name="verify-email" type="text"
+                   data-validate="{required:true, 'validate-email':true}"/>
+        </fieldset>
+        <!--        show message and remove it from the place where it was stored-->
+        <div class="actions-toolbar">
+            <button class="action primary button" type="submit" id="verify-button"><?= $block->escapeHtml(__('Verify Me')) ?></button>
+            <?php if ($block->canCancelVerification()): ?>
+                <button class="button" type="button" id="cancel-verification"><?= $block->escapeHtml(__('Cancel')) ?></button>
+            <?php endif; ?>
+        </div>
+        <p class="not-verify-user"><?= $block->escapeHtml(__('Sorry, but only verified buyers can post reviews.')) ?></p>
+        <script type="text/x-magento-init">
+            {
+                "#verify-buyer-form": {
+                    "mageWorkshop_customerPermissions_verifyBuyer": {
+                        "submitUrl": "<?= /* @escapeNotVerified */ $block->getPermissionsCheckUrl() ?>",
+                        "resultBlock": "#permissions-block",
+                        "canCancelVerification": "<?= /* @escapeNotVerified */ (string) $block->canCancelVerification() ?>",
+                        "isVerificationRequest": "<?= /* @escapeNotVerified */ (string) $block->isVerificationRequest() ?>"
+                    }
+                }
+            }
+        </script>
+    </form>
+<?php endif; ?>

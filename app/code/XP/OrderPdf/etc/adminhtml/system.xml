@@ -1,0 +1,367 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="xp_orderpdf" translate="label" type="text" sortOrder="0" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Order PDF</label>
+            <tab>xp_config</tab>
+            <resource>XP_OrderPdf::config_order_pdf</resource>
+            <group id="general" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="display_inline" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Display Inline PDF</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_usd_invoice" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable USD Invoice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="usd_rate" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>USD Rate</label>
+                    <depends>
+                        <field id="xp_orderpdf/general/enable_usd_invoice">1</field>
+                    </depends>
+                </field>
+                <field id="header_text_color" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Header Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="new_line" translate="label" type="select" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section With header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>
+            </group>
+            <group id="order_info" translate="label" type="text" sortOrder="15"
+                   showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>Order Information Section</label>
+                <field id="bg_color" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="table_border" translate="label" type="select" sortOrder="5" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="border_color" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/order_info/table_border">1</field>
+                    </depends>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="new_line" translate="label" type="select" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>
+            </group>
+            <group id="addresses" translate="label" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Address Section</label>
+                <field id="heading_bg_color" translate="label" type="text" sortOrder="0" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="heading_text_color" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="default_text" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Use default text for content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="content_text_color" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/addresses/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="content_bg_color" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/addresses/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="table_border" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="border_color" translate="label" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/addresses/table_border">1</field>
+                    </depends>
+                </field>
+                <field id="new_line" translate="label" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>
+            </group>
+            <group id="payment_delivery" translate="label" type="text" sortOrder="30"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment &amp; Shipping Methods Section</label>
+                <field id="heading_bg_color" translate="label" type="text" sortOrder="0" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="heading_text_color" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="default_text" translate="label" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Use default settings for content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="content_text_color" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/payment_delivery/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="content_bg_color" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/payment_delivery/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="table_border" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1">
+                    <label>Display border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="border_color" translate="label" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/payment_delivery/table_border">1</field>
+                    </depends>
+                </field>
+                <field id="delivery_date" translate="label" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Delivery date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="delivery_comment" translate="label" type="select" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Delivery Comment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="new_line" translate="label" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>
+            </group>
+            <group id="items" translate="label" type="text" sortOrder="40"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Items Section</label>
+                <field id="column_bg_color" translate="label" type="text" sortOrder="0" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="column_text_color" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Heading Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                </field>
+                <field id="default_text" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Use default Config for content</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="content_text_color" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/items/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="content_bg_color" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/items/default_text">0</field>
+                    </depends>
+                </field>
+                <field id="table_border" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="border_color" translate="label" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/items/table_border">1</field>
+                    </depends>
+                </field>
+                <field id="content_border" translate="label" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display Content borders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="content_border_color" translate="label" type="text" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Content Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/items/content_border">1</field>
+                    </depends>
+                </field>
+                <field id="columns" translate="label" type="multiselect" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Columns</label>
+                    <source_model>XP\OrderPdf\Model\Config\Source\ColumnList</source_model>
+                </field>
+                <field id="new_line" translate="label" type="select" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>
+            </group>
+            <group id="totals" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Totals Section</label>
+                <field id="use_default_config" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Use default Config</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="text_color" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Text Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="bg_color" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Background Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="table_border" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="border_color" translate="label" type="text" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                        <field id="xp_orderpdf/totals/table_border">1</field>
+                    </depends>
+                </field>
+                <field id="grandtotal_color" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Grand Total text color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="grandtotal_bg_color" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Grand Total Background</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="grandtotal_border" translate="label" type="select" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Display Grand Total border</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                    </depends>
+                </field>
+                <field id="grandtotal_border_color" translate="label" type="text" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Grand Total Border Color</label>
+                    <frontend_model>XP\OrderPdf\Model\Config\Source\ColorPicker</frontend_model>
+                    <depends>
+                        <field id="xp_orderpdf/totals/use_default_config">0</field>
+                        <field id="xp_orderpdf/totals/grandtotal_border">1</field>
+                    </depends>
+                </field>
+                <!--<field id="new_line" translate="label" type="select" sortOrder="150" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Join next section</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Joins next section with the current without adding an additional line.</comment>
+                </field>-->
+            </group>
+        </section>
+        <section id="sales">
+            <group id="identity">
+                <field id="logo_width" translate="label comment" type="text" sortOrder="120" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Logo Width</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>
+                        <![CDATA[XP Order PDF Logo width]]>
+                    </comment>
+                </field>
+                <field id="logo_height" translate="label comment" type="text" sortOrder="140" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Logo Height</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>
+                        <![CDATA[XP Order PDF Logo height]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

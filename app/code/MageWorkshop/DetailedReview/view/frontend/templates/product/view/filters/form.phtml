@@ -1,0 +1,36 @@
+<?php /** @var \MageWorkshop\DetailedReview\Block\Review\Product\View\Filters\Form $block */ ?>
+<form id="review-search-form"
+      action="<?= $block->escapeUrl($block->getReviewsApiUrl()) ?>"
+      method="get"
+      data-mage-init='{"mageWorkshop_detailedReview_reviewFilters": {
+          "filterByDate": "#review-filter-by-date",
+          "sortDirection": "#review-sort-direction",
+          "search": "#review-search-input",
+          "clearAllFilters": ".clear-review-filters a"
+      }}'
+>
+    <div id="review-filters" class="filters">
+        <?= $block->getChildHtml('review.filter.by.date') ?>
+    </div>
+    <div id="review-sorts" class="filters" data-role="review-sort">
+        <?= $block->getChildHtml('review.sort.direction') ?>
+    </div>
+    <div id="review-search" class="filters" data-role="review-search">
+        <button type="submit" title="<?= $block->escapeHtml(__('Search')) ?>" class="action search submit primary">
+            <span><?= $block->escapeHtml(__('Search')) ?></span>
+        </button>
+        <input id="review-search-input"
+               class="search-icon custom-validate-length minimum-length-3"
+               name="<?= $block->getSearchParamName(); ?>"
+               type="text"
+               value=""
+               placeholder="<?= $block->escapeHtml(__('Search in reviews')) ?>"
+               autocomplete="off"
+        />
+    </div>
+    <div class="clear-review-filters">
+        <a href="javascript:void(0);" rel="nofollow">
+            <?= $block->escapeHtml(__('Clear all filters')) ?>
+        </a>
+    </div>
+</form>

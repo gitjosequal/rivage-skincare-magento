@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/MaxMage/InternationalTelephoneInput/view/frontend/web/js/intlTelInput.js

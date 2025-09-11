@@ -1,0 +1,45 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+?>
+<script>
+    require([
+        'jquery'
+    ], function($) {
+
+        $('#rule_spent_amount').parent().parent().hide();
+
+        var spentAmount = $('#rule_spent_amount').val();
+        if (spentAmount === '') {
+            $('#rule_spent_amount').val(0);
+        }
+
+        $( document ).ready(function() {
+            toogleCondition($('#rule_action').val());
+        });
+
+        $('#rule_action').on('change', function() {
+            $('#amasty_rewards_rule_edit_tabs_conditions').show();
+            toogleCondition(this.value);
+
+        });
+
+        function toogleCondition(value) {
+            $('#rule_spent_amount').parent().parent().hide();
+            switch (value) {
+                case 'registration':
+                case 'birthday':
+                case 'subscription':
+                    $('#amasty_rewards_rule_edit_tabs_conditions').hide();
+                    break;
+                case 'moneyspent':
+                    $('#rule_spent_amount').parent().parent().show();
+                    break;
+            }
+        }
+
+    });
+</script>

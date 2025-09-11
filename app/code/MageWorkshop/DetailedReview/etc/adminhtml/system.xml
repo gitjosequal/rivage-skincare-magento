@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mageworkshop_detailedreview" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Detailed Product Review</label>
+            <tab>mageworkshop</tab>
+            <resource>MageWorkshop_DetailedReview::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Detailed Product Review</label>
+                <!--<field id="license_key" translate="label" type="text" sortOrder="10" showInDefault="1">-->
+                    <!--<label>License Key</label>-->
+                <!--</field>-->
+                <field id="enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_read_more" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show 'Read More'</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show 'Read More' link for long reviews</comment>
+                </field>
+                <field id="symbols_in_preview" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Symbols in Preview</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <depends>
+                        <field id="show_read_more">1</field>
+                    </depends>
+                </field>
+                <field id="convert_newline_to_br_tag" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable nl2br conversion</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Convert newline character to the <br/> tag in the reviews list]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

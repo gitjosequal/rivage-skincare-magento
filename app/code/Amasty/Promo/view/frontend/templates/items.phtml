@@ -1,0 +1,161 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Promo
+ */
+?>
+<?php
+// phpcs:ignoreFile
+
+/** @var \Amasty\Promo\Block\Items $block */
+
+use Magento\Framework\App\Action\Action;
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$limitfree = $block->getLayout()->createBlock('Amasty\Promo\Block\Add')->getAvailableProductQty();
+$limits = $limitfree['common_qty'];
+
+$products = $block->getItems();
+$imageHelper = $block->getImageHelper();
+$selectionMethod = $block->getSelectionMethod();
+$giftsCounter = $block->getGiftsCounter();
+$isShowPrice = $block->getShowPriceInPopup();
+
+if ($products) : ?>
+    <div class="selectfree" style="display:none;"><?= __('You Must Select '.$limits.' Free Products')?></div>
+    <div class="checkoutsample-header">
+        <div class="checkoutsample">
+            <!--<div class="freeselectpage"><?= __('Free Samples')?></div>-->
+            <!--<div class="sample3page"><?= __('Select 3 Free Samples and Checkout')?></div>-->
+            <div class="freeselectpage"><?= __('You Got a Free Gift')?></div>
+            <div class="sample3page"><?= __('Please select one gift from the following items')?></div>
+        </div>
+        <?php if ($selectionMethod) : ?>
+            <form name="multipleadd" class="custom_multiplepro" action="<?= $block->getMultipleadd()?>" method="POST">
+                    <input type="hidden" name="<?= Action::PARAM_NAME_URL_ENCODED; ?>" value="<?= $block->escapeHtml($block->getCurrentBase64Url()) ?>">
+                <input type="hidden" class="multiplepro" name="productid" value=""/>
+            </form>
+            <div class="ampromo-item-buttons" data-role="ampromo-item-buttons">
+                <a class="custom_popupcart action tocart primary"  title="<?= __('Continue Checkout')?>">
+                    <span><?= __('Continue Checkout')?></span>
+                </a>
+            </div>
+        <?php endif; ?>
+        <a href="<?php echo $this->geturl('checkout/cart') ?>" class="return-to-bag"><?= __('Return to My Bag')?></a>
+    </div>
+
+    <div id ="custom_ajax_cart" class="ampromo-gallery row" data-count="<?= count($products) ?>" data-role="ampromo-gallery">
+        <?php foreach ($products as $product) : 
+            $product = $block->getProductById($product->getId());
+            $isVisible = $product->getVisibility() != Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE;
+            $optionsBlock = $block->getChildBlock($product->getTypeId() . '_prototype');?>
+            <div class="ampromo-item col-xl-3 col-md-6 col-12" data-product-id="<?= (int)$product->getId() ?>" data-product-sku="<?= $block->escapeHtml($product->getSku()) ?>" data-role="ampromo-item">
+                <form method="POST" action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>" data-role="ampromo-items-form" class="ampromo-items-form" id="ampromo_items_form-<?= (int)$product->getId() ?>">
+                    <input type="hidden" name="<?= Action::PARAM_NAME_URL_ENCODED; ?>" value="<?= $block->escapeHtml($block->getCurrentBase64Url()) ?>">
+                    <input type="hidden" class="cartcheckbox" value="<?= $product->getId() ?>" />
+                    <div class="ampromo-item-title">
+						<?php $imageHelper->init($product, 'category_page_grid')->keepFrame(false)->constrainOnly(true)?>
+                        <div class="sample-image">
+                            <img src="<?= $imageHelper->getUrl() ?>" class="ampromo-item-image" alt="<?= $block->stripTags($product->getName(), null, true) ?>"/>
+                        </div>
+                        <h4><?= $product->getName()?></h4>
+						<div class="phintsample"><?= $product->getProductHint()?></div>
+                        <div class="shortsample"><?= $product->getShortDescription()?></div>
+                        <?php if ($selectionMethod) : ?>
+                            <div class="ampromo-product-select12" data-role="ampromo-product-select">
+                                <input id="checkbox<?php echo $product->getId();?>" class="cartcheckbox sample-checkbox"  type="checkbox" value="<?php echo $product->getId();?>" />
+							    <label for="checkbox<?php echo $product->getId();?>"  class="custom_label"><?= __('Select')?></label>
+                            </div>
+                        <?php endif; ?>
+                    </div>      
+                </form>
+
+                <?php if ($product->getTypeId() !== \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) : ?>
+                    <script>
+                        require([
+                            'jquery',
+                            'Amasty_Promo/js/price-updater'
+                        ], function ($) {
+                            $('[data-role="ampromo-popup-show"]').on('click', function () {
+                                $('.ampromo-items-content').ampromoPriceUpdater({
+                                    productId: <?= (int)$product->getId() ?>,
+                                    priceConfig: <?= $block->getJsonConfig($product) ?>
+                                });
+                            })
+                        });
+                    </script>
+                <?php endif; ?>
+            </div>
+        <?php endforeach ?>
+    </div>
+    
+    <?php if ($selectionMethod) : ?>
+	    <form name="multipleadd" class="custom_multiplepro" action="<?= $block->getMultipleadd()?>" method="POST">
+            <input type="hidden" name="<?= Action::PARAM_NAME_URL_ENCODED; ?>" value="<?= $block->escapeHtml($block->getCurrentBase64Url()) ?>">
+		   <input type="hidden" class="multiplepro" name="productid" value=""/>
+        </form>
+        <div class="ampromo-item-buttons" data-role="ampromo-item-buttons">
+            <a href="<?php echo $this->geturl('checkout/cart') ?>" class="return-to-bag"><?= __('Return to My Bag')?></a>
+            <a class="custom_popupcart action tocart primary" href="<?= $block->getMultipleadd()?>" title="<?= __('Continue Checkout')?>">
+                <span><?= __('Continue Checkout')?></span>
+            </a>
+        </div>
+    <?php endif; ?>
+    <script>
+        require([
+            'jquery'
+        ], function($) {
+            $( document ).ready(function() {
+                var noChecked = 0;
+                var cartitems = parseInt('<?php echo $limits; ?>');
+                $('.sample-checkbox').on('change', function(){
+                    let parent = $(this).parent();
+                    if($(this).is(':checked')){
+                        parent.addClass('checkboxselect');
+                        parent.find('label').html("<?= __('Remove') ?>");
+                    }else{
+                        parent.removeClass('checkboxselect');
+                        parent.find('label').html("<?= __('Select') ?>");
+                    }
+
+                    noChecked = $('.sample-checkbox:checked').length;
+                    
+                    if(noChecked >= cartitems){
+                        $('.sample-checkbox:not(:checked)').attr('disabled','disabled').parent().find('label').addClass("deactive");;
+                        
+                        $('html').animate({
+                            scrollTop: 0,
+                        }, 500);
+                    }else{
+                        $('.sample-checkbox').removeAttr('disabled');
+                        $('.custom_label').removeClass("deactive");
+                    };
+                });
+                
+                $('.custom_popupcart').on('click', function(e){
+                    e.preventDefault();
+                    var selectedproduct = [];
+                    $('.sample-checkbox:checked').each(function(){
+                        selectedproduct.push($(this).val());
+                    });
+
+                    if(selectedproduct.length <= cartitems){
+                        var link = $(this).attr('href');
+                        $('.multiplepro').val(selectedproduct);
+                        $('.custom_multiplepro').submit();
+                    }else{
+                        $('.selectfree').show();
+                        $('.selectfree').delay(4000).fadeOut(3000); 
+                        return false;
+                    }
+                });
+            });
+        });
+    </script>
+<?php else: 
+    $redirect = $objectManager->get('\Magento\Framework\App\Response\Http');
+    $redirect->setRedirect($block->getUrl('checkout', ['_secure' => true]));
+endif; ?>
+
+

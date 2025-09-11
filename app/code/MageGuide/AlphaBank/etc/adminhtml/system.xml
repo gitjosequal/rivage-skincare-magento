@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+    	<section id="payment">
+        	<group id="alphabank_directpost" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            	<label>Alpha Bank</label>
+                <field id="active" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                    <validate>required-entry</validate>
+					<comment><![CDATA[This title will be displayed in cart, checkout, order etc pages in Totals section.]]></comment>
+                </field>
+				<field id="mid" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Unique Merchant Code</label>
+                    <validate>required-entry</validate>
+					<comment><![CDATA[Unique Merchant Code (as provided by the Bank).]]></comment>
+                </field>
+				<field id="gatewayurl" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gateway URL</label>
+                    <validate>required-entry</validate>
+                </field>
+				<field id="secretkey" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Secret Key for Digest</label>
+                    <validate>required-entry</validate>
+					<comment><![CDATA[Secret Key for Digest (as provided by the Bank).]]></comment>
+                </field>
+				<field id="enable_installment" translate="label comment" sortOrder="6" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Enabled Installments</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="extInstallmentperiod" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Installments Period</label>
+					<comment><![CDATA[Number of monthly installments (applicable only if there is an agreement with the Bank) and This variable is required if variable
+“extInstallmentoffset” is sent and Installments parameters and recurring parameters cannot be sent simultaneously]]></comment>
+                </field>
+				<field id="extInstallmentoffset" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Installments Offset</label>
+					<comment><![CDATA[Number of the offset period in months.First installment will be charged after that period]]></comment>
+                </field>
+				<field id="payment_action" translate="label comment" sortOrder="9" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Payment Action</label>
+                    <source_model>MageGuide\AlphaBank\Model\System\Config\Source\AlphabankpaymentAction</source_model>
+                </field>
+				<field id="pending_order_status" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Pending Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\STATE_NEW</source_model>
+                </field>
+				<field id="processing_order_status" translate="label comment" sortOrder="11" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Processing Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                </field>
+				<field id="allowspecific" translate="label" type="allowspecific" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+				<field id="specificcountry" translate="label" type="multiselect" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+				<field id="log" translate="label comment" sortOrder="14" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                	<label>Enable Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="sort_order" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sort Order</label>
+                </field>
+        	</group>
+    	</section>
+	</system>
+</config>  

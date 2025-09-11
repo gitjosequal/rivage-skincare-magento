@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="XP_Core::xp_menu">
+                    <resource id="XP_OrderPdf::orderpdf" title="Order PDF" translate="true" sortOrder="15">
+                        <resource id="XP_OrderPdf::print_order" title="Print Order" translate="true" sortOrder="0" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="XP_Core::xp">
+                                <resource id="XP_OrderPdf::config_order_pdf" title="Order PDF" translate="title" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

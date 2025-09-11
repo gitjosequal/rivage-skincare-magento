@@ -1,0 +1,192 @@
+.checkout-index-index br {
+  display: none !important;
+}
+.checkout-index-index .authentication-wrapper {
+  margin-right: 9px;
+}
+.checkout-index-index .checkout-header {
+  margin: 12px 0 20px;
+  padding: 0 9px;
+}
+.checkout-index-index .checkout-header .title {
+  margin: 0 auto 7px;
+}
+.checkout-index-index .checkout-header .description {
+  font-size: 18px;
+}
+.checkout-index-index .opc-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 900px) {
+  .checkout-index-index .opc-wrapper {
+    flex-direction: column;
+  }
+}
+.checkout-index-index .opc-wrapper.layout-2-columns .checkout-column {
+  width: 50%;
+}
+.checkout-index-index .opc-wrapper.layout-3-columns .checkout-column {
+  width: 33.3%;
+}
+.checkout-index-index .opc-wrapper.layout-3-columns .shipping-address-item,
+.checkout-index-index .opc-wrapper.layout-2-3-columns .shipping-address-item {
+  width: 50%;
+}
+.checkout-index-index .opc-wrapper.layout-3-columns .table-checkout-shipping-method,
+.checkout-index-index .opc-wrapper.layout-2-3-columns .table-checkout-shipping-method {
+  width: 100%;
+  min-width: 0;
+}
+.checkout-index-index .opc-wrapper.layout-3-columns .table-checkout-shipping-method td:last-child,
+.checkout-index-index .opc-wrapper.layout-2-3-columns .table-checkout-shipping-method td:last-child {
+  white-space: normal;
+}
+@media (max-width: 900px) {
+  .checkout-index-index .opc-wrapper .opc.checkout-column {
+    width: 100%;
+  }
+}
+.checkout-index-index .opc-wrapper .step-content {
+  margin: 0;
+}
+.checkout-index-index .opc-wrapper .shipping-address {
+  margin-bottom: 0;
+}
+.checkout-index-index .checkout-block {
+  background: white;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.15);
+  padding: 24px 12px;
+  margin: 7px 9px 32px;
+  transition: box-shadow 0.5s;
+}
+.checkout-index-index .checkout-block:hover {
+  box-shadow: 0 1px 4px 1px rgba(25, 121, 195, 0.45);
+}
+.checkout-index-index #checkout {
+  background: #eaeaea;
+  padding: 12px;
+  margin: 20px 0 20px 0;
+}
+.checkout-index-index .opc-block-summary {
+  margin: -24px -12px 0;
+  padding: 24px 12px;
+}
+.checkout-index-index .opc-block-summary .minicart-items-wrapper {
+  margin: 0;
+}
+.checkout-index-index .discount-code .payment-option-title {
+  border: none;
+}
+.checkout-index-index .additional-options {
+  margin: 24px 7px 12px;
+}
+.checkout-index-index .additional-options .field {
+  margin-top: 7px;
+}
+.checkout-index-index .am-gift-message .edit-link {
+  display: none;
+  color: #1979c3;
+  cursor: pointer;
+}
+.checkout-index-index .am-gift-message.checked .edit-link {
+  display: inline;
+}
+.checkout-index-index .amcheckout-delivery-date .field {
+  width: 50%;
+  float: left;
+  box-sizing: border-box;
+  padding-top: 4px;
+}
+.checkout-index-index .amcheckout-delivery-date .field:nth-child(2n) {
+  padding-left: 7px;
+}
+.checkout-index-index .amcheckout-delivery-date .field.datepicker .control {
+  display: flex;
+}
+.checkout-index-index .amcheckout-delivery-date .field.datepicker .control .ui-datepicker-trigger {
+  margin-left: 7px;
+}
+.checkout-index-index .amcheckout-delivery-date .field .label {
+  display: block;
+  margin: 12px 0;
+}
+.checkout-index-index .amcheckout-delivery-date .clearer {
+  clear: both;
+}
+.checkout-index-index .amcheckout-delivery-date .field._required > .label:after {
+  content: '*';
+  color: #e02b27;
+  font-size: 1.2rem;
+  margin: 0 0 0 5px;
+}
+.checkout-index-index .opc-block-summary .minicart-items input[type="number"]::-webkit-inner-spin-button,
+.checkout-index-index .opc-block-summary .minicart-items input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: inner-spin-button !important;
+}
+.checkout-index-index .opc-block-summary .minicart-items input[type="number"]:focus {
+  -moz-appearance: spinner !important;
+}
+.checkout-index-index .opc-block-summary .minicart-items input.qty {
+  width: 55px;
+}
+.checkout-index-index .opc-block-summary .minicart-items button {
+  margin-top: 12px;
+  float: right;
+}
+.checkout-index-index .opc-block-summary .minicart-items .delete {
+  width: 7px;
+  height: 7px;
+  padding: 3px;
+  border: 1px #b6b6b6 solid;
+  background: url(../img/close.png) no-repeat center;
+  float: left;
+  cursor: pointer;
+}
+.checkout-index-index .opc-block-summary .minicart-items .product-item-details {
+  padding-left: 118px;
+}
+.checkout-index-index .opc-block-summary .minicart-items .product-image-container {
+  margin-left: 16px;
+}
+#shipping-method-buttons-container {
+  display: none;
+}
+#checkout-payment-method-load .payment-method-content > .actions-toolbar {
+  display: none;
+}
+.checkout-payment-method.submit .payment-methods {
+  margin: 0;
+}
+#payment .payment-methods {
+  margin: 0;
+}
+.checkout-payment-method .payment-methods .actions-toolbar .primary {
+  line-height: 2.2rem;
+  padding: 14px 17px;
+  font-size: 1.8rem;
+}
+#co-payment-form .discount-code {
+  display: none;
+}
+.fieldset.address {
+  margin: 0 -7px;
+}
+.fieldset.address > .field {
+  display: inline-block;
+  padding: 0 7px;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: top;
+}
+.opc-wrapper.layout-3-columns .shipping-address-item:nth-child(3n + 1):before {
+  display: block;
+}
+.opc-wrapper.layout-3-columns .shipping-address-item:nth-child(2n + 1):before {
+  display: none;
+}
+/*# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C%22sources%22%3A%5B%22%5C%2Fstatic%5C%2Ffrontend%5C%2FMagento%5C%2Fluma%5C%2Fen_US%5C%2FAmasty_Checkout%5C%2Fcss%5C%2Fcheckout.less%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22AAEA%2CqBACE%3BEACE%2CwBAAA%3B%3BAAFJ%2CqBAIE%3BEACE%2CiBAAA%3B%3BAALJ%2CqBAQE%3BEACE%2CmBAAA%3BEACA%2CcAAA%3B%3BAAVJ%2CqBAQE%2CiBAIE%3BEACE%2CkBAAA%3B%3BAAbN%2CqBAQE%2CiBAQE%3BEACE%2CeAAA%3B%3BAAjBN%2CqBAoBE%3BEACE%2CaAAA%3BEACA%2C8BAAA%3BEACA%2CmBAAA%3BEAMA%2CWAAA%3BEACA%2CSAAA%3BEACA%2CUAAA%3B%3BAAFA%2CQAJyC%3BEAIzC%2CqBATF%3BIAMI%2CsBAAA%3B%3B%3BAAOF%2CqBAbF%2CaAaG%2CiBACC%3BEACE%2CUAAA%3B%3BAAIJ%2CqBAnBF%2CaAmBG%2CiBACC%3BEACE%2CYAAA%3B%3BAAIJ%2CqBAzBF%2CaAyBG%2CiBAEC%3BAADF%2CqBA1BF%2CaA0BG%2CmBACC%3BEACE%2CUAAA%3B%3BAAHJ%2CqBAzBF%2CaAyBG%2CiBAKC%3BAAJF%2CqBA1BF%2CaA0BG%2CmBAIC%3BEACE%2CWAAA%3BEACA%2CYAAA%3B%3BAAPJ%2CqBAzBF%2CaAyBG%2CiBAKC%2CgCAIE%2CGAAE%3BAARN%2CqBA1BF%2CaA0BG%2CmBAIC%2CgCAIE%2CGAAE%3BEACA%2CmBAAA%3B%3BAASN%2CQAH2C%3BEAG3C%2CqBA5CF%2CaAwCE%2CKAAI%3BIAEA%2CWAAA%3B%3B%3BAA9DR%2CqBAoBE%2CaA8CE%3BEACE%2CSAAA%3B%3BAAnEN%2CqBAoBE%2CaAkDE%3BEACE%2CgBAAA%3B%3BAAvEN%2CqBA0EE%3BEACE%2CiBAAA%3BEACA%2C6CAAA%3BEACA%2CkBAAA%3BEACA%2CoBAAA%3BEACA%2C2BAAA%3B%3BAACA%2CqBANF%2CgBAMG%3BEACC%2CkDAAA%3B%3BAAjFN%2CqBAqFE%3BEACE%2CmBAAA%3BEACA%2CaAAA%3BEACA%2CqBAAA%3B%3BAAxFJ%2CqBA2FE%3BEACE%2CqBAAA%3BEACA%2CkBAAA%3B%3BAA7FJ%2CqBA2FE%2CmBAIE%3BEACE%2CSAAA%3B%3BAAhGN%2CqBAoGE%2CeAAe%3BEACb%2CYAAA%3B%3BAArGJ%2CqBAwGE%3BEACE%2CqBAAA%3B%3BAAzGJ%2CqBAwGE%2CoBAGE%3BEACE%2CeAAA%3B%3BAA5GN%2CqBAgHE%2CiBACE%3BEACE%2CaAAA%3BEACA%2CcAAA%3BEACA%2CeAAA%3B%3BAAGF%2CqBAPF%2CiBAOG%2CQAAS%3BEACR%2CeAAA%3B%3BAAxHN%2CqBA4HE%2C0BACE%3BEACE%2CUAAA%3BEACA%2CWAAA%3BEACA%2CsBAAA%3BEACA%2CgBAAA%3B%3BAAEA%2CqBAPJ%2C0BACE%2COAMG%2CUAAU%3BEACT%2CiBAAA%3B%3BAAGF%2CqBAXJ%2C0BACE%2COAUG%2CWAAY%3BEACX%2CaAAA%3B%3BAADF%2CqBAXJ%2C0BACE%2COAUG%2CWAAY%2CSAGX%3BEACE%2CgBAAA%3B%3BAA3IV%2CqBA4HE%2C0BACE%2COAiBE%3BEACE%2CcAAA%3BEACA%2CcAAA%3B%3BAAhJR%2CqBA4HE%2C0BAuBE%3BEACE%2CWAAA%3B%3BAApJN%2CqBA4HE%2C0BA0BE%2COAAM%2CUAAa%2CSAAM%3BEACvB%2CSAAS%2CGAAT%3BEACA%2CcAAA%3BEACA%2CiBAAA%3BEACA%2CiBAAA%3B%3BAA1JN%2CqBA8JE%2CmBAAmB%2CgBACjB%2CMAAK%2CeAAe%3BAA%5C%2FJxB%2CqBA8JE%2CmBAAmB%2CgBAEjB%2CMAAK%2CeAAe%3BEAClB%2CqCAAA%3B%3BAAjKN%2CqBA8JE%2CmBAAmB%2CgBAMjB%2CMAAK%2CeAAe%3BEAClB%2CmCAAA%3B%3BAArKN%2CqBA8JE%2CmBAAmB%2CgBAUjB%2CMAAK%3BEACH%2CWAAA%3B%3BAAzKN%2CqBA8JE%2CmBAAmB%2CgBAcjB%3BEACE%2CgBAAA%3BEACA%2CYAAA%3B%3BAA9KN%2CqBA8JE%2CmBAAmB%2CgBAmBjB%3BEACE%2CUAAA%3BEACA%2CWAAA%3BEACA%2CYAAA%3BEACA%2CyBAAA%3BEACA%2CkDAAA%3BEACA%2CWAAA%3BEACA%2CeAAA%3B%3BAAxLN%2CqBA8JE%2CmBAAmB%2CgBA6BjB%3BEACE%2CmBAAA%3B%3BAA5LN%2CqBA8JE%2CmBAAmB%2CgBAiCjB%3BEACE%2CiBAAA%3B%3BAAKN%3BEACE%2CaAAA%3B%3BAAGF%2C6BAA8B%2CwBAA0B%3BEACtD%2CaAAA%3B%3BAAGF%2CwBAAwB%2COAAQ%3BEAC9B%2CSAAA%3B%3BAAGF%2CQAAS%3BEACP%2CSAAA%3B%3BAAGF%2CwBAAyB%2CiBAAiB%2CiBAAiB%3BEACzD%2CmBAAA%3BEACA%2CkBAAA%3BEACA%2CiBAAA%3B%3BAAGF%2CgBAAiB%3BEACf%2CaAAA%3B%3BAAGF%2CSAAS%3BEACP%2CcAAA%3B%3BAAEA%2CSAHO%2CQAGL%3BEACA%2CqBAAA%3BEACA%2CcAAA%3BEACA%2CsBAAA%3BEACA%2CWAAA%3BEACA%2CmBAAA%3B%3BAAMA%2CYAFQ%2CiBACV%2CuBACG%2CUAAU%2CQAAQ%3BEACjB%2CcAAA%3B%3BAAEF%2CYALQ%2CiBACV%2CuBAIG%2CUAAU%2CQAAQ%3BEACjB%2CaAAA%22%7D */

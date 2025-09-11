@@ -1,0 +1,19 @@
+<div class="rev-slider">
+<?php
+   if(isMobile()){
+       echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('mobile-slider')
+        ->toHtml();
+   }else{
+       echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('main-slider')
+        ->toHtml();
+   }
+?>
+</div>
+<?php
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+}

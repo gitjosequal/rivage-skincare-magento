@@ -1,0 +1,83 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+?>
+<?php
+
+/**
+ * @var $block Amasty\Rewards\Block\Frontend\Cart\Rewards
+ */
+// @codingStandardsIgnoreFile
+
+if ($block->getCustomerId()) :
+
+    $pointsLeft = $block->getPoints();
+    $pointsUsed = $block->getUsedPoints();
+    $pointsRate = $block->getPointsRate();
+    $currentCurrency = $block->getCurrentCurrencyCode();
+    $rateForCurrency = $block->getRateForCurrency();
+?>
+<div class="block reward" id="block-reward" data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'>
+    <div class="title" data-role="title">
+        <strong id="block-reward-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Loyalty Code') ?></strong>
+    </div>
+
+    <div class="content" data-role="content" aria-labelledby="block-reward-heading">
+        <div class="pointsLeft" data-role="title">
+            <?php /* @escapeNotVerified */ echo __('You Have <strong>%1</strong> points left', $pointsLeft) ?>
+        </div>
+        <div class="pointsRate" data-role="title">
+            <?php /* @escapeNotVerified */ echo __('%3 for every %1%2', $pointsRate, $currentCurrency, $rateForCurrency) ?>
+        </div>
+        <form id="discount-reward-form" action="<?php /* @escapeNotVerified */ echo $block->getUrl('amrewards/index/rewardPost') ?>" method="post">
+            <div class="fieldset reward">
+                <input type="hidden" name="remove" id="remove-amreward" value="0" />
+                <div class="field">
+                    <label for="rewards_amount" class="label"><span><?php /* @escapeNotVerified */ echo __('Enter Loyalty amount') ?></span></label>
+                    <div class="control">
+                        <input type="text" class="input-text" id="amreward_amount" name="amreward_amount" value="<?php echo $pointsUsed ?>" placeholder="<?php echo $block->escapeHtml(__('Enter Loyalty amount'));?>" />
+                        <div  id="amreward_amount_minimum_point_note">
+                            <?php echo __('Note: You need at least %1 points to pay for the order with reward points.', $block->getMinimumRewardsBalance()) ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <?php if (!$pointsUsed) : ?>
+                        <div class="primary">
+                            <button id="apply-amreward" class="action primary" type="button" value="<?php /* @escapeNotVerified */ echo __('Apply') ?>">
+                                <span><?php /* @escapeNotVerified */ echo __('Apply') ?></span>
+                            </button>
+                        </div>
+                    <?php else : ?>
+                        <div class="primary">
+                            <button id="cancel-amreward"  type="button" class="action primary" value="<?php /* @escapeNotVerified */ echo __('Cancel') ?>"><span><?php /* @escapeNotVerified */ echo __('Cancel') ?></span></button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Amasty_Rewards/js/amreward-points',
+            'domReady!'
+        ], function ($) {
+            var element = $('#discount-reward-form');
+
+            element.amrewardPoints({
+                "rewardAmount": "#amreward_amount",
+                "removeRewardSelector": "#remove-amreward",
+                "applyButton": "#apply-amreward",
+                "cancelButton": "#cancel-amreward",
+                "minimumNoteSelector": "#amreward_amount_minimum_point_note",
+                "minimumBalance": <?php echo $block->getMinimumRewardsBalance(); ?>,
+                "customerBalance": <?php echo $block->getPoints(); ?>
+            });
+        });
+    </script>
+</div>
+<?php endif; ?>

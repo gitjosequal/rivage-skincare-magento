@@ -1,0 +1,67 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+?>
+<div class="block newsletter">
+    <div class="subscripe">
+        <div class="title"><h4><?= $block->escapeHtml(__('اشترك في النشرة الاخبارية')) ?></h4></div>
+        <p>كن أول من يعرف عن العروض الخاصة لمنتجاتنا الجديدة والمزيد.</p>
+        <div class="content">
+            <form class="form subscribe"
+                novalidate
+                action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+                method="post"
+                data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                id="newsletter-validate-detail">
+                <div class="input-group mb-3">
+                    <div class="field newsletter">
+                        <div class="control">
+                            <label for="newsletter">
+                                <input name="email" type="email" id="newsletter" class="form-control"
+                                    placeholder="<?= $block->escapeHtml(__('البريد الالكتروني')) ?>"
+                                    data-mage-init='{"mage/trim-input":{}}'
+                                    data-validate="{required:true, 'validate-email':true}"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field newsletter">
+                        <div class="control">
+                            <label for="mobile">
+                                <input name="mobile" type="number" id="mobile" class="form-control"
+                                    placeholder="<?= $block->escapeHtml(__('رقم الهاتف')) ?>"
+                                    data-mage-init='{"mage/trim-input":{}}'
+                                    data-validate="{required:true}"
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="newsletter-submit">
+                        <div>
+                            <button class="action subscribe btn subscribe-button"
+                                    title="<?= $block->escapeHtmlAttr(__('SUBSCRIBE')) ?>"
+                                    type="submit"
+                                    aria-label="SUBSCRIBE">
+                                <span><?= $block->escapeHtml(__('اشترك')) ?></span>
+                            </button>
+                        </div>
+                        <span>
+                            أوافق على تلقي رسائل بريد إلكتروني / رسائل نصية قصيرة من ريفاج ، وأوافق على ذلك على شروط وأحكام ريفاج وسياسة الخصوصية.
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#newsletter-validate-detail": {
+            "PHPCuong_Newsletter/js/newsletter-subscription": {}
+        }
+    }
+</script>

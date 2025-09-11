@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+/** @var \MageWorkshop\DetailedReview\Block\Review\Form $block */
+?>
+<div id="mageworkshop" data-bind="scope: 'mageworkshop'">
+<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script>
+    window.fieldsConfig = <?= /* @escapeNotVerified */ $block->getReviewFieldsConfigurationJson(); ?>;
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "#mageworkshop": {
+            "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */ $block->getJsLayout(); ?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif'); ?>"
+        }
+    }
+</script>

@@ -1,0 +1,113 @@
+"Loyalty Code","كود الولاء"
+"Enter Loyalty amount","ادخل كمية النقاط"
+Amount,Amount
+"Use negative amount to deduct points e.g. ""-100""","Use negative amount to deduct points e.g. ""-100"""
+Comment,Comment
+"Reward Points","Reward Points"
+"Amasty Rewards","Amasty Rewards"
+"Add Rule","Add Rule"
+"Save and Continue Edit","Save and Continue Edit"
+"Edit Reward Rule `%1`","Edit Reward Rule `%1`"
+"Add new Reward Rule","Add new Reward Rule"
+"Reward Information","Reward Information"
+Actions,Actions
+General,General
+Action,Action
+"Spent Amount","Spent Amount"
+Conditions,Conditions
+"Apply the rule only if the following conditions are met (leave blank for all products).","Apply the rule only if the following conditions are met (leave blank for all products)."
+Name,Name
+Status,Status
+Websites,Websites
+"Customer Groups","Customer Groups"
+Labels,Labels
+"Default Label","Default Label"
+"Default Rule Label for All Store Views","Default Rule Label for All Store Views"
+"Store View Specific Labels","Store View Specific Labels"
+"Reward Options","Reward Options"
+"Restricts For All","Restricts For All"
+Any,Any
+"Restricts in All","Restricts in All"
+"My Rewards","مكافآتي"
+Rewards,Rewards
+"We can't find a item to delete.","We can't find a item to delete."
+"You deleted the item.","You deleted the item."
+"Please select a rule to duplicate.","Please select a rule to duplicate."
+"The rule has been duplicated. Please feel free to activate it.","The rule has been duplicated. Please feel free to activate it."
+"This item no longer exists.","This item no longer exists."
+"You activated the rule(s).","You activated the rule(s)."
+"You inactivated the rule(s).","You inactivated the rule(s)."
+"You deleted the rule(s).","You deleted the rule(s)."
+"We can't delete rule(s) right now. Please review the log and try again.","We can't delete rule(s) right now. Please review the log and try again."
+"We can't find a rule(s) to delete.","We can't find a rule(s) to delete."
+"You saved the item.","You saved the item."
+"Too much point(s) used.","Too much point(s) used."
+"You used %1 point(s)","You used %1 point(s)"
+"You Canceled Reward","You Canceled Reward"
+"We cannot Reward.","We cannot Reward."
+"NOT LOGGED IN","NOT LOGGED IN"
+Active,Active
+Inactive,Inactive
+"Order Completed","Order Completed"
+"Newsletter subscription","Newsletter subscription"
+"Customer birthday","Customer birthday"
+"For every $X spent","For every $X spent"
+Registration,Registration
+"Order %1 paid","Order %1 paid"
+"Newsletter subscription bonus","Newsletter subscription bonus"
+"Registration bonus","Registration bonus"
+"Happy Birthday!","Happy Birthday!"
+" %1 bonus for order %2"," %1 bonus for order %2"
+"Used %1 reward points","Used %1 reward points"
+"Unable to save rule with ID %1. Error: %2","Unable to save rule with ID %1. Error: %2"
+"Unable to save new rule. Error: %1","Unable to save new rule. Error: %1"
+"Rule with specified ID ""%1"" not found.","Rule with specified ID ""%1"" not found."
+"Unable to remove rule with ID %1. Error: %2","Unable to remove rule with ID %1. Error: %2"
+"Unable to remove rule rule. Error: %1","Unable to remove rule rule. Error: %1"
+"Order Paid","Order Paid"
+"Current Balance:","Current Balance:"
+"Total Earned:","Total Earned:"
+"Total Spent:","Total Spent:"
+"Apply Rewards","Apply Rewards"
+"You Have <strong>%1</strong> points left","تبقى لديك <strong>%1</strong> نقطة"
+"%3 for every %1%2","%3 for every %1%2"
+"Enter reward amount","Enter reward amount"
+"Note: You need at least %1 points to pay for the order with reward points.","Note: You need at least %1 points to pay for the order with reward points."
+Apply,Apply
+Cancel,Cancel
+"Cancel Reward","Cancel Reward"
+Date,Date
+Change,Change
+"Points Left","Points Left"
+PointsLeft,PointsLeft
+"You have no rewards.","لا يوجد مكافآت."
+"Add\\Deduct Points","Add\\Deduct Points"
+"Admin Action Text","Admin Action Text"
+"Birthday Offset","Birthday Offset"
+Points,Points
+"Point Rate","Point Rate"
+"Points rounding rule","Points rounding rule"
+"Rounding will apply when point value exceeds cart subtotal","Rounding will apply when point value exceeds cart subtotal"
+"
+                        
+                        
+                    ","
+                        
+                        
+                    "
+"Disable Reward Points for orders that were paid with Reward Points","Disable Reward Points for orders that were paid with Reward Points"
+"Minimum Points Requirement","Minimum Points Requirement"
+"Set the points threshold that a customer must have to start spending Reward Points","Set the points threshold that a customer must have to start spending Reward Points"
+"No Items Found","No Items Found"
+"Shipping Restrictions Options","Shipping Restrictions Options"
+Activate,Activate
+"Are you sure?","Are you sure?"
+Inactivate,Inactivate
+Delete,Delete
+ID,ID
+"Web Site","Web Site"
+"
+                        Reward Points
+                    ","
+                        Reward Points
+                    "

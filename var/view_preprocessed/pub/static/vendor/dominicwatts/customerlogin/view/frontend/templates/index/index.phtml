@@ -1,0 +1,13 @@
+<div class="greet welcome" data-bind="scope: 'customer'"><!-- ko if: customer().is_logged_in --><span class="logged-in" data-bind="text: new String('<?= $block->escapeHtml(__('Welcome back %1', '%1')) ?>').replace('%1', customer().firstname)"></span> <!-- /ko --><!-- ko ifnot: customer().is_logged_in --><span class="not-logged-in" data-bind='html:"<?= $block->escapeHtml(__("Please <a href='%1'>login</a>", $block->getUrl('customer/account/login'))) ?>"'></span> <!-- /ko --><!-- ko if: customer().email --><div><span class="logged-in" data-bind="text: new String('<?= $block->escapeHtml(__('Email: %1', '%1')) ?>').replace('%1', customer().email)"></span></div><!-- /ko --><!-- ko if: customer().customer_group_id --><div><span class="logged-in" data-bind="text: new String('<?= $block->escapeHtml(__('Customer Group: %1', '%1')) ?>').replace('%1', customer().customer_group_name)"></span></div><!-- /ko --><!-- ko if: blockIsLoggedIn == '1' --><span data-bind="text: new String('<?= $block->escapeHtml(__('According to the block logic you are currently logged In')) ?>')"></span> <!-- /ko --><!-- ko ifnot: blockIsLoggedIn == '1' --><span data-bind="text: new String('<?= $block->escapeHtml(__('as according to the block logic you are not currently logged in')) ?>')"></span> <!-- /ko --></div><script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "customer": {
+                    "component": "Magento_Customer/js/view/customer",
+                    "blockIsLoggedIn": "<?= $block->isCustomerLoggedIn(); ?>"
+                }
+            }
+        }
+    }
+}</script>

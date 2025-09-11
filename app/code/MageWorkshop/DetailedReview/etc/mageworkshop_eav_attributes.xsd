@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+
+<!-- TODO: add proper validation for each field! -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="config" type="configDeclaration"/>
+
+    <xs:complexType name="configDeclaration">
+        <xs:sequence>
+            <xs:element ref="entity" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="entity">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="entity_id_field" minOccurs="0"/>
+                <xs:element name="entity_model" minOccurs="0"/>
+                <xs:element name="attribute_model" minOccurs="0"/>
+                <xs:element name="entity_attribute_collection" minOccurs="0"/>
+                <xs:element name="increment_model" minOccurs="0"/>
+                <xs:element ref="attributes" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="type"/>
+        </xs:complexType>
+        <xs:unique name="uniqueType">
+            <xs:annotation>
+                <xs:documentation>
+                    Entity id identified the EAV entity you create the attribute for
+                </xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="entity"/>
+            <xs:field xpath="@type"/>
+        </xs:unique>
+    </xs:element>
+
+    <xs:element name="attributes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="attribute" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:unique name="uniqueAttributeId">
+            <xs:annotation>
+                <xs:documentation>
+                    Attribute id is unique under all sections
+                </xs:documentation>
+            </xs:annotation>
+            <xs:selector xpath="attribute"/>
+            <xs:field xpath="@frontend-input"/>
+        </xs:unique>
+    </xs:element>
+
+    <xs:element name="attribute">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element type="xs:string" name="label"/>
+                <xs:element type="xs:string" name="position"/>
+                <!-- Default backend type is "varchar", so we actually do not need this node -->
+                <!--<xs:element type="xs:string" name="backend_type"  minOccurs="1">-->
+                <!--<xs:annotation>-->
+                <!--<xs:documentation>-->
+                <!--Entity backend type used to define the EAV attribute table-->
+                <!--</xs:documentation>-->
+                <!--</xs:annotation>-->
+                <!--</xs:element>-->
+                <xs:element type="xs:string" name="backend_model" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Entity backend model responsible for saving and loading hte data
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element type="xs:string" name="input_type" minOccurs="0"/>
+                <!-- option_type - either "radio" or "checkbox". Defines attribute option input type -->
+                <xs:element type="xs:string" name="option_type" minOccurs="0"/>
+                <xs:element type="xs:string" name="required" minOccurs="0"/>
+                <xs:element type="xs:string" name="user_defined" minOccurs="0"/>
+                <xs:element type="xs:string" name="visible_on_front" minOccurs="0"/>
+                <xs:element type="xs:string" name="frontend_class" minOccurs="0"/>
+                <xs:element type="xs:string" name="source_model" minOccurs="0"/>
+                <xs:element type="xs:string" name="validate_rules"/>
+                <xs:element type="xs:string" name="attribute_placement" minOccurs="0"/>
+                <xs:element type="xs:string" name="attribute_visual_settings"/>
+            </xs:sequence>
+            <!--Frontend input is just attribute type identifier. Use "input_type" to set -->
+            <!--backend storage type-->
+            <xs:attribute type="xs:string" name="frontend-input" use="required" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

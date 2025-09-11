@@ -1,0 +1,25 @@
+{
+    "name": "amasty/module-affiliate-subscription-package",
+    "description": "Affiliate Subscription Package",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.16.0",
+        "amasty/affiliate": ">=2.3.0"
+    },
+    "suggest": {
+        "amasty/module-affiliate-tier-commissions": "Install this package to use the multilevel commission functionality of the affiliate referral program.",
+        "amasty/module-affiliate-subscription-functionality": "Install this package for compatibility with subscription features."
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "2.3.0",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\AffiliateSubscriptionPackage\\": ""
+        }
+    }
+}

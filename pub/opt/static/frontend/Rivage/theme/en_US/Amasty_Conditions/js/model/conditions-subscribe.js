@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Amasty/Conditions/view/frontend/web/js/model/conditions-subscribe.js

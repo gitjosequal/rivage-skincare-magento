@@ -1,0 +1,7 @@
+<?php /** * Copyright © Rivage(info@rivage.com) All rights reserved. * See COPYING.txt for license details. */ ?> <div><button type="button" id="generate_gtmga4_json_file" class="json_file_button" title="<?= /* @noEscape */ __("Generate Json File") ?>" ><span class="generate-btn-text"><span><?= /* @noEscape */ __("Generate Json File") ?></span></span></button> <a href="<?= $this->getUrlToAccessJsonItems() ?>" id="json_download_btn" class="action-default" target="_blank" style="display:none;" ><span class="download-btn-text"><span><?= /* @noEscape */ __("Download File") ?></span></span></a> <input type="hidden" value="<?= $block->getFormKey(); ?>" name="json_file_form_key" id="json_file_form_key" /></div><script>
+    require(['jquery', 'Rivage_GtmExtension/js/GA4Json' ],
+        function   ($, GA4Json) {
+            $(document).ready(function() {
+                GA4Json.InitJsonGenerationProcess('<?= $this->getUrlToInitiateJsonItems() ?>');
+            });
+        });</script>

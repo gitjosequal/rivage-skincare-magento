@@ -1,0 +1,212 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Register $block */
+?>
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+    <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+    <legend class="legend"><span><?= $block->escapeHtml(__('Or fill Out the form below')) ?></span></legend><br>
+	<fieldset class="fieldset create info">
+        <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
+        <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
+        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+		
+       <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+        <?php endif ?>
+    </fieldset>
+    <?php if ($block->getShowAddressFields()): ?>
+        <fieldset class="fieldset address fl-right">
+            <input type="hidden" name="create_address" value="1" />
+
+            <?php $_telephone = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Telephone') ?>
+            <?php if ($_telephone->isEnabled()): ?>
+                <?= $_telephone->setTelephone($block->getFormData()->getTelephone())->toHtml() ?>
+            <?php endif ?>
+
+            <!--div class="field country required">
+                <label for="country" class="label"><span><?= $block->escapeHtml(__('Country')) ?></span></label>
+                <div class="control">
+                    <?= $block->getCountryHtmlSelect() ?>
+                </div>
+            </div-->
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+
+    <?php endif; ?>
+    <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+		<div class="field required">
+            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input type="email" name="email" autocomplete="email" id="email_address" placeholder="<?= $block->escapeHtml(__('Email Address')) ?>" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+		<!--div class="field required">
+      <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Confirm Email')) ?></span></label>		
+		<div class="control">
+        <input name="confirm_email" id="confirm_email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true, equalTo:'#email_address'}"/>
+        </div>
+		</div-->
+        <div class="field password required">
+            <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                       class="input-text"
+                       data-password-min-length="<?= $block->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?= $block->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+               
+            </div>
+
+        </div>
+        <div class="field confirmation required">
+            <label for="password-confirmation" class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
+            <div class="control">
+                <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+    </fieldset>
+	<div class="maincheck">
+	 <div class="twocheck">
+	       <div class="field choice newsletteragreee">
+                <input type="checkbox" data-validate="{required:true}" name="is_agree" title="<?= $block->escapeHtmlAttr(__('Agreee')) ?>" value="1" id="is_agree" class="checkbox" checked>
+                <label for="is_agree" class="label"><span><?= __('I have Read and Agree to the') ?> <a href="<?php echo $this->getUrl('')?>termsconditions"><?= __('Terms & Condition') ?></a> <?= __('and') ?> <a href="<?php echo $this->getUrl('')?>privacypolicy"><?= __('Privacy  Policy') ?></a> <?= __('for the website.') ?> </span></label>
+            </div>
+	   
+            <div class="field choice newsletter">
+                <input type="checkbox" name="is_subscribed" title="<?= $block->escapeHtmlAttr(__('Sign Up for Newsletter')) ?>" value="1" id="is_subscribed" checked class="checkbox">
+                <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Please add me to the Rivage email newsletter. Rivage will not share or sell your personal information.')) ?></span></label>
+            </div>
+			
+		</div>
+            <?php /* Extensions placeholder */ ?>
+            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+            <?= $block->getChildHtml('form_additional_info') ?>   
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
+        </div>
+     
+    </div>
+	</div>
+</form>
+<script>
+require([
+    "jquery"
+], function($){
+//<![CDATA[
+    $(document).ready(function() {
+		//alert('jj');
+       //$("#prefix").val($("#prefix option:second").val());
+	   $("#prefix").val($("#prefix option:eq(1)").val());
+    });
+//]]>
+});
+</script>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+    var dataForm = $('#form-validate');
+    var ignore = <?= /* @noEscape */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null' ?>;
+
+    dataForm.mage('validation', {
+    <?php if ($_dob->isEnabled()): ?>
+        errorPlacement: function(error, element) {
+            if (element.prop('id').search('full') !== -1) {
+                var dobElement = $(element).parents('.customer-dob'),
+                    errorClass = error.prop('class');
+                error.insertAfter(element.parent());
+                dobElement.find('.validate-custom').addClass(errorClass)
+                    .after('<div class="' + errorClass + '"></div>');
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        ignore: ':hidden:not(' + ignore + ')'
+    <?php else: ?>
+        ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+    <?php endif ?>
+    }).find('input:text').attr('autocomplete', 'off');
+
+});
+</script>
+<?php if ($block->getShowAddressFields()): ?>
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $block->getConfig('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $block->getFormData()->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        }
+    }
+</script>
+<style>
+.field label.label {
+    font-size: 20px;
+}
+.maincheck .field {
+    padding: 5px 0;
+}
+.maincheck .field.captcha.required {
+    float: left;
+    margin-bottom: 32px;
+    margin-top: 14px;
+}
+.maincheck .field.captcha.required label.label {
+    padding-bottom: 11px;
+}
+.maincheck .actions-toolbar {
+    margin-top: 57px!important;
+}
+</style>

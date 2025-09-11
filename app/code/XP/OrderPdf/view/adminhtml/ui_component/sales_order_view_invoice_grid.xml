@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="xppdfinvoices_order" class="Magento\Sales\Ui\Component\Control\PdfAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="pdfAction" xsi:type="string">xporderpdf/invoice/orderpdfinvoices</item>
+                    </item>
+                </argument>
+                <settings>
+                    <type>xppdfinvoices_order</type>
+                    <label translate="true">Print OrderPDF Invoices</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

@@ -1,0 +1,93 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="block-title">
+    <strong>
+        <span class="text" data-bind="i18n: 'YOUR SHOPPING BAG'"></span>
+    </strong>
+    <!-- <div class="actions" if="getCartParam('summary_count')">
+        <div class="secondary">
+            <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                <span data-bind="i18n: 'VIEW BAG'"></span>
+            </a>
+        </div>
+    </div> -->
+</div>
+
+<div class="block-content">
+    <button type="button"
+            id="btn-minicart-close"
+            class="action close"
+            data-action="close"
+            data-bind="
+                attr: {
+                    title: $t('Close')
+                },
+                click: closeMinicart()
+            ">
+        <span data-bind="i18n: 'Close'"></span>
+    </button>
+
+    <if args="getCartParam('summary_count')">
+        <strong class="subtitle" data-bind="i18n: 'Recently added item(s)'"></strong>
+        <div class="minicart-items-wrapper">
+            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+                <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                      render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+                ></each>
+            </ol>
+        </div>
+    </if>
+
+    <ifnot args="getCartParam('summary_count')">
+        <strong class="subtitle empty"
+            data-bind="i18n: 'You have no items in your shopping cart.'"
+        ></strong>
+        <if args="getCartParam('cart_empty_message')">
+            <p class="minicart empty text" text="getCartParam('cart_empty_message')"></p>
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span data-bind="i18n: 'View Bag'"></span>
+                    </a>
+                </div>
+            </div>
+        </if>
+    </ifnot>
+
+    <if args="getCartParam('summary_count')">
+        <div class="items-total">
+            <span class="count" if="maxItemsToDisplay < getCartLineItemsCount()" text="maxItemsToDisplay"></span>
+            <translate args="'of'" if="maxItemsToDisplay < getCartLineItemsCount()"></translate>
+            <span data-bind="i18n: 'QTY:'"></span>    
+            (<span class="count" text="getCartParam('summary_count')"></span>)
+                <!-- ko if: (getCartParam('summary_count') > 1) -->
+                
+                <!--/ko-->
+                <!-- ko if: (getCartParam('summary_count') === 1) -->
+                
+                <!--/ko-->
+        </div>
+
+        <each args="getRegion('subtotalContainer')" render=""></each>
+        <each args="getRegion('extraInfo')" render=""></each>
+
+        <div class="actions" if="getCartParam('possible_onepage_checkout')">
+            <p data-bind="i18n: 'THANK YOU FOR SHOPPING WITH RIVAGE'"></p>
+            <a class="primary action go-to-cart" data-bind="attr: {href: shoppingCartUrl}">
+                <span   class="go-to-cart-link">
+                    <span data-bind="i18n: 'VIEW BAG'"></span>
+                </span>
+            </a>
+        </div>
+    </if>
+
+    <div id="minicart-widgets" class="minicart-widgets" if="regionHasElements('promotion')">
+        <each args="getRegion('promotion')" render=""></each>
+    </div>
+
+</div>
+<each args="getRegion('sign-in-popup')" render=""></each>

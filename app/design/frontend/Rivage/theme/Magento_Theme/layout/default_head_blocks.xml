@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+<!--        <remove src="css/styles-m.css" />-->
+       <!-- <remove src="lib/web/jquery.js" />
+       <remove src="lib/web/jquery/jquery.mobile.custom.js" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <css src="Magento_Theme::css/fontawesome.min.css"/>
+        <css rel="preload" src="Magento_Theme::css/bootstrap.min.css"/>
+        <css rel="preload" src="Magento_Theme::css/owl.carousel.min.css"/>
+        <css rel="preload" src="Magento_Theme::css/aos.css"/>
+        <css rel="preload" src="Magento_Theme::css/style.css"/> 
+        <css rel="preload" src="Magento_Theme::css/custom.css"/> 
+       <!-- <script src="Magento_Theme::js/jquery.min.js"/>
+       <script src="Magento_Theme::js/jquery-mobile.js"/> -->
+        <!-- <script src="Magento_Theme::js/bootstrap.bundle.min.js"/>/ -->
+        <script src="Magento_Theme::js/parallax.min.js"/>
+        <script src="requirejs/require.js"/>
+        
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\GoogleAnalytics\Block\Ga" name="google_analytic" as="google_analytic" template="Magento_GoogleAnalytics::ga.phtml"/>
+            <block name="critical_css_block" as="critical_css" template="Magento_Theme::html/header/criticalCss.phtml" ifconfig="dev/css/use_css_critical_path">
+                <arguments>
+                    <argument name="criticalCssViewModel" xsi:type="object">Magento\Theme\Block\Html\Header\CriticalCss</argument>
+                </arguments>
+            </block>
+            <!-- Todo: Block css_rel_preload_script will be removed in next release as polyfill isn't used anymore -->
+            <block name="css_rel_preload_script" ifconfig="dev/css/use_css_critical_path" template="Magento_Theme::js/css_rel_preload.phtml"/>
+            
+            <!--<block class="Magento\Framework\View\Element\Template" name="gtm.head" before="-" template="Magento_Theme::html/gtm_head.phtml" />-->
+            <block class="Magento\GoogleGtag\Block\Ga" name="google_gtag_analytics_2" as="google_gtag_analytics_2" template="Magento_GoogleGtag::ga.phtml" ifconfig="google/gtag/analytics4/active" />
+            <block class="Magento\Framework\View\Element\Template" name="fomo-code" as="fomo-code" template="Magento_Theme::js/fomo_code.phtml" />
+        </referenceBlock>
+        <referenceContainer name="after.body.start">
+            <!--<block class="Magento\Framework\View\Element\Template" name="gtm.body" before="-" template="Magento_Theme::html/gtm_body.phtml" />-->
+            <block class="Magento\Framework\View\Element\Js\Components" name="head.components" as="components" template="Magento_Theme::js/components.phtml" before="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="cookie-status-check" as="cookie-status" template="Magento_Theme::js/cookie_status.phtml" />
+        </referenceContainer>
+        <!--<referenceBlock name="cookie-status-check" remove="true"/>-->
+    </body>
+</page>

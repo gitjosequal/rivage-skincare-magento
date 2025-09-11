@@ -1,0 +1,148 @@
+// /**
+// * Copyright © 2017 TechNWeb, Inc. All rights reserved.
+//  * See TNW_LICENSE.txt for license details.
+// */
+
+@stripe-input-border__color: @color-gray76;
+
+@stripe-error__color: @color-red10;
+@stripe-focus__color: @color-blue2;
+@stripe-success__color: @color-dark-green1;
+
+& when (@media-common = true) {
+    .payment-method-tnw_stripe {
+
+        .hosted-date-wrap {
+            &:extend(.abs-add-clearfix all);
+        }
+
+        .hosted-control {
+            .lib-form-element-input(@_type: input-text);
+            position: relative;
+            width: 225px;
+            padding: 5px 9px;
+
+            &.stripe-hosted-fields-focused {
+                border-color: @stripe-focus__color;
+            }
+
+            &.stripe-hosted-fields-invalid:not(.stripe-hosted-fields-focused),
+            &.StripeElement--invalid {
+                border-color: @stripe-error__color;
+
+                & ~ .hosted-error {
+                    height: auto;
+                    opacity: 1;
+                }
+            }
+
+            &.stripe-hosted-fields-valid {
+                border-color: @stripe-success__color;
+            }
+
+            &.hosted-cid {
+                width: 6rem;
+            }
+
+            &.hosted-date {
+                float: left;
+                margin-bottom: 7px;
+                width: 9rem;
+            }
+        }
+
+        .field-tooltip {
+            right: 0;
+        }
+
+        .hosted-error {
+            clear: both;
+            color: @stripe-error__color;
+            font-size: 1.2rem;
+            height: 0;
+            margin-top: 7px;
+            opacity: 0;
+        }
+    }
+    #stored-cards-info {
+        > .fieldset-wrapper-title {
+            padding-bottom: 0;
+            margin-bottom: 1.5rem;
+            border: 0;
+        }
+
+        .block-title h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cards-list {
+            float: left;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 360px;
+
+            .cc-image {
+                float: left;
+            }
+
+            .additional-data {
+                display: inline-block;
+                margin: 5px;
+                font-weight: bold;
+            }
+
+            .stored-cards-item-actions {
+                position: absolute;
+                right: 1rem;
+                top: 1rem;
+            }
+
+            .action-delete {
+                .lib-button-reset();
+                .lib-icon-font(
+                    @icon-remove,
+                    @icon-font,
+                    @_icon-font-size: 1.6rem,
+                    @_icon-font-line-height: 16px,
+                    @_icon-font-text-hide: true,
+                    @_icon-font-position: after,
+                    @_icon-font-color: @color-black_dark,
+                    @_icon-font-margin: 0 0 -5px 0
+                );
+            }
+
+            .stored-cards-item {
+                background: @color-white-fog;
+                border: 1px solid @color-gray_light;
+                cursor: pointer;
+                margin-bottom: 5px;
+                padding: 10px;
+                position: relative;
+                z-index: 1;
+            }
+        }
+        .new-cc-item-content {
+            background: @color-white;
+            border: 1px solid @color-gray_light;
+            box-shadow: 0 2px 1px 0 rgba(217, 210, 202, .5);
+            margin-left: 400px;
+            max-width: ~'calc(100% - 400px)';
+            padding: 15px 30px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .payment-method-tnw_stripe {
+        .cvv {
+            .field-tooltip {
+                left: 6rem;
+            }
+        }
+    }
+}

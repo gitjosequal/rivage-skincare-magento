@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Mageplaza/GoogleRecaptcha/view/frontend/web/js/captcha.js

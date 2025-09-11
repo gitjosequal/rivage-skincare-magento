@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/arabictheme/Magento_Customer/web/js/action/check-email-availability.js

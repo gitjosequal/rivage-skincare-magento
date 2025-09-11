@@ -1,0 +1,66 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->create('Magento\Customer\Model\Session');
+$customerId = $customerSession->getCustomerId();
+$resource = $objectManager->create('\Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION');
+$customer_table = $connection->getTableName('customer_entity');
+$result1 = $connection->fetchAll('SELECT my_skin,my_hair_skin FROM `'.$customer_table.'` WHERE entity_id='.$customerId);
+$customer_my_skin = $result1[0]['my_skin'];
+$customer_my_hair_skin = $result1[0]['my_hair_skin'];
+$storeManager = $objectManager->create('Magento\Store\Model\StoreManagerInterface');
+$currenturl = $storeManager->getStore()->getBaseUrl();
+?>
+<div class="main_beauty">
+<form class="form" action="<?php echo $currenturl.'mybeauty/index/submit/'; ?>" method="post">
+	<div class= "mybeauty-main-content-form1">  
+	 <fieldset class="fieldset">
+		<div class="skin my_skin">
+		<label class="label" for="My Skin"><span><?php echo __('نوع بشرتي:') ?></span></label>
+			<select  class="my_skin_box" name="my_skin">
+				<option value="normal" <?php if($customer_my_skin == 'normal'){echo 'selected';}?>>
+					<?php echo 'عادية'; ?>
+				</option>
+				<option value="oily" <?php if($customer_my_skin == 'oily'){echo 'selected';}?>>
+					<?php echo 'زيتية'; ?>
+				</option>
+				<option value="dry" <?php if($customer_my_skin == 'dry'){echo 'selected';}?>>
+					<?php echo 'جافة'; ?>
+				</option>
+			</select>
+		</div>
+		<div class="skin my_hair_skin">
+				<label class="label" for="My Hair Skin"><span><?php echo __('نوع شعري:') ?></span></label>
+			<select  class="my_hair_skin_box" name="my_hair_skin">
+				<option value="normal" <?php if($customer_my_hair_skin == 'normal'){echo 'selected';}?>>
+					<?php echo 'عادي'; ?>
+				</option>
+				<option value="oily" <?php if($customer_my_hair_skin == 'oily'){echo 'selected';}?>>
+					<?php echo 'زيتي'; ?>
+				</option>
+				<option value="dry" <?php if($customer_my_hair_skin == 'dry'){echo 'selected';}?>>
+					<?php echo 'جاف'; ?>
+				</option>
+			</select>
+		</div>
+		</fieldset>
+		</div>
+		<div class="actions-toolbar">
+			<div class="primary">
+				<button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>">
+					<span><?php /* @escapeNotVerified */ echo __('Save') ?></span>
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/mage"
+    ], function ($) {
+        $(document).ready(function () {
+			document.title = "ملف بيوتي الشخصي";
+       });
+    }); 
+</script>

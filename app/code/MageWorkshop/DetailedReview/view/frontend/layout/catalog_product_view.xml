@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.review.form">
+            <action method="setTemplate"
+                    ifconfig="mageworkshop_detailedreview/general/enabled"
+            >
+                <argument name="template" xsi:type="string">MageWorkshop_DetailedReview::form.phtml</argument>
+            </action>
+
+            <container name="form.additional.info" as="form_additional_info">
+                <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
+                    <action method="setFormId">
+                        <argument name="formId" xsi:type="string">product_review</argument>
+                    </action>
+                    <action method="setImgWidth">
+                        <argument name="width" xsi:type="string">230</argument>
+                    </action>
+                    <action method="setImgHeight">
+                        <argument name="width" xsi:type="string">50</argument>
+                    </action>
+                </block>
+            </container>
+
+            <block class="MageWorkshop\DetailedReview\Block\Review\Form"
+                   name="review.form.fields.wrapper"
+                   ifconfig="mageworkshop_detailedreview/general/enabled"
+                   as="review.form.fields.wrapper"
+                   template="MageWorkshop_DetailedReview::review/dynamic_fields.phtml"
+            >
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="mageworkshop" xsi:type="array">
+                                <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/review-form-item-renderer</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">MageWorkshop_DetailedReview/wrapper</item>
+                                    <item name="itemRenderer" xsi:type="array">
+                                        <item name="text" xsi:type="string">text</item>
+                                        <item name="select" xsi:type="string">select</item>
+                                        <item name="multiselect" xsi:type="string">multiselect</item>
+                                        <item name="textarea" xsi:type="string">textarea</item>
+                                        <item name="radio" xsi:type="string">radio</item>
+                                        <item name="checkbox" xsi:type="string">checkbox</item>
+                                        <!--To be implemented-->
+                                        <!--<item name="file" xsi:type="string">file</item>-->
+                                        <item name="swatch" xsi:type="string">swatch</item>
+                                        <item name="boolean" xsi:type="string">boolean</item>
+                                    </item>
+                                </item>
+                                <item name="children" xsi:type="array">
+                                    <item name="text" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">text</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/text</item>
+                                        </item>
+                                    </item>
+                                    <item name="select" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">select</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/select</item>
+                                        </item>
+                                    </item>
+                                    <item name="textarea" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">textarea</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/textarea</item>
+                                        </item>
+                                    </item>
+                                    <item name="radio" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">radio</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/radio</item>
+                                        </item>
+                                    </item>
+                                    <item name="checkbox" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">checkbox</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/checkbox</item>
+                                        </item>
+                                    </item>
+                                    <item name="multiselect" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">multiselect</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/multiselect</item>
+                                        </item>
+                                    </item>
+                                    <!--To be implemented-->
+                                    <!--<item name="file" xsi:type="array">-->
+                                        <!--<item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>-->
+                                        <!--<item name="config" xsi:type="array">-->
+                                            <!--<item name="displayArea" xsi:type="string">file</item>-->
+                                            <!--<item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/file</item>-->
+                                        <!--</item>-->
+                                    <!--</item>-->
+                                    <item name="swatch" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">swatch</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/swatch</item>
+                                        </item>
+                                    </item>
+                                    <item name="boolean" xsi:type="array">
+                                        <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="displayArea" xsi:type="string">boolean</item>
+                                            <item name="template" xsi:type="string">MageWorkshop_DetailedReview/item/select</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="reviews.tab">
+            <action method="setTemplate" ifconfig="mageworkshop_detailedreview/general/enabled">
+                <argument name="template" xsi:type="string">MageWorkshop_DetailedReview::review.phtml</argument>
+            </action>
+
+            <container name="reviews.rating" htmlClass="container-review-rating" htmlTag="div" before="-">
+                <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Rating\ReviewRating"
+                       ifconfig="mageworkshop_detailedreview/general/enabled"
+                       name="review.title.rating"
+                       template="MageWorkshop_DetailedReview::product/view/rating/titleRating.phtml"
+                />
+                <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Rating\ReviewRating"
+                       ifconfig="mageworkshop_detailedreview/general/enabled"
+                       name="review.rating"
+                       template="MageWorkshop_DetailedReview::product/view/rating/summary.phtml"
+                />
+                <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Rating\CustomerRating"
+                       ifconfig="mageworkshop_detailedreview/general/enabled"
+                       name="review.customer.rating"
+                       template="MageWorkshop_DetailedReview::product/view/rating/customerRating.phtml"
+                />
+                <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Rating\AverageRating"
+                       ifconfig="mageworkshop_detailedreview/general/enabled"
+                       name="review.average.rating"
+                       template="MageWorkshop_DetailedReview::product/view/rating/averageRating.phtml"
+                />
+            </container>
+            <container name="reviews.block" htmlClass="review-filters-container" htmlTag="div" after="reviews.rating">
+                <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Filters\Form"
+                       name="review.filters.form"
+                       ifconfig="mageworkshop_detailedreview/general/enabled"
+                       template="MageWorkshop_DetailedReview::product/view/filters/form.phtml"
+                >
+                    <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Filters\Date"
+                           name="review.filter.by.date"
+                           template="MageWorkshop_DetailedReview::product/view/filters/date.phtml"
+                    />
+                    <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\Filters\Sort"
+                           name="review.sort.direction"
+                           template="MageWorkshop_DetailedReview::product/view/filters/sort.phtml"
+                    />
+                </block>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

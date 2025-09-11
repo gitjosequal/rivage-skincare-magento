@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Tabby/Checkout/view/frontend/web/js/model/tabby_checkout.js

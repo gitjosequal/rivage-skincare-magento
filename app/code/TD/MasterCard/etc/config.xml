@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MasterCard Internet Gateway Service (MIGS) - Virtual Payment Client (VPC)
+ * @author      Trinh Doan
+ * @copyright   Copyright (c) 2017 Trinh Doan
+ * @package     TD_MasterCard
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <mastercard_gateway>
+                <model>MasterCardFacade</model>
+                <title>MasterCard Payment Merchant Hosted (3-Party Payments)</title>
+                <payment_action>initialize</payment_action>
+                <active>0</active>
+                <is_gateway>1</is_gateway>
+                <description>You will be redirected to the payment gateway to complete order</description>
+                <secure_secret backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <allowspecific>0</allowspecific>
+                <can_initialize>1</can_initialize>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>0</can_authorize>
+                <can_capture>0</can_capture>
+                <can_capture_partial>0</can_capture_partial>
+                <can_authorize_vault>0</can_authorize_vault>
+                <can_capture_vault>0</can_capture_vault>
+                <can_use_internal>0</can_use_internal>
+                <can_refund_partial_per_invoice>0</can_refund_partial_per_invoice>
+                <can_refund>0</can_refund>
+                <can_void>0</can_void>
+                <can_cancel>0</can_cancel>
+                <can_edit>0</can_edit>
+                <can_review_payment>1</can_review_payment>
+                <can_deny_payment>1</can_deny_payment>
+            </mastercard_gateway>
+            <mastercard_api>
+                <active>0</active>
+                <model>TD\MasterCard\Model\Method\Api</model>
+                <payment_action>authorize_capture</payment_action>
+                <title>MasterCard Payment Merchant Server (2-Party Payments)</title>
+                <cctypes>AE,VI,MC,DI,JCB</cctypes>
+                <allowspecific>0</allowspecific>
+            </mastercard_api>
+        </payment>
+    </default>
+</config>

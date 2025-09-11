@@ -1,0 +1,25 @@
+{
+    "name": "mageworkshop/module-detailed-review",
+    "description": "MageWorkshop DetailedReview module extends default Magento 2 reviews functionality with rich features like configurable review fields and forms, form field validation and so on.",
+    "type": "magento2-module",
+    "version": "1.2.1",
+    "require": {
+        "php": "~5.6.5|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.2.0",
+        "magento/framework": ">=100.1.0",
+        "magento/module-swatches": ">=100.1.0",
+        "magento/module-store": ">=100.1.0",
+        "magento/module-review": ">=100.1.0",
+        "mageworkshop/module-core": ">=1.2.1"
+    },
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MageWorkshop\\DetailedReview\\": ""
+        }
+    }
+}

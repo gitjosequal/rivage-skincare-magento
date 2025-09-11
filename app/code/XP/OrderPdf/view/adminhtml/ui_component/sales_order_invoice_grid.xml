@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <!--<action name="pdfinvoices_order">
+                <settings>
+                    <url path="xporderpdf/invoice/pdfinvoices"/>
+                </settings>
+            </action>-->
+            <action name="xppdfinvoices_order">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">xporderpdf_pdfinvoices_order</item>
+                        <item name="label" xsi:type="string" translate="true">Print OrderPDF Invoices</item>
+                        <item name="url" xsi:type="url" path="xporderpdf/invoice/pdfinvoices"/>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

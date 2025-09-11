@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+    <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+        <head>
+            <title>Tatvam Settings</title>
+			<script src="Tatvam_Wisernotify::js/jquery.min.js" />
+			<css src="Tatvam_Wisernotify::css/settings.css" />
+			<css src="Tatvam_Wisernotify::css/bootstrap.min.css" />
+			<script src="Tatvam_Wisernotify::js/bootstrap.min.js" />
+        </head>
+        <body>
+            <referenceContainer name="content">
+                <block class="Tatvam\Wisernotify\Block\Settings" name="settings" template="Tatvam_Wisernotify::settings.phtml"/>
+            </referenceContainer>
+        </body>
+    </page>
+  

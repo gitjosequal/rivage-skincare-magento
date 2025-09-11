@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+& when (@media-common = true) {
+
+    .mageworkshop-detailedreview-form-edit {
+        .form-fields-container {
+            display: block;
+            min-height: 20px;
+        }
+
+        .data-table.form-fields {
+            display: inline-table;
+            vertical-align: top;
+            width: 40%;
+        }
+
+        .data-table.form-fields:first-child {
+            margin-right: 10%;
+        }
+
+        .data-table.form-fields th {
+            font-size: 16px;
+        }
+
+        .data-table.form-fields th,
+        .data-table.form-fields tr {
+            width: 100%;
+        }
+
+        #review-form-fields-container .col-default {
+            min-width: 200px;
+            padding: 0 50px;
+        }
+    }
+
+    .review-product-edit option:empty {
+        display: inherit;
+    }
+
+    #edit_form #advanced_fieldset-wrapper .field-attribute_code span::after {
+        content: '*';
+        color: @color-phoenix;
+        display: inline-block;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 1;
+        margin-left: 10px;
+        position: absolute;
+        top: 1.2rem;
+        z-index: 1;
+    }
+
+    #edit_form {
+        #image {
+            margin-bottom: 20px;
+        }
+    }
+}

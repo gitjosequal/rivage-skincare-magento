@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="steps text-center">
+    <ul class="opc-progress-bar">
+        <li class="opc-progress-bar-item first-step _complete">
+            <span data-bind="i18n: 'Bag'">Bag</span>
+        </li>
+
+        <li class="opc-progress-bar-item second-step" data-bind="css: (window.checkout.hasComplete ? '_complete' : '_active')">
+            <span data-bind="i18n: 'Shipping'">Shipping</span>
+        </li>
+    
+        <li class="opc-progress-bar-item third-step" data-bind="css: (window.checkout.hasComplete ? '_active' : '')">
+            <span data-bind="i18n: 'Payment'">Payment</span>
+        </li>
+    </ul>
+</div>

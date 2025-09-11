@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="MageGuide\AlphaBank\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="alphabank_directpost" xsi:type="const">MageGuide\AlphaBank\Model\Alphabank::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+	<type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="alphabank_directpost_config_provider" xsi:type="object">MageGuide\AlphaBank\Model\AlphabankConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MasterCard Internet Gateway Service (MIGS) - Virtual Payment Client (VPC)
+ * @author      Trinh Doan
+ * @copyright   Copyright (c) 2017 Trinh Doan
+ * @package     TD_MasterCard
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Payment Method Facade configuration -->
+    <virtualType name="MasterCardFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">TD\MasterCard\Gateway\Config\Config::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">TD\MasterCard\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">MasterCardValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">MasterCardCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configuration reader -->
+    <type name="TD\MasterCard\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">TD\MasterCard\Gateway\Config\Config::CODE</argument>
+        </arguments>
+    </type>
+
+    <!-- Commands infrastructure -->
+    <virtualType name="MasterCardCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">MasterCardInitializeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Initialize command -->
+    <virtualType name="MasterCardInitializeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">MasterCardInitializationRequest</argument>
+            <argument name="transferFactory" xsi:type="object">TD\MasterCard\Gateway\Http\DummyTransferFactory</argument> <!-- [Payment/Model/Method/Adapter][executeCommand]ERROR!Cannot instantiate interface Magento\Payment\Gateway\Http\TransferFactoryInterface if empty -->
+            <argument name="client" xsi:type="object">TD\MasterCard\Gateway\Http\Client\DummyClient</argument> <!-- [Payment/Model/Method/Adapter][executeCommand]ERROR getting command!Cannot instantiate interface Magento\Payment\Gateway\Http\ClientInterface if empty-->
+        </arguments>
+    </virtualType>
+
+    <!-- Initialization Request -->
+    <virtualType name="MasterCardInitializationRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="transaction" xsi:type="string">TD\MasterCard\Gateway\Request\InitializationRequest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="TD\MasterCard\Gateway\Request\InitializationRequest">
+        <arguments>
+            <argument name="config" xsi:type="object">TD\MasterCard\Gateway\Config\Config</argument>
+        </arguments>
+    </type>
+
+    <!-- Value handlers infrastructure -->
+    <virtualType name="MasterCardValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">MasterCardConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MasterCardConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">TD\MasterCard\Gateway\Config\Config</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="TD\MasterCard\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">TD\MasterCard\Gateway\Config\Config</argument>
+        </arguments>
+    </type>
+
+</config>

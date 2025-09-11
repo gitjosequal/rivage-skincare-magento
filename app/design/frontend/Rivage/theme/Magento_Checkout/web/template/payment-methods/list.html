@@ -1,0 +1,33 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+<div if="isPaymentMethodsAvailable()"
+     class="items payment-methods">
+    <div repeat="foreach: paymentGroupsList, item: '$group'"
+         class="payment-group">
+        <div if="regionHasElements($group().displayArea)"
+             translate="getGroupTitle($group)"
+             class="step-title"
+             data-role="title">
+        </div>
+          <div class="row my-5 align-items-center text-center justify-content-around">
+               <!-- ko foreach: { data: getRegion($group().displayArea), as: 'method' } -->
+               <div class="col-4 col-md-3">
+                    <div  data-bind="attr: {'data-id': getCode()},css: {'_active': (getCode() == isChecked())}" class="box-payment">
+                         <p data-bind="text: getTitle()"></p>
+                    </div>
+               </div>
+               <!-- /ko -->
+          </div>
+          
+        <each args="data: getRegion($group().displayArea), as: 'method'" render=""></each>
+    </div>
+    
+</div>
+<div ifnot="isPaymentMethodsAvailable()"
+     class="no-payments-block"
+     translate="'No Payment Methods'">
+</div>

@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Rivage/GtmExtension/view/frontend/web/js/ga4-datalayer.js

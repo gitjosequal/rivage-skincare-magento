@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/PHPCuong/Newsletter/view/frontend/web/js/newsletter-subscription.js

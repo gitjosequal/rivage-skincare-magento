@@ -1,0 +1,27 @@
+<?php /** * Copyright (c) MageWorkshop. All rights reserved. * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service * Do not change this file if you want to upgrade the module to the newer versions in the future * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs */ /** @var \MageWorkshop\DetailedReview\Block\Adminhtml\Form\Field\Manager $block */ ?> <div id="review-form-fields-container"></div><p><?php /* @escapeNotVerified */ echo __('Nickname, Summary and Review Details are mandatory and can not be removed.'); ?></p><script id="review-form-fields-template" type="text/x-magento-template">
+    <table class="data-table form-fields" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="col-default" colspan="2"><%- title %></th></tr></thead>
+        <tbody id="<%- id %>" data-role="form-fields-container" class="form-fields-container ignore-validate ui-draggable">
+            <%
+                _.each(items, function(item, key, list) {
+            %>
+                <tr class="<%- item.class %>">
+                    <td class="col-draggable">
+                        <div data-role="draggable-handle" class="draggable-handle" title="<?php /* @escapeNotVerified */ echo __('Sort Fields');?>"></div>
+                        <input data-role="order" type="hidden" name="<%- id %>[]" value="<%- item.id %>"></td>
+                    <td class="col-default">
+                        <span><%- item.label %> (<%- item.code %>)</span></td></tr>
+            <%
+                });
+            %></tbody></table></script><script type="text/x-magento-init">
+    {
+        "#review-form-fields-container": {
+            "mageWorkshop_detailedReview_formFieldsManager": {
+                "attributes":  <?php /* @escapeNotVerified */ echo $block->getCurrentFieldsConfigurationJson(); ?>,
+                "connectWith": ".form-fields-container",
+                "template" : "#review-form-fields-template"
+            }
+        }
+    }</script>

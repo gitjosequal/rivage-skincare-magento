@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Magento_Ui/web/js/lib/validation/rules.js

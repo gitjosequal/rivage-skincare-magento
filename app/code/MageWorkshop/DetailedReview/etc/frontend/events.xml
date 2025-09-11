@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="prepare_review_collection_for_review_list">
+        <observer name="mageworkshop_detailedreview_review_filter"
+                  instance="MageWorkshop\DetailedReview\Observer\Review\PrepareFilterCollection"
+        />
+        <observer name="mageworkshop_detailedreview_review_sort"
+                  instance="MageWorkshop\DetailedReview\Observer\Review\PrepareSortCollection"
+        />
+        <observer name="mageworkshop_detailedreview_review_search"
+                  instance="MageWorkshop\DetailedReview\Observer\Review\PrepareSearchCollection"
+        />
+    </event>
+</config>

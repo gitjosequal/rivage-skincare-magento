@@ -1,0 +1,9 @@
+<?php /** * Copyright © Rivage(info@rivage.com) All rights reserved. * See COPYING.txt for license details. */ ?> <?php $helper = $this->helper('Rivage\GtmExtension\Helper\Data'); $ispromotionenabled = $helper->isPromotionTrackingEnabled(); $dataLayerObject = $block->getdatalayerobject(); ?> <script type="text/x-magento-init">
+    {
+        "*": {
+            "Rivage_GtmExtension/js/ga4-datalayer": {
+                "dataLayerObject": <?= $dataLayerObject; ?>,
+                "ispromotionenabled": <?= $ispromotionenabled; ?>
+            }
+        }
+    }</script><?php ?>

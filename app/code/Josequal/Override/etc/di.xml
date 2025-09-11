@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mageplaza\BetterPopup\Block\Popup" type="Josequal\Override\BetterPopup\Block\Popup" />
+    <preference for="Mageplaza\Seo\Plugin\SeoRender" type="Josequal\Override\Seo\Plugin\SeoRender" />
+    <preference for="Magento\Store\Model\StoreRepository" type="Josequal\Override\Magento\Store\Model\StoreRepository" />
+    <preference for="Magento\GoogleAnalytics\Block\Ga" type="Josequal\Override\Magento\GoogleAnalytics\Block\Ga" />
+    <preference for="Magento\Framework\Image\Adapter\Gd2" type="Josequal\Override\Magento\Framework\Image\Adapter\Gd2" />
+    <preference for="Magento\Framework\File\Uploader" type="Josequal\Override\Magento\Framework\File\Uploader" />
+    <preference for="Magento\MediaStorage\Model\File\Uploader" type="Josequal\Override\Magento\MediaStorage\Model\File\Uploader" />
+    
+    <type name="Magento\Framework\App\Config">
+        <plugin name="josequal_custom_override_config" type="Josequal\Override\Plugin\ConfigPlugin" />
+    </type>
+</config>

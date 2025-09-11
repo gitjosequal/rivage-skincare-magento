@@ -1,0 +1,134 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$countries = $block->getCountryCollection();
+
+?>
+ <div class= "expertadvice-main-content-form">
+	<div class="AdviceInfo">
+		<h2><?php echo __('Expert Advice') ?></h2>
+		<p><?php echo __('Do you have a question about the best products and treatments for your skin or hair?') ?></p>
+		<p><?php echo __('Our professional beauty experts are available to answer your questions about your skin and hair care regime. We can help you choose the best products and regime for your hair and skin condition. We aim to respond within 2 working days.') ?></p>
+</div>
+	<form class="form contact FormWrap" action="<?php echo $block->getFormAction(); ?>" id="contact-form" method="post" data-hasrequired="<?php echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+	<div class="row">
+		<div class= "expertadvice-main-content-form1 col-12 col-md-6">  
+			<fieldset class="fieldset">
+				<legend class="legend"><span><?php echo __('My Concern') ?></span></legend><br />
+				<div class="field advise required">
+					<label class="label" for="advise"><span><?php echo __('Please advice me on my:') ?></span></label>
+					<div class="control">
+						<select name="advise" id="advise" title="<?php echo __('Advise') ?>" class="validate-select" type="select">
+							<option value="Facial Care Routine"><?php echo __('Facial Care Routine') ?></option>
+							<option value="Body Care Routine"><?php echo __('Body Care Routine') ?></option>
+							<option value="Hair Care Routine"><?php echo __('Hair Care Routine') ?></option>
+							<option value="Skin Disorder"><?php echo __('Skin Disorder') ?></option>
+						</select>
+					</div>
+				</div>
+				<div class="field mskin required">
+					<label class="label" for="mskin"><span><?php echo __('My skin type:') ?></span></label>
+					<div class="control">
+						<select name="mskin" id="mskin" title="<?php echo __('My Skin') ?>" class="validate-select" type="select">
+							<option value="Normal"><?php echo __('Normal') ?></option>
+							<option value="Oily"><?php echo __('Oily') ?></option>
+							<option value="Combination"><?php echo __('Combination') ?></option>
+							<option value="Dry & Sensitive"><?php echo __('Dry & Sensitive') ?></option>
+						</select>
+					</div>
+				</div>
+				<div class="field mhair required">
+					<label class="label" for="mhair"><span><?php echo __('My hair type:') ?></span></label>
+					<div class="control">
+						<select name="mhair" id="mhair" title="<?php echo __('My Hair') ?>" class="validate-select" type="select">
+							<option value="Normal"><?php echo __('Normal') ?></option>
+							<option value="Oily"><?php echo __('Oily') ?></option>
+							<option value="Dyed"><?php echo __('Dyed') ?></option>
+							<option value="Damaged"><?php echo __('Damaged') ?></option>
+						</select>
+					</div>
+				</div>
+				<div class="field iam required">
+					<label class="label" for="iam"><span><?php echo __('I am in my:') ?></span></label>
+					<div class="control">
+						<select name="iam" id="iam" title="<?php echo __('I am') ?>" class="validate-select" type="select">
+							<option value="40"><?php echo __('20s') ?></option>
+							<option value="45"><?php echo __('30s') ?></option>
+							<option value="50"><?php echo __('40s') ?></option>
+							<option value="55"><?php echo __('50s') ?></option>
+							<option value="55"><?php echo __('60s') ?></option>
+							<option value="Above 60s"><?php echo __('Above 60s') ?></option>
+						</select>
+					</div>
+				</div>
+				<div class="field message required">
+					<label class="label" for="message"><span><?php /* @escapeNotVerified */ echo __('I would like advice on...') ?></span></label>
+					<div class="control">
+						<textarea name="message" id="message" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="5" data-validate="{required:true}"></textarea>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<div class= "expertadvice-main-content-form2 col-12 col-md-6">  
+			<fieldset class="fieldset">
+				<legend class="legend"><span><?php echo __('My Contact Information') ?></span></legend><br />
+				<p class="ReqTitle">* <?php echo __('Required') ?></p>
+				<div class="field name required">
+					<label class="label" for="name"><span><?php /* @escapeNotVerified */ echo __('First Name') ?></span></label>
+					<div class="control">
+						<input name="fname" id="name" title="<?php /* @escapeNotVerified */ echo __('First Name') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+					</div>
+				</div>
+				<div class="field lname required">
+					<label class="label" for="lname"><span><?php /* @escapeNotVerified */ echo __('Last Name') ?></span></label>
+					<div class="control">
+						<input name="lname" id="lname" title="<?php /* @escapeNotVerified */ echo __('Last Name') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+					</div>
+				</div>
+				<div class="field email required">
+					<label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+					<div class="control">
+						<input name="email" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+					</div>
+				</div>
+				<div class="field email required">
+					<label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Verify Email Address') ?></span></label>
+					<div class="control">
+						<input id="confimation" title="<?php echo __('Confimation Email') ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true,equalTo:'#email'}" />
+					</div>
+				</div>
+				<div class="field country required">
+					<label class="label" for="country"><span><?php echo __('Country') ?></span></label>
+					<div class="control">
+						<select name="country" id="country" title="<?php echo __('Country') ?>" class="validate-select" type="select">
+						    <option value=""></option>
+							<?php 
+								foreach ($countries as $country) { if($country->getName() != '') : ?>
+									<option value="<?php echo $country->getName(); ?>" <?php echo ($country->getName() == '') ? 'selected' : '' ?>><?php echo $country->getName(); ?></option>
+							<?php endif; }	?>
+						</select>
+					</div>
+				</div>
+				<div class="field rmember">
+					<label class="label" for="rmember"><span><?php echo __('Are you a registered member of RIVAGE?') ?></span></label>
+					<div class="control">
+						<select name="rmember" id="rmember" title="<?php echo __('rmember') ?>" class="validate-select" type="select">
+							<option value="1"><?php echo __('Yes') ?></option>
+							<option value="0"><?php echo __('No') ?></option>
+						</select>
+					</div>
+				</div>
+			</fieldset>
+			<div class="actions-toolbar">
+			<div class="primary">
+			<button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+					<span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+				</button>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="clr"></div>
+		
+	</form>
+</div>
+		

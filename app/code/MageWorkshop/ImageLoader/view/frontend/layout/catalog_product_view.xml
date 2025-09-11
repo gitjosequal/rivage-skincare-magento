@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="MageWorkshop_ImageLoader::css/libs/OwlCarousel/owl.carousel.css"/>
+        <css src="MageWorkshop_ImageLoader::css/libs/fancybox/jquery.fancybox.css"/>
+    </head>
+    <body>
+        <referenceBlock name="review.form.fields.wrapper">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="mageworkshop" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="itemRenderer" xsi:type="array">
+                                    <item name="image" xsi:type="string">image</item>
+                                </item>
+                            </item>
+                            <item name="children" xsi:type="array">
+                                <item name="image" xsi:type="array">
+                                    <item name="component" xsi:type="string">MageWorkshop_DetailedReview/js/field-component</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="displayArea" xsi:type="string">image</item>
+                                        <item name="template" xsi:type="string">MageWorkshop_ImageLoader/item/image</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="form.additional.info">
+            <block class="MageWorkshop\ImageLoader\Block\Review\ImageUploader"
+                   name="review.image.validation"
+                   ifconfig="mageworkshop_detailedreview/imageloader/enabled"
+                   template="MageWorkshop_ImageLoader::review/form/validation.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

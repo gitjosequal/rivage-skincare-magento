@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/design/frontend/Rivage/theme/Amasty_Checkout/web/js/amastyCheckoutDisabled.js

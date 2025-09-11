@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework/Event/etc/events.xsd">
+    <event name="controller_action_postdispatch">
+        <observer name="rivage_securitylogger_postdispatch" instance="Rivage\SecurityLogger\Observer\SecurityLoggerObserver" />
+    </event>
+    <event name="controller_action_predispatch">
+        <observer name="rivage_securitylogger_predispatch" instance="Rivage\SecurityLogger\Observer\SecurityLoggerObserver" />
+    </event>
+</config>

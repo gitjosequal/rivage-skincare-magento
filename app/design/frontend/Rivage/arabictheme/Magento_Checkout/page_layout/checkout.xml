@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="empty"/>
+    <referenceContainer name="page.wrapper">
+        <container name="header.container" as="header_container" label="Checkout Page Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+            <container name="header-wrapper" label="Checkout Page Header" as="header_wrapper" htmlTag="div" htmlClass="header content"/>
+        </container>
+        <container name="footer-container" as="footer_container" label="Checkout Page Footer Container" htmlTag="footer" htmlClass="page-footer" after="main.content">
+        </container>
+    </referenceContainer>
+    <move element="logo" destination="checkout.header.wrapper"/>
+    <move element="navigation.sections" destination="header.container" after="header-wrapper" />
+    <referenceContainer name="footer-container" remove="false"/>
+</layout>

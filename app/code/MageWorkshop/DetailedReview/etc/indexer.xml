@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">
+    <indexer id="mageworkshop_detailedreview_eav"
+             view_id="mageworkshop_detailedreview_eav"
+             class="MageWorkshop\DetailedReview\Model\Indexer\Eav"
+    >
+        <title translate="true">MageWorkshop DetailedReview Form Fields</title>
+        <description translate="true">Rebuild Reviews Flat Table Structure</description>
+    </indexer>
+
+    <indexer id="mageworkshop_detailedreview_flat"
+             view_id="mageworkshop_detailedreview_flat"
+             class="MageWorkshop\DetailedReview\Model\Indexer\Flat"
+    >
+        <title translate="true">MageWorkshop DetailedReview Aggregated Data</title>
+        <description translate="true">Reorganize Reviews Flat Table Data</description>
+    </indexer>
+</config>

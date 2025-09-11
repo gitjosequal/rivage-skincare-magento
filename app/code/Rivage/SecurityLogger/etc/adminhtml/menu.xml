@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Menu/etc/menu.xsd">
+    <menu>
+        <add id="Rivage_SecurityLogger::log_viewer"
+             title="Security Logs"
+             module="Rivage_SecurityLogger"
+             sortOrder="1000"
+             parent="Magento_Backend::content"
+             action="securitylogger/log/view"
+             resource="Rivage_SecurityLogger::log_viewer"/>
+    </menu>
+</config>

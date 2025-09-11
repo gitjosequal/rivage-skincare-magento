@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:MageWorkshop_DetailedReview:etc/mageworkshop_eav_attributes.xsd"
+>
+    <!--'Default' entity's attribute definitions are merged into any other entity. But not other attributes :(-->
+    <!--Though, we do not need this for now as there is no Eav abstraction layer under the DetailedReveiw module anymore-->
+    <!--Currently only these attribute types are 100% supported-->
+    <entity type="default">
+        <entity_id_field>entity_id</entity_id_field>
+        <attributes>
+            <attribute frontend-input="text">
+                <label>Text Field</label>
+                <position>100</position>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+            <attribute frontend-input="textarea">
+                <label>Text Area</label>
+                <position>200</position>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+            <attribute frontend-input="boolean">
+                <label>Yes/No</label>
+                <position>300</position>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+            <attribute frontend-input="select">
+                <label>Dropdown</label>
+                <position>400</position>
+                <option_type>radio</option_type>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+            <!--<attribute frontend-input="select">-->
+            <!--<label>Radio button</label>-->
+            <!--<position>400</position>-->
+            <!--<input_type>radio</input_type>-->
+            <!--<required>0</required>-->
+            <!--<user_defined>1</user_defined>-->
+            <!--<visible_on_front>1</visible_on_front>-->
+            <!--<validate_rules><![CDATA[[]]]></validate_rules>-->
+            <!--</attribute>-->
+            <attribute frontend-input="multiselect">
+                <label>Multiple Select</label>
+                <position>500</position>
+                <backend_model>Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend</backend_model>
+                <option_type>checkbox</option_type>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+            <!--<attribute frontend-input="checkbox">-->
+            <!--<label>Multiple Select (with checkboxes)</label>-->
+            <!--<position>500</position>-->
+            <!--<input_type>checkbox</input_type>-->
+            <!--<required>0</required>-->
+            <!--<user_defined>1</user_defined>-->
+            <!--<visible_on_front>1</visible_on_front>-->
+            <!--<validate_rules><![CDATA[[]]]></validate_rules>-->
+            <!--</attribute>-->
+            <attribute frontend-input="swatch_visual">
+                <label>Visual Swatch</label>
+                <position>600</position>
+                <!--required for frontend scripts-->
+                <input_type>select</input_type>
+                <option_type>radio</option_type>
+                <required>0</required>
+                <user_defined>1</user_defined>
+                <visible_on_front>1</visible_on_front>
+                <validate_rules><![CDATA[[]]]></validate_rules>
+                <attribute_placement>0</attribute_placement>
+                <attribute_visual_settings><![CDATA[[]]]></attribute_visual_settings>
+            </attribute>
+        </attributes>
+    </entity>
+    <entity type="mageworkshop_detailedreview_details_entity">
+        <!--The field 'entity_id_field' is not taken from the 'default' entity config if we move it there-->
+        <entity_id_field>eav_entity_id</entity_id_field>
+        <entity_model>MageWorkshop\DetailedReview\Model\ResourceModel\Details</entity_model>
+        <attribute_model>MageWorkshop\DetailedReview\Model\Attribute</attribute_model>
+        <entity_attribute_collection>MageWorkshop\DetailedReview\Model\ResourceModel\Attribute\Collection</entity_attribute_collection>
+    </entity>
+</config>

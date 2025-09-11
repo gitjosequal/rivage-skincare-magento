@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Magefan/Blog/view/frontend/web/js/lib/mfblogunveil.js

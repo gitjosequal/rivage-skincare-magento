@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+  <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+      <menu>
+        <add id="Tatvam_Wisernotify::tatvam" title="Wisernotify" translate="title" module="Tatvam_Wisernotify" parent="Magento_Backend::system" sortOrder="1000" dependsOnModule="Tatvam_Wisernotify" resource="Tatvam_Wisernotify::tatvam"/>
+        <add id="Tatvam_Wisernotify::tatvam_settings" title= "Settings" translate="title" module="Tatvam_Wisernotify" parent="Tatvam_Wisernotify::tatvam" sortOrder="10" dependsOnModule="Tatvam_Wisernotify" action="Tatvam/settings" resource="Tatvam_Wisernotify::tatvam"/>
+      </menu>
+  </config>

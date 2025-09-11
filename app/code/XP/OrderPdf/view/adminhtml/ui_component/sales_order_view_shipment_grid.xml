@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="xppdfshipments_order" class="Magento\Sales\Ui\Component\Control\PdfAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="pdfAction" xsi:type="string">xporderpdf/shipment/pdfshipments</item>
+                    </item>
+                </argument>
+                <settings>
+                    <type>xppdfshipments_order</type>
+                    <label translate="true">Print Order PDF Shipments</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+</listing>

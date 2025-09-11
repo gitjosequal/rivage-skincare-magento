@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+ *
+ *
+ *           a88888P8
+ *          d8'
+ * .d8888b. 88        .d8888b. 88d8b.d8b. .d8888b. .dd888b. .d8888b.
+ * 88ooood8 88        88'  `88 88'`88'`88 88ooood8 88'    ` 88'  `88
+ * 88.  ... Y8.       88.  .88 88  88  88 88.  ... 88       88.  .88
+ * `8888P'   Y88888P8 `88888P' dP  dP  dP `8888P'  dP       `88888P'
+ *
+ *           Copyright © eComero Management AB, All rights reserved.
+ *
+ *
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>   
+        <section id="analytics" translate="label" type="text" sortOrder="1150" showInDefault="1" showInWebsite="1" showInStore="0">
+            <tab>general</tab>
+            <resource>Magento_Analytics::analytics_settings</resource>
+            <group id="currency" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+
+                <label>Currency Settings</label>
+
+                <field id="report_currency" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Reporting Currency</label>
+                    <comment>The the currency used in Advanced Reporting.</comment>
+                </field> 
+
+                <field id="exchange_rates" translate="label" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Exchange Rates</label>
+                    <frontend_model>Ecomero\Analytics\Block\System\Config\Form\Field\ExchangeRates</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                    <comment>Exchanges rates against the reporting currency.</comment>
+                </field>                                   
+
+
+            </group>
+        </section>
+    </system>
+</config>

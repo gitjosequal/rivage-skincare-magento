@@ -1,0 +1,18 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+<!--/ko-->
+<div>
+    <!-- ko if: isFormVisible -->
+    <p data-bind="i18n: 'يمكنك تتبع طلبك من خلال انشاء حساب.'"></p>
+    <p><span data-bind="i18n: 'البريد الالكتروني'"></span>: <span data-bind="text: getEmailAddress()"></span></p>
+    <a class="action primary" data-bind="attr: { href: getUrl() }">
+        <span data-bind="i18n: 'انشاء حساب'" />
+    </a>
+    <!--/ko-->
+</div>

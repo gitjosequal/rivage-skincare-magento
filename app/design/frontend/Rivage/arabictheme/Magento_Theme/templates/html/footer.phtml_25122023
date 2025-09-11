@@ -1,0 +1,204 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+ 
+?>
+<div class="row footer-main">
+    <div class="col-md-7 col-sm-12 px-4">
+        <div class="column-flex space footer-left d-none d-md-flex">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 footer-menu text-center">
+                        <div class="footer-menu-cont d-inline-block">
+                            <h5>العناية بالبشرة</h5>
+                            <ul>
+                                <li class="d-none">
+                                    <a href="#">الكل</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/face.html">الوجه</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/body.html">الجسم</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/hair-scalp.html">الشعر</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/gifts-sets.html">الهدايا</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/topseller">الاكثر مبيعا</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 footer-menu text-center">
+                        <div class="footer-menu-cont d-inline-block">
+                            <h5>الدعم</h5>
+                            <ul>
+                                <li class=" ">
+                                    <a href="#" class="d-none">خدمة العملاء</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/contact">تواصل معنا</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4 footer-menu text-center">
+                        <div class="footer-menu-cont d-inline-block">
+                            <h5>حول</h5>
+                            <ul>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/our-story">قصتنا</a>
+                                </li>
+                                <li class="d-none">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/blog">المدونة</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/ingredients">مكوناتنا</a>
+                                </li>
+                                <li class=" ">
+                                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/our-story#section-our4">البحر الميت</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="payments d-sm-none d-md-block">
+                <div class="p-3 payments-flex">
+                    <div><img src="/media/wysiwyg/payments/visa-01.webp" alt=""></div>
+                    <div><img src="/media/wysiwyg/payments/master-card-01.webp" alt=""></div>
+                    <div><img src="/media/wysiwyg/payments/verified-by-visa-01.webp" alt=""></div>
+                    <div><img src="/media/wysiwyg/payments/American-express-01.webp" alt=""></div>
+                    <div><img src="/media/wysiwyg/payments/dhl-gold.svg" alt=""></div>
+                </div>
+                <div class="policy-section">
+                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/termsconditions"> الشروط و الاحكام</a>
+                    |
+                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/privacypolicy"> سياسة الخصوصية</a>
+                    |
+                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/returnpolicy"> سياسة الارجاع</a>
+                    |
+                    <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/sitemap"> خريطة الموقع</a>
+                </div>
+                <!-- Copyright -->
+                <div class="p-3 ps-0 copy-right d-flex">
+                    © Rivage. جميع الحقوق محفوظة
+                </div>
+            </div>
+        </div>
+        <div class="column-flex space footer-left d-sm-block d-md-none">
+            <div class="row">
+                <div class="col-md-4 footer-menu mobile-menu">
+                    <h5 class="mobile-show">العناية بالبشرة <i class="fas fa-angle-right"></i></h5>
+                    <ul style="display: block;">
+                        <li class="footer-menu-title d-none">
+                            <a href="#">الكل</a>
+                        </li>
+                        <li class="footer-menu-title">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/face.html">الوجه</a>
+                        </li>
+                        <li class="footer-menu-title">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/body.html">الجسم</a>
+                        </li>
+                        <li class="footer-menu-title">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/hair-scalp.html">الشعر</a>
+                        </li>
+                        <li class="footer-menu-title">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/gifts-sets.html">الهدايا</a>
+                        </li>
+                        <li class="footer-menu-title">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/topseller">الاكثر مبيعا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-menu mobile-menu">
+                    <h5>الدعم <i class="fas fa-angle-right"></i></h5>
+                    <ul>
+                        <li class=" ">
+                            <a href="#" class="d-none">خدمة العملاء</a>
+                        </li>
+                        <li class=" ">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/contact">تواصل معنا</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-menu mobile-menu">
+                    <h5>حول <i class="fas fa-angle-right"></i></h5>
+                    <ul>
+                        <li class=" ">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/our-story">قصتنا</a>
+                        </li>
+                        <li class=" ">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/blog" class="d-none">المدونة</a>
+                        </li>
+                        <li class=" ">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/ingredients">مكوناتنا</a>
+                        </li>
+                        <li class=" ">
+                            <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/our-story#section-our4">البحر الميت</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-12 px-4 px-sm-5">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('news-sub')->toHtml(); ?>
+        <div class="connect-block">
+            <h3>الاتصال</h3>
+            <div class="d-flex socials mb-5 pb-3">
+                <a href="https://www.facebook.com/rivageuae/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/rivage.uae/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="d-none" href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a class="d-none" href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+            <h3>تحتاج مساعدة؟</h3>
+            <div class="column-flex contact-info">
+                <p>تواصل معنا: &#x200E;+962 6 5621767</p>
+                <p>ارسل بريد الكتروني: info@rivagecare.com</p>
+                <!-- <p>Sunday - Thursday 9:00 am - 5:00 pm</p> -->
+            </div>
+        </div>
+        <div class="payments-m d-sm-block d-md-none">
+            <div class="text-center payment-img payments-flex">
+                <div><img src="/media/wysiwyg/payments/visa-01.webp" alt=""></div>
+                <div><img src="/media/wysiwyg/payments/master-card-01.webp" alt=""></div>
+                <div><img src="/media/wysiwyg/payments/verified-by-visa-01.webp" alt=""></div>
+                <div><img src="/media/wysiwyg/payments/American-express-01.webp" alt=""></div>
+                <div><img src="/media/wysiwyg/payments/dhl-gold.svg" alt=""></div>
+            </div>
+            <div class="policy-section">
+                <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/termsconditions"> الشروط و الاحكام</a>
+                |
+                <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/privacypolicy"> سياسة الخصوصية</a>
+                |
+                <a href="<?php echo $storeManager->getStore()->getBaseUrl(); ?>/returnpolicy"> سياسة الارجاع</a>
+            </div>
+            <!-- Copyright -->
+            <div class="p-3 ps-0 copy-right d-flex">
+                © Rivage. جميع الحقوق محفوظة
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hotjar Tracking Code for https://rivagecare.com/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2971152,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Theme::html/js-load.phtml")->toHtml() ?>

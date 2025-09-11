@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2018 Amasty (https://www.amasty.com)
+ * @package Amasty_Rewards
+ */
+-->
+<!--
+/**
+* Copyright © 2015 Amasty. All rights reserved.
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amrewards>
+            <general>
+                <adminaction>Admin Point Change</adminaction>
+                <days>-1</days>
+            </general>
+            <points>
+                <rate>1</rate>
+                <round_rule>down</round_rule>
+                <disable_reward>0</disable_reward>
+            </points>
+        </amrewards>
+    </default>
+</config>

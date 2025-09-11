@@ -1,0 +1,22 @@
+.actions-toolbar {
+    float: right;
+}
+
+fieldset.fieldset {
+    width: 35%;
+}
+
+.referring_code .control {
+    position: relative;
+    padding-right: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    fieldset.fieldset {
+        width: 100%;
+    }
+
+    .actions-toolbar {
+        float: unset;
+    }
+}

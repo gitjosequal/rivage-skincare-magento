@@ -1,0 +1,57 @@
+<div class="content-box">
+    <div class="wiser-top-headerbar">
+        <div class="wiser-logo">
+            <img src="<?php echo $block->getViewFileUrl('Tatvam_Wisernotify::images/wiser-notifly.png') ?>" alt="wisernotifly" />
+        </div>
+    </div>
+    <div class="wiser-install-box wiser-install-details">
+        <div class="wiser-card-title">
+            <h3>Welcome to Wiser notify </h3>
+        </div>
+        <div class="wiser-card wiser-card-sign">
+            <h4> Don't have account? <a target="_blank" href="https://app.wisernotify.com/signup">Signup now. </a>
+                We have free & paid plan. <a target="_blank" href="https://wisernotify.com/pricing">Click here. </a>
+            </h4>
+        </div>
+    </div>
+    <div class="wiser-install-box wiser-api-block">
+        <div class="wiser-card-title">
+            <h3> Must Required </h3>
+        </div>
+        <div class="wiser-card wiser-card-api">
+            <div class="nf-group-input">
+                <label>Enter your API Key. </label>
+                <form action="<?php echo $block->getFormAction(); ?>" method="post">
+                <div class="line-input-btn">
+                    <?php $apiKey = $this->getApiKey(); ?>
+                    <?php echo $this->getBlockHtml('formkey'); ?>
+                    <input type="text" class="nf-input nf-input-sm" name="apiKey" value="<?php echo $apiKey; ?>" />
+                    <button type="submit" class="nf-btn nf-btn-default">Submit</button>
+                </div>
+                </form>
+            </div>
+            <?php if($apiKey) { ?>
+                <div class="nt-msg-text">
+                    <!--                <p>Congratulation! Your API key is verified & Also, Pixel tag is added successfully on your site.-->
+                    <a target="_blank"
+                       href="https://wisernotify.freshdesk.com/support/solutions/articles/47001092669-how-to-create-new-notification">
+                        Click here to know about "how to add Notification?"</a>
+                    <!--                </p>-->
+                    <!--                <p class="red-text">Your API key is wrong & Please, Enter valid API key.</p>-->
+                </div>
+            <?php } ?>
+            <div class="nf-group-bottom">
+                <a target="_blank"
+                   href="https://wisernotify.freshdesk.com/support/solutions/articles/47001095099-your-account-api-key-quota-history">Know
+                    about your API KEY </a>
+            </div>
+        </div>
+    </div>
+    <div class="nf-highlight-btm">
+        <h3> <a target="_blank" href="https://app.wisernotify.com/login" >
+                here
+            </a> is WiserNotify dashboard link where you can create & manage notifications.
+           
+        </h3>
+    </div>
+</div>

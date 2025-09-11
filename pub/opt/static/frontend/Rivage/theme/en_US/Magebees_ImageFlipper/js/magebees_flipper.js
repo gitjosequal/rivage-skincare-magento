@@ -1,0 +1,1 @@
+/home/rivageae/public_html/app/code/Magebees/ImageFlipper/view/frontend/web/js/magebees_flipper.js

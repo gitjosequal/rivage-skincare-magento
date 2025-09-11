@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">    	 
+		<head> 
+		<!-- <title>Expert Advice for Your Skin or Hair – Rivage</title> -->
+		<meta name="description" content="Do you have a question about the best products and treatments for your skin or hair?Our professional beauty experts are available to answer your questions about your skin and hair care regime."/>
+		<link rel="canonical" src="https://rivagecare.com/expertadvice" src_type="url"/> 
+		</head>
+	
+	<body>
+	     <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string" translate="true">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">{{baseUrl}}</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string" translate="true">Expert Advice</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Expert Advice</item>
+                    <item name="label" xsi:type="string" translate="true">Expert Advice</item>
+                </argument>
+            </action>
+        </referenceBlock>
+		
+          <referenceContainer name="page.main.title" remove="true" />
+        <move element="expert-advice" destination="page.top" before="breadcrumbs"/>
+         <!--   <block class="Magento\Cms\Block\Block" name="expert-advice">
+				<arguments>
+					<argument name="block_id" xsi:type="string">expert-advice</argument>
+				</arguments>
+			</block> -->
+			
+		<referenceContainer name="content">
+		
+			<block class="Rivaz\Expertadvice\Block\Form" ifconfig="expertadvice/general/enable_frontend" name="rivaz_expertadvice" template="expertadvice.phtml">
+			</block>
+		</referenceContainer>
+	</body>
+</page>

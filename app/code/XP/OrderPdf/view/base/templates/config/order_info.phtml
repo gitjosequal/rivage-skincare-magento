@@ -1,0 +1,102 @@
+<?php
+/**
+ * @var \XP\OrderPdf\Block\Config $block
+ */
+?>
+<?php
+$info = $this->getOrderInfo();
+$order = $this->getOrder();
+?>
+<table style="<?= $info['tbl'] ?>">
+    <tr>
+        <td style="width: 350px;">
+            <img src="https://rivage.ae/media/logo/stores/13/logo2_1_.png" alt="Rivage" width="200px" height="60px" border="0" style="display: inline-block;float: left;">
+        </td>
+        <td style=" line-height: 1;width: 700px;">
+            <table style="width: 100%; padding-bottom:5px; <?= $info['text_align'] . $info['rtl_style']  ?>">
+                <tr>
+                    <td style="width: 20%; vertical-align: middle;"><h3 style="padding: 0;"><?= __(ucfirst($info['pdf_type'])); ?></h3></td>
+                    <td style="width: 60%; <?= $info['text_align'] . $info['rtl_style']  ?>"><?= $order['increment_id'] ?></td>
+                </tr>
+            </table>
+            <?php
+                if ($info['pdf_type'] !== "order" && isset($order['order_id'])):
+                    $originalOrder = $block->loadOrder($order['order_id']);
+            ?>
+            <table style="width: 100%; padding-bottom:5px; <?= $info['text_align'] . $info['rtl_style']  ?>">
+                <tr>
+                    <td style="width: 20%; vertical-align: middle;"><h3 style="padding: 0;"><?= __("Order"); ?>: </h3></td>
+                    <td style="width: 60%; <?= $info['text_align'] . $info['rtl_style']  ?>"><?= $originalOrder->getIncrementId() ?></td>
+                </tr>
+            </table>
+            <?php endif; ?>
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 20%; vertical-align: middle;"><h3 style="padding: 0;"><?= __(ucfirst($info['pdf_type']) . ' Date'); ?>: </h3></td>
+                    <td style="vertical-align: middle; width: 60%; ' . $text_align . '"><?= $info["created_at"] ?></td>
+                </tr>
+            </table>
+              <table style="width: 100%;">
+                <tr>
+                   
+                    <td style="vertical-align: middle; width: 100%; ' . $text_align . '"><?= generateBarcodeImgTag($order['increment_id']) ?></td>
+                </tr>
+            </table>
+          
+        </td>
+    </tr>
+</table>
+
+<?php 
+function generateBarcodeImgTag($orderNumber)
+{
+    // Settings
+    $width = 2;
+    $height = 60;
+    $fontSize = 5;
+    $padding = 10;
+
+    $length = strlen($orderNumber);
+    $imageWidth = $length * $width * 8 + $padding * 2;
+    $imageHeight = $height + 30;
+
+    // Create image
+    $img = imagecreate($imageWidth, $imageHeight);
+    $white = imagecolorallocate($img, 255, 255, 255);
+    $black = imagecolorallocate($img, 0, 0, 0);
+
+    // Draw bars
+    $x = $padding;
+    foreach (str_split($orderNumber) as $char) {
+        $ascii = ord($char);
+        for ($i = 0; $i < 7; $i++) {
+            $bit = ($ascii >> (6 - $i)) & 1;
+            if ($bit == 1) {
+                imagefilledrectangle($img, $x, $padding, $x + $width - 1, $height, $black);
+            }
+            $x += $width;
+        }
+        $x += $width; // spacing
+    }
+
+    // Add text
+    imagestring(
+        $img,
+        $fontSize,
+        ($imageWidth / 2) - ($length * imagefontwidth($fontSize) / 2),
+        $height + 5,
+        $orderNumber,
+        $black
+    );
+
+    // Capture image to buffer
+    ob_start();
+    imagepng($img);
+    $imageData = ob_get_clean();
+    imagedestroy($img);
+
+    // Encode image to base64
+    $base64 = base64_encode($imageData);
+    return '<img src="data:image/png;base64,' . $base64 . '" alt="Barcode">';
+}
+?>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- We can not use the review_delete_after event because resource singleton must aggregate ratings -->
+    <!-- and delete MUST NOT be called inside delete! -->
+    <type name="Magento\Review\Model\Review">
+        <plugin name="MageWorkshop\AdminResponse\Plugin\Review\Model\Review::afterAfterDeleteCommit"
+                type="MageWorkshop\AdminResponse\Plugin\Review\Model\ReviewPlugin"
+                sortOrder="20"
+        />
+    </type>
+    <type name="Magento\Review\Model\ResourceModel\Review\Collection">
+        <plugin name="MageWorkshop\AdminResponse\Plugin\Model\ResourceModel\Review\Collection::afterGetSelect"
+                type="MageWorkshop\AdminResponse\Plugin\Review\Model\ResourceModel\Review\CollectionPlugin"
+                sortOrder="20"
+        />
+    </type>
+</config>

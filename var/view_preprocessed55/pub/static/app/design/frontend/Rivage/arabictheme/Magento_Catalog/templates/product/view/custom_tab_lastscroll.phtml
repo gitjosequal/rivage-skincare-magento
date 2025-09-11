@@ -1,0 +1,111 @@
+<?php $_product = $block->getProduct(); $longdes = $block->escapeHtml($_product->getDescription()); $how_to_use = $_product->getHowToUse(); ?> <div id="pro1" class="product_short_des"><span class="tabheading"><?= __('Product details') ?></span> <?php echo html_entity_decode($longdes); ?></div><div id="how_to_use" class="product_short_des"><span class="tabheading"><?= __('How to Use') ?></span> <?php echo html_entity_decode($how_to_use); ?></div><!-- <script type="text/javascript">
+	require([
+        "jquery"
+    ], function ($) {
+        $(document).ready(function () {
+				
+			  $("a").on('click', function(event) {
+
+				
+				if (this.hash !== "") {
+				  
+				  event.preventDefault();
+
+				  
+				  var hash = this.hash;
+
+				  
+				  
+				  $('html, body').animate({
+					scrollTop: $(hash).offset().top
+				  }, 800, function(){
+			   
+					
+					window.location.hash = hash;
+				  });
+				} 
+			  });
+			
+		});
+    });</script> --><?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); $media_url = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); $baseurl = $objectManager->get('\Magento\Store\Model\StoreManagerInterface')->getStore()->getBaseUrl(); $ingredients = $_product->getResource()->getAttribute('ingredients')->getFrontend()->getValue($_product); if($ingredients){ ?> <div id="pro2" class="ingredientdetailpage"><strong><?= /* @escapeNotVerified */ __('Key Ingredients') ?></strong> <ul class="ingredientspelist_content"><?php $ingredients_array = explode(", ",$ingredients); foreach($ingredients_array as $ingredientname){ $ingredients_collection = $objectManager->get('Emizentech\ShopByBrand\Model\Items')->getCollection()->addFieldToFilter('name', $ingredientname); foreach($ingredients_collection as $fillter_ingredients){ if($fillter_ingredients->getLogo() != ''){ echo '<li class="ingredients_list"><div class="ingredients_contents"><span class="ingredientimage label"><img src="'.$media_url.$fillter_ingredients->getLogo().'"/></span><span class="ingredientname label">'.$ingredientname.'<span></div></li>'; }else{ echo '<li class="ingredients_list"><div class="ingredients_contents"><span class="ingredientname label">'.$ingredientname.'<span></div></li>'; } } } ?></ul></div><div class="ingredientlider"><ul class="ingredientcontent owl-carouseingredient owl-carousel"><?php $ingredients_array = explode(", ",$ingredients); foreach($ingredients_array as $ingredientname){ $ingredients_collection = $objectManager->get('Emizentech\ShopByBrand\Model\Items')->getCollection()->addFieldToFilter('name', $ingredientname); #echo '<pre>'; print_r($ingredients_collection->getData());die("test"); foreach($ingredients_collection as $fillter_ingredients){ ?> <li class="ingredients_list"><div class="ingredients_contents"><?php if($fillter_ingredients->getMainimage()!=''){ ?> <div class="ingredientmain_image"><img src="<?php echo $media_url.$fillter_ingredients->getMainimage(); ?>"/></div><?php }?> <div class="ingredients_all_description"><p class="label"><?php echo $ingredientname; ?></p><p class="ingredients_description"><?php echo $fillter_ingredients->getDescription(); ?></p></div></div></li> <?php } } ?></ul></div><?php } ?> <script type="text/javascript">
+	require([
+        "jquery",
+        "owlcarouselslider",
+    ], function ($) {
+	var $= $.noConflict();
+	$(document).ready(function(){
+		$(".owl-carouselupsell").owlCarousel({
+			loop:true,
+			margin:15,
+			autoplay: false,
+			responsiveClass:true,
+			responsive:{
+				0:{
+					items:1,
+					nav:true
+				},
+				480:{
+					items:1,
+					nav:true
+					
+				},
+				767:{
+					items:3,
+					nav:true
+					
+				},
+				799:{
+					items:4,
+					nav:true
+					
+				},
+				1000:{
+					items:5,
+					nav:true,
+					loop:true
+				}
+			}
+		});
+		
+		
+			$(".owl-carouseingredient").owlCarousel({
+			loop:true,
+			margin:15,
+			autoplay: false,
+			responsiveClass:true,
+			responsive:{
+				0:{
+					items:1,
+					nav:true
+				},
+				480:{
+					items:1,
+					nav:true
+					
+				},
+				767:{
+					items:1,
+					nav:true
+					
+				},
+				799:{
+					items:1,
+					nav:true
+					
+				},
+				1000:{
+					items:1,
+					nav:true,
+					loop:true
+				}
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+	});
+});</script>

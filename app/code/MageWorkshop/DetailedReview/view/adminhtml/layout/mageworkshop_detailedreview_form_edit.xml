@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Form\Edit" name="form_edit_content">
+                <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Form\Edit\Form" name="form">
+                    <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Form\Field\Manager"
+                           name="fields_manager"
+                           template="MageWorkshop_DetailedReview::review/form/fields_manager.phtml"
+                    />
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

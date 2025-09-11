@@ -1,0 +1,14 @@
+<?php /** * Mageplaza * * NOTICE OF LICENSE * * This source file is subject to the Mageplaza.com license that is * available through the world-wide-web at this URL: * https://www.mageplaza.com/LICENSE.txt * * DISCLAIMER * * Do not edit or add to this file if you wish to upgrade this extension to newer * version in the future. * * @category Mageplaza * @package Mageplaza_Sitemap * @copyright Copyright (c) Mageplaza (http://www.mageplaza.com/) * @license https://www.mageplaza.com/LICENSE.txt */ use Mageplaza\Sitemap\Block\Sitemap; /** @var Sitemap $block */ ?> <div id="mageplaza-seo-html-sitemap"><?= $block->renderHtmlSiteMap() ?></div><?php if ($block->getCategoryDisplayType() == 'dropdown') : ?> <script>
+        require([
+            'jquery'
+        ], function ($) {
+            $('.mp-sitemap-listing a').each(function () {
+                var elementClass = $(this).attr('class'),
+                    level, margin;
+                if (elementClass.trim()) {
+                    level  = (elementClass.slice(-1) - 2) * 5;
+                    margin = level + '%';
+                    $(this).css('margin-left', margin);
+                }
+            })
+        });</script><?php endif ?>

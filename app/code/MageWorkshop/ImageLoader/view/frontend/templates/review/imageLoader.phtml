@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright (c) MageWorkshop. All rights reserved.
+ * This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+ * Do not change this file if you want to upgrade the module to the newer versions in the future
+ * Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+ */
+
+/**
+ * Image block for review items
+ * @var \MageWorkshop\ImageLoader\Block\Review\ImageUploader $block
+ */
+?>
+<?php if (count($imageAttributeValue = $block->getImageAttributeValue())): ?>
+    <?php foreach($imageAttributeValue as $attributeFrontendLabel => $images): ?>
+        <label class="review-image-attribute-label">
+            <?= $block->escapeHtml($attributeFrontendLabel) ?>:
+        </label>
+        <div class="attribute-value owl-carousel"
+            data-mage-init='{"mageWorkshop_imageLoader_listReviewsCarousel": {
+                "showImages": "<?= $block->escapeHtml($block->getImageLoaderHelper()->getNumberOfImagesToShow()) ?>",
+                "imageWidth": "<?= $block->escapeHtml($block->getImageLoaderHelper()->getImageWidth()) ?>",
+                "imageHeight": "<?= $block->escapeHtml($block->getImageLoaderHelper()->getImageHeight()) ?>"
+            }}'
+        >
+            <?php /** @var array $images */
+            foreach ($images as $image): ?>
+                <a href="<?= $block->escapeUrl($image['src']) ?>"
+                   data-fancybox="images"
+                   data-caption="<?= $block->escapeHtml($attributeFrontendLabel) ?>"
+                >
+                    <img src="<?= $block->escapeUrl($image['src']) ?>"
+                         alt="<?= $block->escapeHtml($attributeFrontendLabel) ?>"
+                         title="<?= $block->escapeHtml($attributeFrontendLabel) ?>"
+                    />
+                </a>
+            <?php endforeach; ?>
+        </div>
+    <?php endforeach; ?>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $('.attribute-value.owl-carousel').trigger('contentUpdated');
+        })
+    </script>
+<?php endif; ?>

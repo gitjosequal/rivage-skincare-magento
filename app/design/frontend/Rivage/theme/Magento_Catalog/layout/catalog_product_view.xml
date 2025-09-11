@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="mage/gallery/gallery.css"/>
+    </head>
+    <update handle="catalog_product_opengraph" />
+    <update handle="page_calendar"/>
+    <body>
+		<move element="content.aside" destination="content" before="product.info.details"/>
+		<move element="product.info.main" destination="content" before="product.info.media"/>
+    	<referenceBlock name="product.info.sku" remove="true"/>
+		<referenceBlock name="view.addto.compare" remove="true" />
+		<referenceBlock name="product.info.overview" remove="true" />
+		<referenceContainer name="content">
+			<container name="product.custom.tab" htmlTag="div" htmlClass="product-custom-tab" after="product.info.media">
+				<block class="Magento\Catalog\Block\Product\View" name="product.des.tab" template="Magento_Catalog::product/view/custom_tab.phtml" before="-" />
+			</container>
+		</referenceContainer>
+		<referenceBlock name="head.additional">
+            <block class="Magento\Catalog\Block\Product\View" name="meta_type_name" template="Magento_Catalog::product/view/tags.phtml" />
+        </referenceBlock>
+		
+		<!--for realted products-->
+		<move element="content.aside" destination="content" before="product.info.details"/>
+		<!-- remove tabb-->
+		<referenceBlock name="product.info.description" remove="true" />
+		<referenceBlock name="product.attributes" remove="true" />
+		<!-- <referenceContainer name="page.main.title" remove="true" /> -->
+		<referenceBlock name="page.main.title" remove="true" />
+    </body>
+</page>

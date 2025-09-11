@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Rivage(info@rivage.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <type name="Magento\Wishlist\Model\Item">
+                <plugin name="rivage-ga4-wishlist-addtocart"
+                        type="Rivage\GtmExtension\Plugin\AddtoCartFromWishlist" sortOrder="10"/>
+        </type>
+</config>

@@ -1,0 +1,61 @@
+<?php $mediaUrl = $block->getUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$mediaUrl = str_replace('jordan/','',$mediaUrl);
+ ?>
+<div
+  class="cat-section section text-center pb-0"
+  data-aos="fade-up"
+  data-aos-delay="300"
+>
+  <div class="custom-container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 py-5 p-md-0 mb-0 mb-md-5">
+        <a href="<?= /** @noEscape */ $block->getUrl('body.html')?>"> &nbsp;</a>
+        <div class="cats">
+          <div
+            class="cat lazyload"
+            data-src="<?= /** @noEscape */ $mediaUrl . 'home/face.webp' ?>"
+          >
+            &nbsp;
+          </div>
+        </div>
+        <h3><?php echo __('الوجه') ?></h3>
+      </div>
+      <div class="col-md-3 col-sm-6 py-5 p-md-0 mb-0 mb-md-5">
+        <a href="<?= /** @noEscape */ $block->getUrl('body.html')?>"> &nbsp;</a>
+        <div class="cats">
+          <div
+            class="cat lazyload"
+            data-src="<?= /** @noEscape */ $mediaUrl . 'home/body.webp' ?>"
+          >
+            &nbsp;
+          </div>
+        </div>
+        <h3><?php echo __('الجسم') ?></h3>
+      </div>
+      <div class="col-md-3 col-sm-6 py-5 p-md-0 mb-0 mb-md-5">
+        <a href="<?= /** @noEscape */ $block->getUrl('hair-scalp.html')?>"> &nbsp;</a>
+        <div class="cats">
+          <div
+            class="cat lazyload"
+            data-src="<?= /** @noEscape */ $mediaUrl . 'home/hair.webp' ?>"
+          >
+            &nbsp;
+          </div>
+        </div>
+        <h3><?php echo __('الشعر و فروة الرأس') ?></h3>
+      </div>
+      <div class="col-md-3 col-sm-6 py-5 p-md-0 mb-0 mb-md-5">
+        <a href="<?= /** @noEscape */ $block->getUrl('gifts-sets.html')?>"> &nbsp;</a>
+        <div class="cats lazyload">
+          <div
+            class="cat lazyload"
+            data-src="<?= /** @noEscape */ $mediaUrl . 'home/gifts.webp' ?>"
+          >
+            &nbsp;
+          </div>
+        </div>
+        <h3><?php echo __('مجموعات و هدايا') ?></h3>
+      </div>
+    </div>
+  </div>
+</div>

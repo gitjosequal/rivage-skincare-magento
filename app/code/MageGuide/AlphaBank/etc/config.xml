@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <alphabank_directpost>
+				<active>0</active>
+				<title>Alpha Bank</title>
+				<mid></mid>
+				<gatewayurl>https://alpha.test.modirum.com/vpos/shophandlermpi</gatewayurl>
+				<secretkey></secretkey>
+				<enable_installment>0</enable_installment>
+				<authorize_expirepreauth>0</authorize_expirepreauth>
+				<pending_order_status>pending</pending_order_status>
+				<processing_order_status>processing</processing_order_status>
+				<order_status>pending</order_status>
+				<allowspecific>0</allowspecific>
+				<log>1</log>
+				<sort_order>100</sort_order>
+				<model>MageGuide\AlphaBank\Model\Alphabank</model>
+            </alphabank_directpost>
+        </payment>
+    </default>
+</config>        

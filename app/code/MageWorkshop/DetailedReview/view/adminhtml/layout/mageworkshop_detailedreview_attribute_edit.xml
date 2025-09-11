@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="left">
+            <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tabs" name="attribute_edit_tabs">
+                <container label="Main" name="main">
+                    <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tab\Main" as="base"/>
+                    <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Options" as="options"
+                           template="MageWorkshop_DetailedReview::review/attribute/options.phtml"
+                    />
+                    <!--note that the template for the below block is selected during the _prepareLayout phase-->
+                    <!--and other (fallback) template is selected for Magento v2.0.x-->
+                    <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tab\Options\Visual"
+                           as="swatches_visual"
+                           template="MageWorkshop_DetailedReview::review/attribute/visual.phtml"
+                    />
+                    <block class="Magento\Swatches\Block\Adminhtml\Attribute\Edit\Options\Text" as="swatches_text"/>
+                    <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tab\Advanced" as="advanced"/>
+                    <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Tab\Validation\OptionsValidationRules"
+                           template="MageWorkshop_DetailedReview::review/attribute/validation/field_validation_rules.phtml">
+                    </block>
+                </container>
+                <block class="Magento\Eav\Block\Adminhtml\Attribute\Edit\Options\Labels" as="labels"/>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit" name="attribute_edit_content"/>
+        </referenceContainer>
+
+        <referenceContainer name="js">
+            <block class="MageWorkshop\DetailedReview\Block\Adminhtml\Attribute\Edit\Js"
+                   name="attribute_edit_js"
+                   template="MageWorkshop_DetailedReview::review/attribute/js.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

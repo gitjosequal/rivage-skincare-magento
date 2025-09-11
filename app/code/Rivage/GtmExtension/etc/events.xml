@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Rivage(info@rivage.com)
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_update_items_before">
+        <observer name="rivage_cart_update_items_before" instance="Rivage\GtmExtension\Observer\CartUpdateBefore" />
+    </event>
+    <event name="checkout_cart_update_items_after">
+        <observer name="rivage_cart_update_items_after" instance="Rivage\GtmExtension\Observer\CartUpdateAfter" />
+    </event>
+    <event name="checkout_cart_update_item_complete">
+        <observer name="rivage_cart_update_itemoptions_after" instance="Rivage\GtmExtension\Observer\CartUpdateOptionsAfter" />
+    </event>
+    <event name="wishlist_add_product">
+        <observer name="rivage_wishlist_add_product" instance="Rivage\GtmExtension\Observer\AddProductToWishlistObserver" />
+    </event>
+</config>

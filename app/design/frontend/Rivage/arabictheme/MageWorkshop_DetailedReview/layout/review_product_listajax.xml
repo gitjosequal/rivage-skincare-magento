@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) MageWorkshop. All rights reserved.
+  ~ This source file is subject to the MageWorkshop License https://mageworkshop.com/terms-of-service
+  ~ Do not change this file if you want to upgrade the module to the newer versions in the future
+  ~ Please, contact us at https://mageworkshop.com/contact if you wish to customize this module according to you business needs
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="root">
+            <block class="MageWorkshop\DetailedReview\Block\Review\Product\View\ListView"
+                   name="product.info.product_additional_data_mageworkshop"
+                   as="product_additional_data_mageworkshop"
+                   template="MageWorkshop_DetailedReview::product/view/list.phtml"
+                   ifconfig="mageworkshop_detailedreview/general/enabled"
+                   after="-"
+            >
+                <block class="Magento\Framework\View\Element\Text\ListText" name="reviews.list.item.after" />
+            </block>
+        </referenceContainer>
+        <!--@TODO: ideally, should return empty string in aroundToHtml() plugin to prevend from loading review collection-->
+        <!--Or we can even take collection from the original block and modify it-->
+        <referenceBlock name="product.info.product_additional_data">
+            <action method="setTemplate" ifconfig="mageworkshop_detailedreview/general/enabled">
+                <argument name="template" xsi:type="string"/>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

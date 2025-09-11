@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Customer Login</title>
+    </head>
+    <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">account</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Account</item>
+                    <item name="label" xsi:type="string" translate="true">Account</item>
+                    <item name="link" xsi:type="string">/customer/account</item>
+                </argument>
+            </action> 
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">account.create</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">New Customer</item>
+                    <item name="label" xsi:type="string" translate="true">New Customer</item>
+                    <item name="last" xsi:type="boolean">true</item>
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="social-login-popup-authentication-social-login" remove="true" />
+        <move element="breadcrumbs" destination="page.wrapper" after="header.container" />
+        <block class="Magento\Cms\Block\Block" name="service_block">
+            <arguments>
+                <argument name="block_id" xsi:type="string">service_block</argument>
+            </arguments>
+        </block>
+        <move element="service_block" destination="page.top" before="page.main.title"/>
+    </body>
+</page>

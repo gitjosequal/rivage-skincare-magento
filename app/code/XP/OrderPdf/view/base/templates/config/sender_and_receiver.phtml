@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \XP\OrderPdf\Block\Config $block
+ */
+?>
+<?php
+$data = $this->getReceiverData();
+$isHeading = $this->getIsHeading();
+if ($data["sender"] || $data["receiver"]):
+?>
+<table style="<?= $data['tbl'] ?>">
+    <?php if($isHeading): ?>
+    <tr style="<?= $data['tr'] ?>">
+        <?php if ($data["sender"]): ?>
+        <td style="<?= $data['td'] ?>"><h2><?= __("Sender Information") ?></h2></td>
+        <?php endif; ?>
+        <?php if ($data["receiver"]): ?>
+        <td style="<?= $data['td'] ?>"><h2><?= __("Receiver Information") ?></h2></td>
+        <?php endif; ?>
+    </tr>
+    <?php else: ?>
+    <tr style="<?= $data['tr_content'] ?>">
+        <?php if ($data["sender"]): ?>
+        <td style="<?= $data['td_content'] ?>"><?= $data["sender"] ?></td>
+        <?php endif; ?>
+        <?php if ($data["receiver"]): ?>
+        <td style="<?= $data['td_content'] ?>"><?= $data["receiver"] ?></td>
+        <?php endif; ?>
+    </tr>
+    <?php endif; ?>
+</table>
+<?php
+endif;

@@ -1,0 +1,52 @@
+.delivery {
+  font-weight: bold;
+  float: right;
+}
+.delivery-field {
+  float: left;
+  margin-left: 12px;
+}
+body .account .column.main .order-details-items .table-wrapper .data.table > tbody > tr:nth-child(even) > td {
+  background: none;
+}
+.order-details-items {
+  margin-bottom: 0;
+}
+.block-order-details-view:nth-child(2) .block-title {
+  display: none;
+}
+.order-date {
+  font-size: 1.6rem;
+  border-bottom: 1px solid #c6c6c6;
+  padding-bottom: 25px;
+}
+.success-messages {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+.page-main .block.block-order-details {
+  margin-bottom: 25px;
+}
+.page-main .block.block-order-details-comments {
+  margin-bottom: 35px;
+}
+.page-main .block.block-order-details-view {
+  margin-bottom: 10px;
+}
+#registration {
+  width: 600px;
+  position: relative;
+  border-left: 3px solid #f58c12;
+  padding: 0 0 0 12px;
+  margin: 20px 0 25px;
+}
+#registration br {
+  display: none;
+}
+#registration form {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/*# sourceMappingURL=data:application/json,%7B%22version%22%3A3%2C%22sources%22%3A%5B%22%5C%2Fstatic%5C%2Ffrontend%5C%2FRivage%5C%2Farabictheme%5C%2Fen_US%5C%2FAmasty_Checkout%5C%2Fcss%5C%2Fsuccess.less%22%5D%2C%22names%22%3A%5B%5D%2C%22mappings%22%3A%22AAAA%3BEACE%2CiBAAA%3BEACA%2CYAAA%3B%3BAAGF%3BEACE%2CWAAA%3BEACA%2CiBAAA%3B%3BAAGF%2CIAAK%2CSAAS%2CQAAO%2CKAAM%2CqBAAqB%2CeAAe%2CMAAK%2CMAAS%2CQAAQ%2CKAAE%2CUAAU%2CMAAS%3BEACxG%2CgBAAA%3B%3BAAGF%3BEACE%2CgBAAA%3B%3BAAGF%2CyBAAyB%2CUAAU%2CGAAI%3BEACrC%2CaAAA%3B%3BAAGF%3BEACE%2CiBAAA%3BEACA%2CgCAAA%3BEACA%2CoBAAA%3B%3BAAGF%3BEACE%2CiBAAA%3BEACA%2CmBAAA%3B%3BAAIA%2CUADS%2COACR%3BEACC%2CmBAAA%3B%3BAAEF%2CUAJS%2COAIR%3BEACC%2CmBAAA%3B%3BAAEF%2CUAPS%2COAOR%3BEACC%2CmBAAA%3B%3BAAIJ%3BEACE%2CYAAA%3BEACA%2CkBAAA%3BEACA%2C8BAAA%3BEACA%2CmBAAA%3BEACA%2CmBAAA%3B%3BAALF%2CaAOE%3BEACE%2CaAAA%3B%3BAARJ%2CaAWE%3BEACE%2CkBAAA%3BEACA%2CQAAA%3BEACA%2CQAAA%3BEACA%2CWAAW%2CgBAAX%22%7D */

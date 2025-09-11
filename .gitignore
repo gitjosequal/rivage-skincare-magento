@@ -1,0 +1,131 @@
+# Magento 2 .gitignore
+
+# Generated files
+/generated/*
+!/generated/.htaccess
+
+# Cache files
+/var/cache/*
+!/var/cache/.htaccess
+
+# Session files
+/var/session/*
+!/var/session/.htaccess
+
+# Log files
+/var/log/*
+!/var/log/.htaccess
+
+# Temporary files
+/var/tmp/*
+!/var/tmp/.htaccess
+
+# Page cache
+/var/page_cache/*
+!/var/page_cache/.htaccess
+
+# Import/Export files
+/var/import/*
+!/var/import/.htaccess
+
+# Backup files
+/var/backups/*
+!/var/backups/.htaccess
+
+# Static files
+/pub/static/*
+!/pub/static/.htaccess
+
+# Media files (uncomment if you don't want to track media)
+# /pub/media/*
+# !/pub/media/.htaccess
+
+# Vendor directory (managed by Composer)
+/vendor/
+
+# Node modules
+/node_modules/
+
+# Composer files
+composer.phar
+composer.lock
+
+# Environment files
+/app/etc/env.php
+/app/etc/config.php
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*.sql
+*.tar.gz
+*.zip
+
+# Development files
+php.ini
+nginx.conf.sample
+magento.conf
+elasticsearch.yml
+
+# Custom development files
+debug_*.php
+fix_*.php
+check_*.php
+test_*.php
+security_*.php
+malicious_cleanup.php
+audit_report.txt
+pagecache_hits.txt
+products_downloads.csv
+rivageae_rivage.sql
+security_cleanup.sql
+SESSION_PROGRESS.md
+SECURITY.md
+CHANGELOG.md
+auth.json.sample
+git-filter-repo
+n98-magerun2.phar
+create_links.sh
+fix_all_services.php
+fix_google_services.php
+fix_javascript_errors.php
+fix_missing_static.sh
+fix_only_stripe.php
+fix_payment_errors.php
+fix_stripe_js_errors.php
+fix_stripe_loading.php
+fix_tabby_csp_final.php
+fix_tabby_csp.php
+fix_tabby_sdk.php
+
+# Backup directories
+backup/
+rivage_uae/
+
+# Custom router files
+pub/router.php
+pub/index_router.php
+pub/test_router.php
+pub/redirect.php
+pub/rewrite_handler.php
+pub/url_redirect.php
+pub/get.php
+pub/hungvt.txt
+pub/sucuri-*.php
+
+# Custom HTML files
+pub/*.html
+
+# Custom sitemap files
+pub/*sitemap*.xml
