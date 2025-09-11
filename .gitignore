@@ -129,3 +129,7 @@ pub/*.html
 
 # Custom sitemap files
 pub/*sitemap*.xml
+
+# Database backups (keep scripts but exclude actual backups)
+backups/
+*.sql.gz
