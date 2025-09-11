@@ -1,0 +1,102 @@
+# Docker Compose Configuration for Rivage Skincare Magento 2.4.8
+# This configuration provides a complete development and testing environment
+
+version: '3.8'
+
+services:
+  # Magento Application
+  magento:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rivage-magento
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_DATABASE=rivage_skincare
+      - MYSQL_USER=rivage_user
+      - MYSQL_PASSWORD=rivage_password
+      - ELASTICSEARCH_HOST=elasticsearch
+      - ELASTICSEARCH_PORT=9200
+    depends_on:
+      - mysql
+      - elasticsearch
+      - redis
+    networks:
+      - rivage-network
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: rivage-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=rivage_skincare
+      - MYSQL_USER=rivage_user
+      - MYSQL_PASSWORD=rivage_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - rivage-network
+
+  # Elasticsearch
+  elasticsearch:
+    image: elasticsearch:8.11.0
+    container_name: rivage-elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - rivage-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: rivage-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - rivage-network
+
+  # PHPMyAdmin (Optional)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: rivage-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=rivage_user
+      - PMA_PASSWORD=rivage_password
+    depends_on:
+      - mysql
+    networks:
+      - rivage-network
+
+volumes:
+  mysql_data:
+  elasticsearch_data:
+  redis_data:
+
+networks:
+  rivage-network:
+    driver: bridge
