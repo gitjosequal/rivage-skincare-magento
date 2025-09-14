@@ -68,7 +68,7 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
-*.sql
+# *.sql
 *.tar.gz
 *.zip
 
@@ -132,4 +132,4 @@ pub/*sitemap*.xml
 
 # Database backups (keep scripts but exclude actual backups)
 backups/
-*.sql.gz
+# *.sql.gz
